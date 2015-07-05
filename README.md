@@ -1,6 +1,8 @@
 サイト制作の START:DASH!!
 ===
 
+[![Build Status](http://img.shields.io/travis/o2project/start-dash-of-site-making.svg)](https://travis-ci.org/o2project/start-dash-of-site-making)
+
 それは僕たちの語られなかった制作秘話――
 
 「ラブライブ！の参加者募集サイトの構成と作り方を具体的に説明する」というコンセプトの本です。
