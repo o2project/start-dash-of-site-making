@@ -1,0 +1,56 @@
+# review-epubmaker向けの設定ファイルの例。
+# yamlファイルをRe:VIEWファイルのある場所に置き、
+# 「review-epubmaker yamlファイル」を実行すると、<bookname>.epubファイルが
+# 生成されます。
+# このファイルはUTF-8エンコーディングで記述してください。
+
+# ブック名(ファイル名になるもの。ASCII範囲の文字を使用)
+bookname: start-dash-of-site-making
+# 書名
+booktitle: サイト制作の START:DASH!!
+
+# 著者名。「, 」で区切って複数指定できる
+aut: ["kubosho", "fruitsnoodle"]
+a-prt: O2 Project
+
+# rights: 権利表記(配列で複数指定可)
+rights: (C) 2015 O2 Project
+# date: 刊行日(省略した場合は実行時の日付)
+date: "2015-08-16"
+# description: 説明
+description: 「ラブライブ！の参加者募集サイトの構成と作り方を具体的に説明する」というコンセプトで、アニメ内に出てきたラブライブ！募集サイトの作り方について書く本です。
+# subject: 短い説明用タグ(配列で複数指定可)
+subject: それは僕たちの語られなかった制作秘話――
+
+# デバッグフラグ。nullでないときには一時ファイルをカレントディレクトリに作成し、削除もしない
+debug: null
+
+# CSSファイル(配列で複数指定可)
+stylesheet: ["epub.css"]
+
+# ePUBのバージョン (2か3)
+epubversion: 3
+# HTMLのバージョン (4か5。epubversionを3にしたときには5にする)
+htmlversion: 5
+
+# 目次として抽出する見出しレベル
+toclevel: 2
+# 採番の設定。採番させたくない見出しには「==[nonum]」のようにnonum指定をする
+# 本文でセクション番号を表示する見出しレベル
+secnolevel: 2
+
+# 本文中に目次ページを作成するか。省略した場合はnull (作成しない)
+toc: true
+
+# 表紙を出力するか
+titlepage: true
+
+# 奥付を作成するか。デフォルトでは作成されない。trueを指定するとデフォルトの奥付、ファイル名を指定するとそれがcolophon.htmlとしてコピーされる
+colophon: true
+
+# review-compileに渡すパラメータ
+params: --stylesheet=epub.css
+
+epubmaker:
+  # EPUBで表紙をコンテンツに含めるか。デフォルトでは作成されない。yesにするとiBooks等でも最初に表紙が表示されるようになる
+  cover_linear: true

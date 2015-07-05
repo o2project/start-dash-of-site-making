@@ -1,0 +1,19 @@
+# Directories
+.sass-cache/
+.idea/
+
+# Files
+.DS_Store
+*.elc
+*.swp
+
+# Project Settings
+*.yml
+*.css
+*.re
+*.html
+*.pdf
+*.epub
+!src/*.re
+!settings/*.yml
+!settings/*.css
