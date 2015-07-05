@@ -1,6 +1,9 @@
 # Directories
 .sass-cache/
 .idea/
+.bundle/
+bin/
+vendor/
 
 # Files
 .DS_Store

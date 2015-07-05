@@ -1,4 +1,5 @@
 require 'rake'
+require 'redpen_ruby'
 
 task default: :all
 
@@ -47,6 +48,25 @@ task :clean do
   sh 'rm -f *.html'
   sh 'rm -f *.pdf'
   sh 'rm -f *.epub'
+end
+
+desc 'Proofreading by redpen'
+task :redpen do
+  class RedpenError < StandardError; end
+
+  config_file = './settings/redpen-conf-ja.xml'
+  target_files = './draft/*.md'
+
+  Dir.glob(target_files) do |file|
+    redpen = RedpenRuby.check(config_file, file)
+
+    if redpen.valid?
+      puts 'Ok, Valid!'
+    else
+      puts redpen.messages
+      raise RedpenError, 'Proofreading results, sentence not good. Please check the error message.'
+    end
+  end
 end
 
 namespace :ci do
