@@ -94,7 +94,14 @@ namespace :ci do
     update_repo PUBLISH_BRANCH
   end
 
+  task :html do
+    Rake::Task['html'].invoke()
+    sh 'cp *.html build/'
+    sh 'cp style.css build/'
+  end
+
   task :publish do
+    Rake::Task['ci:html'].invoke()
     push_to_target_branch REPOSITORY, PUBLISH_BRANCH
   end
 end
