@@ -3,7 +3,6 @@ rvm:
   - 2.2.2
 jdk:
   - oraclejdk8
-bundler_args: --no-deployment
 
 sudo: false
 cache: bundler
