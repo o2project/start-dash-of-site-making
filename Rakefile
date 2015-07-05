@@ -1,5 +1,7 @@
 require 'rake'
 
+task default: :all
+
 desc 'Create all books (HTML, PDF, ePub)'
 task all: [:html, :pdf, :epub]
 
@@ -47,4 +49,52 @@ task :clean do
   sh 'rm -f *.epub'
 end
 
-task default: :all
+namespace :ci do
+  REPOSITORY_NAME = 'o2project/start-dash-of-site-making'
+  REPOSITORY = if ENV['GH_TOKEN']
+                 "https://$GH_TOKEN@github.com/#{REPOSITORY_NAME}"
+               else
+                 "git@github.com:#{REPOSITORY_NAME}"
+               end
+  PUBLISH_BRANCH = 'gh-pages'
+  TEMP_DIR = 'build'
+
+  def init_repo(repo, branch)
+    require 'fileutils'
+
+    if Dir["#{TEMP_DIR}/.git"].empty?
+      FileUtils.rm_rf TEMP_DIR
+      sh "git clone --quiet #{repo} #{TEMP_DIR} 2> /dev/null"
+    end
+
+    Dir.chdir TEMP_DIR do
+      sh "git checkout --orphan #{branch}"
+    end
+  end
+
+  def update_repo(branch)
+    Dir.chdir TEMP_DIR do
+      sh 'git fetch origin'
+      sh "git reset --hard origin/#{branch}"
+    end
+  end
+
+  def push_to_target_branch(repo, branch)
+    sha1, _ = `git log -n 1 --oneline`.strip.split(' ')
+
+    Dir.chdir TEMP_DIR do
+      sh 'git add -A'
+      sh "git commit -m '[ci skip] Update with #{sha1}'"
+      sh "git push --quiet #{repo} #{branch}"
+    end
+  end
+
+  task :setup do
+    init_repo REPOSITORY, PUBLISH_BRANCH
+    update_repo PUBLISH_BRANCH
+  end
+
+  task :publish do
+    push_to_target_branch REPOSITORY, PUBLISH_BRANCH
+  end
+end

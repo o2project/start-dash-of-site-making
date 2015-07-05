@@ -8,6 +8,8 @@
 *.swp
 
 # Project Settings
+*pdf/
+build/
 *.yml
 *.css
 *.re
@@ -15,5 +17,6 @@
 *.pdf
 *.epub
 !src/*.re
+!.travis.yml
 !settings/*.yml
 !settings/*.css
