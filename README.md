@@ -16,6 +16,18 @@
 
 全ての章や節が Markdown で書き終わった時点で `src` 配下の Re:VIEW 形式のファイルを直接編集するようにしていきます。
 
+コンパイル前の準備
+---
+
+まずは何らかの方法で Ruby をインストールします。おすすめは rbenv + ruby-build の構成です。
+
+次に bundler をインストールします。インストールが終わったら `bundle install` を以下の通りに実行します。
+
+```bash
+gem install bundler
+bundle install --path vendor/bundle
+```
+
 コンパイル方法
 ---
 
