@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    epub_validator (1.1.0)
+    md2review (1.6.0)
+      redcarpet (> 2.0.0)
+    redcarpet (3.3.2)
+    redpen_ruby (0.4)
+    review (1.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  epub_validator
+  md2review
+  redpen_ruby
+  review
