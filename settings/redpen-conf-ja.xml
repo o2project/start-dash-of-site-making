@@ -5,11 +5,13 @@
         </validator>
         <validator name="KatakanaSpellCheck"/>
         <validator name="SectionLength">
-            <property name="max_num" value="1500"/>
+            <property name="max_num" value="2000"/>
         </validator>
         <validator name="DoubledWord" />
         <validator name="SpaceBetweenAlphabeticalWord" />
         <validator name="CommaNumber" />
+        <validator name="Contraction" />
+        <validator name="SuggestExpression" />
         <validator name="SuccessiveWord" />
     </validators>
 </redpen-conf>
