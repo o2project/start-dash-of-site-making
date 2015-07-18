@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ops="http://www.idpf.org/2007/ops" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <meta name="generator" content="Re:VIEW" />
+  <title>サイトを実装してみよう</title>
+</head>
+<body>
+<h1><a id="h2"></a><span class="secno">第2章　</span>サイトを実装してみよう</h1>
+<p>この章では、企画書を元にラブライブ！募集サイトの HTML + CSS + JavaScript の実装をしてみます。</p>
+
+<h2><a id="h2-1"></a><span class="secno">2.1　</span>実装する際に必要となるツール</h2>
+<p>実装を始める前に、必要なツールを準備していきましょう。最低限必要なものを列挙していくと以下のものがあります。</p>
+<ul>
+<li>ソースコードを記すためのエディタ・IDE</li>
+<li>表示確認用のブラウザ</li>
+<li>作業履歴を記録するためのバージョン管理ソフト</li>
+<li>書いたソースコードに対して細かな作業をやるためのツール</li>
+</ul>
+<p>それでは、一つ一つ解説していきます。</p>
+
+<h3><a id="h2-1-1"></a>エディタ・IDE</h3>
+<p>ソースコードを書くために必要なエディタや IDE (統合開発環境)を始めに準備する必要があります。</p>
+<p>エディタは Atom や Sublime Text がよく使われています。</p>
+<p>IDE は WebStorm や NetBeans がよく使われています。また Windows であれば Visual Studio Community Edition がおすすめの IDE です。</p>
+
+<h3><a id="h2-1-2"></a>ブラウザ</h3>
+<p>次に、ソースコードを書いた後に確認するためのブラウザを準備します。Windows の場合は Microsoft Edge や Internet Explorer が、OS X の場合は Safari が最初からインストールされています。</p>
+<p>しかし、それらのブラウザだけで確認をおこなえば良いかというとそうではなく、複数のブラウザで確認する必要があります。</p>
+<p>他にインストールしておいたほうが良いブラウザは Google Chrome や Mozilla Firefox となります。できれば開発版をインストールしておくと、事前に次期バージョンでハマりそうな点が分かるためおすすめです。</p>
+
+<h3><a id="h2-1-3"></a>Git と GitHub</h3>
+<p>作業の履歴を適切に残しておくことで、いざという時にかなり前の作業履歴までさかのぼってしまうということが少なくなります。そのためのバージョン管理ソフトとして、Git と GitHub を使います。</p>
+<p>Git は SourceTree をダウンロードして使うのが良いでしょう。もし Git についてあまり知らない場合は、拙著の Steins;Git を読んでみてください。</p>
+
+<h3><a id="h2-1-4"></a>各種ツール</h3>
+<p><strong>ターミナル</strong></p>
+<p>OS X の場合は最初からターミナルがインストールされているので、それを使うのが良いでしょう。Windows の場合は PowerShell と MinGW を組み合わせて使うと良いと思います。</p>
+<p>なお、Windows を使っている人は以下の記事を見ながら PC の設定をしておくと、のちのち楽になると思います。</p>
+<ul>
+<li><a href="http://qiita.com/tanakh/items/a1b4705fb58ef3c89800" class="link">Windows - 開発者がSurfacePro3を買ったらまずやること - Qiita</a></li>
+<li><a href="http://tanakh.jp/posts/2013-05-23-windows-setup.html" class="link">最近のWindowsの開発環境のセットアップ - 純粋関数空間</a></li>
+</ul>
+<p>ターミナルは「黒い画面」とも呼ばれ、時には恐れられる存在になりますが、以下に紹介する記事を見ていただければ、触りにくいという考えは多少は軽減されると思います。</p>
+<ul>
+<li><a href="http://qiita.com/tokimari/items/43b89c832812ea2bd93f" class="link">Terminal - デザイン系フロントエンドエンジニアが「黒い画面」を使ってて良かったこと。 - Qiita</a></li>
+<li><a href="http://fjord.jp/love/548.html" class="link">Webデザイナーの為の「本当は怖くない」”黒い画面”入門 Part.01 « 合同会社フィヨルド</a></li>
+</ul>
+<p><strong>Node.js</strong></p>
+<p>次に紹介する Gulp を使うために必要になります。公式サイトからダウンロードしてインストールするのが良いでしょう。</p>
+<p><strong>Gulp</strong></p>
+<p>また、実際にソースコードを書いていく上で、以下のことも求められます。</p>
+<ul>
+<li>書いたソースコードが正しいか確認(構文チェック)</li>
+<li>ソースコードの権利を明確にするためにライセンス情報を足す</li>
+<li>サイトの表示高速化のためにソースコードを圧縮(minify)</li>
+</ul>
+<p>このようなことを手動でおこなうこともできますが、大変骨が折れる作業です。</p>
+<p>そこで、上記に挙げた作業を自動でおこなってくれる Gulp というツールを使います。</p>
+<p><strong>Web Starter Kit</strong></p>
+<p>しかし、Gulp を自分で一から使おうとすると、いろいろなことができるようになるまで骨が折れる作業になります。</p>
+<p>そこで Google が公開している <a href="https://developers.google.com/web/tools/starter-kit/" class="link">Web Starter Kit</a> を使いましょう。</p>
+<p>使い方や開発方法などは、<a href="https://html5experts.jp/nakajmg/8931/" class="link">Googleのベストプラクティスに沿ったモダンな製作の出発点「Web Starter Kit」 | HTML5Experts.jp</a> を参考にしてみてください。</p>
+
+<h2><a id="h2-2"></a><span class="secno">2.2　</span>分からないことがあった時には？</h2>
+<p>サイトの実装で分からないことがよく出てきます。そういった際、どのように解決していくかを書いていきます。</p>
+
+<h3><a id="h2-2-1"></a>ググる</h3>
+<p>まずは ググりましょう。ググる方法にも多く結果が出やすい手法があります。</p>
+<p><strong>ググるための言葉を区切る</strong></p>
+<p>例えば「CSSで背景色をつけるやり方」と検索した時よりも「CSS 背景色 やり方」で検索したほうが検索結果の件数が増えます。</p>
+<p>検索エンジンは「CSSで背景色をつけるやり方」のような文章を受け付けるのがまだ苦手です。そのため、文章よりも単語ごとに区切ったほうが検索結果の件数が増えます。</p>
+<p><strong>「○○ とは」で検索する</strong></p>
+<p>より入門的な内容を探したい場合は「○○ とは」で検索することをおすすめします。例えば「JavaScript とは」や「CSS とは」といった感じです。</p>
+<p>だいたい「○○ とは」というタイトルで入門的な記事を書く傾向にあるため、このように検索したほうがより入門よりの記事が引っかかります。</p>
+<p><strong>エラーメッセージをそのまま検索する</strong></p>
+<p>何かしらを実行してそれが上手くいかなかった際に、表示されたエラーメッセージをそのまま検索すると、解決方法が出やすくなります。</p>
+<p>しかし、だいたいは英語(そしてだいたいは Stack Overflow というサイト)なので、そこは頑張って内容を読み取るしかないです。</p>
+<p>もし検索してでてきた内容が英語だったら、それを自分のブログに日本語の記事として掲載すると、後から検索した人が助かるかもしれません。また、自分にとっても記憶に残りやすくなるので良いと思います。</p>
+<p><strong>期間を絞る</strong></p>
+<p>JavaScript の情報は2011年以前の情報はあまり役に立たないことが多いです。</p>
+<p>そこで Google の検索ツールの「期間を指定」を使って、なるべく新しい情報のみを検索するようにします。</p>
+<p>初期の状態では、一ヶ月前の検索結果の前がいきなり一年前と使い勝手がよくないです。</p>
+<p>しかし <a href="https://chrome.google.com/webstore/detail/add-search-options/kaifgnoibnjldmdkkfogenbfbfgcbiao?hl=ja" class="link">Add Search Options</a> という Google Chrome の拡張機能を使うことにより、期間指定に「三ヶ月以内」と「六ヶ月以内」が使えるようになります。</p>
+
+<h3><a id="h2-2-2"></a>周りの人に聞く</h3>
+<p>検索をしても、あまり良い情報に巡りあえない場合があります。そういった場合、周りに聞ける環境であれば聞くのが良いでしょう。</p>
+<p>聞き方としてはおそらく解答にかかるであろう時間を予測して「○○について聞きたいのですが、○分ほど時間ありますか？」と聞くのが良いでしょう。</p>
+<p>また、相手の都合の良い時に返信してもらうように、できれば口頭でまず聞くのではなく、チャット上でメッセージを送信して反応してくれるのを待つというのが良いです。</p>
+<p>その場合、15分くらいして、何も返信がなかったら口頭で聞くようにします。</p>
+
+<h3><a id="h2-2-3"></a>本を読む</h3>
+<p>これはすぐに解答を得るという目的には使えないですが、自分の中に知識を貯めておくというのも重要です。</p>
+<p>上から順に読んでいけば、仕事で JavaScript を触ることになっても十分に対処できると思います。</p>
+<ol>
+<li><a href="http://amzn.to/1I8kjCe" class="link">ノンプログラマのためのJavaScriptはじめの一歩</a></li>
+<li><a href="http://amzn.to/1CL5dCa" class="link">開眼! JavaScript —言語仕様から学ぶJavaScriptの本質</a></li>
+<li><a href="http://amzn.to/1fagUYl" class="link">JavaScriptエンジニア養成読本</a></li>
+<li><a href="http://amzn.to/1LetyDz" class="link">JavaScriptパターン —優れたアプリケーションのための作法</a></li>
+<li><a href="http://amzn.to/1Max5SF" class="link">Effective JavaScript</a></li>
+</ol>
+<p>これらを踏まえて実装といきたいところですが、その前に注意点を書いていきます。</p>
+
+<h2><a id="h2-3"></a><span class="secno">2.3　</span>注意する点</h2>
+<p>実装の際、いくつか注意点があります。それをここでは書いていきます。</p>
+
+<h3><a id="h2-3-1"></a>ライセンス</h3>
+<p>まず始めに、ソースコードのライセンスについてです。GitHub 上にあるライブラリはだいたいライセンス情報が書かれたファイルが置かれています。</p>
+<p>そのライセンスファイルが置かれていないものに関しては、使うのをやめましょう。</p>
+<p>どんなライセンスが今後適用されるか分からないのと、作者の思いとして、再利用されたくないと思ってライセンスファイルを置いていない可能性があります。</p>
+<p>またライセンスファイルが置かれていたとしても、GPL ライセンスの場合は自分で独自に改変をおこなったり、手を加えずに再配布する場合に、同じ GPL ライセンスで配布しないといけないので注意が必要です。</p>
+<p>MIT ライセンスや修正 BSD ライセンスというものは、作者の名前を書いておけば問題にはなりません。</p>
+
+<h3><a id="h2-3-2"></a>著作権</h3>
+<p>また、サイト上で使う画像についても注意が必要です。</p>
+<p><a href="http://law.e-gov.go.jp/htmldata/S45/S45HO048.html#1000000000002000000003000000005000000000000000000000000000000000000000000000000" class="link">著作権法 第三十条</a>には、以下のような記述があります。</p>
+<blockquote><p>著作権の目的となつている著作物（以下この款において単に「著作物」という。）は、個人的に又は家庭内その他これに準ずる限られた範囲内において使用すること（以下「私的使用」という。）を目的とするときは、次に掲げる場合を除き、その使用する者が複製することができる。</p>
+<p></p></blockquote>
+<p>例えば PC の壁紙として、著作権情報が載っている画像を使ったとしてもそれは問題になりません。</p>
+<p>しかし、それをインターネット上などで公開するために使ってしまった場合、<a href="http://law.e-gov.go.jp/htmldata/S45/S45HO048.html#1000000000002000000003000000003000000000000000000000000000000000000000000000000" class="link">著作権法　第二十三条</a>の公衆送信権を侵害することになります。</p>
+<p>また、そのまま使わないにしろ、例えばイラストをトレースして自分流に編集して公開したとしても、それもまた問題になります。</p>
+<p>この辺りの話は、<a href="http://www.bengo4.com/houmu/17/1263/n_3282/" class="link">大人気ゲーム「刀剣乱舞」に「トレパク」疑惑が続々浮上——どんな問題があるのか？|弁護士ドットコムニュース</a>を見ると良いでしょう。</p>
+
+<h2><a id="h2-4"></a><span class="secno">2.4　</span>ライブラリ選定</h2>
+<p>いろいろと前提を踏まえた上で、ライブラリの選定をおこなっていきます。</p>
+<p>選定の基準としては、各個人や企業でまちまちだとは思いますが、自分が気をつけているところを書いていきます。</p>
+
+<h3><a id="h2-4-1"></a>利用実績</h3>
+<p>はじめに、そのライブラリが広く使われているかを見ます。例えば <a href="http://getbootstrap.com/" class="link">Bootstrap</a> だと、ページ下部に Bootstrap を使って作られたサイト一覧が掲載されています。</p>
+<p>また <a href="http://jquery.com/" class="link">jQuery</a> については、<a href="http://www.amazon.co.jp/s/field-keywords=jquery" class="link">Amazon で jQuery で検索</a>してみると、本が大量にでてきます。</p>
+<p>このように、ライブラリの公式サイトに利用実績があるかどうかや、そのライブラリについて本が書かれているかということをまずは見ます。</p>
+
+<h3><a id="h2-4-2"></a>Issue と Pull Request と最新コミット日時</h3>
+<p>先ほどの利用実績のところで挙げた例は、公開されてからある程度時間が経過し、広く使われるようになったライブラリのみ使える判断材料です。</p>
+<p>つまり、定番と言われるライブラリしか使えないということです。</p>
+<p>ほとんどのライブラリは、まだ利用実績が掲載されていなかったり、本がでているということはありません。</p>
+<p>なので定番と呼ばれるライブラリ以外は、GitHub 上の Issue や Pull Request の数と最新コミット日時を見ます。</p>
+<p>Issue や Pull Request が多いということは開発がそれだけ活発ということかもしれません。</p>
+<p>しかし、最新コミット日がある程度前の日にちだと Issue や Pull Request の多さは「放置されているから」ということになります。</p>
+<p>なお、最新コミット日が三ヶ月前以上だと危険信号で、六ヶ月以上だと何らかの事象が起きない限りはそのライブラリは死んだと考えています。</p>
+
+<h3><a id="h2-4-3"></a>ソースソースコードの全体が把握できる、もしくは、ドキュメントが揃っている</h3>
+<p>次に、ソースソースコードの全体が把握しやすいか、もしくは、ドキュメントが揃っていてそれが読みやすいかどうかを見ます(もちろん両方揃っているのが好ましいです)。</p>
+<p>例えば、ソースソースコードの全体が把握しやすいライブラリとしては、<a href="http://backbonejs.org/" class="link">Backbone.js</a>が挙げられます。</p>
+<p>ドキュメントもあり、機能について網羅はされているのですが、見やすいかというと少し疑問が生まれます。</p>
+<p>しかし、<a href="https://github.com/jashkenas/backbone/blob/master/backbone.js" class="link">ソースソースコード</a>はまとまりの単位が小さいため、1,877行(2015/7/10現在)あるとはいえ、全体を読もうと思えば読めなくはないものとなっています。</p>
+<p>次に、ドキュメントが揃っていて読みやすい例としては、<a href="http://jquery.com/" class="link">jQuery</a> が挙げられます。</p>
+<p>ソースソースコード自体は <a href="https://github.com/jquery/jquery/tree/master/src" class="link">リポジトリの src ディレクトリ配下</a>にまとまっており、機能ごとにまとまってはいるのですが、ファイル数が多く全体を把握しようとすると骨が折れます。</p>
+<p>ただ、<a href="https://api.jquery.com/" class="link">ドキュメント</a>が見やすくまとまっており、普段はソースソースコードを見なくてもどのように使うのか調べるのに困らないという状況になっています。</p>
+<p>ちなみに、両方揃っている例としては <a href="http://hokaccha.github.io/js-flipsnap/" class="link">flipsnap.js</a> が挙げられます。</p>
+<p>flipsnap.js はドキュメントに、どういった環境に対応しているか、どのようにすれば動作するようになるか、使い方の例などがよくまとまっており、使いはじめるのにあれこれ調べなくてもドキュメント内で完結できるライブラリになっています。</p>
+<p>また<a href="https://github.com/hokaccha/js-flipsnap/blob/master/flipsnap.js" class="link">ソースソースコード自体</a>も、まとまりの単位が小さく、読みやすいものとなっています。</p>
+<p>では、これらを踏まえた上で、実際に選定をおこなっていきましょう。</p>
+
+<h2><a id="h2-5"></a><span class="secno">2.5　</span>ライブラリの選定 CSS 編</h2>
+<p>CSS を実装する際に使うライブラリとして、<a href="https://github.com/twbs/bootstrap" class="link">Bootstrap</a> を使います。</p>
+<p>Bootstrap は多くのサイトで使われています。理由としては、以下に挙げるものがあると思います。</p>
+<ul>
+<li>HTML に少し書き足して bootstrap.css を読みこめば、素の HTML と比較するとずっと良い見た目になるため</li>
+<li><a href="http://getbootstrap.com/css/#grid" class="link">グリッド機能</a>が使いやすい</li>
+<li>ブラウザ間の既定の CSS を良い感じに丸め込んでくれる <a href="http://necolas.github.io/normalize.css/" class="link">Normalize.css</a> が使える</li>
+</ul>
+<p>特にグリッド機能はある要素を横並びで表示させたいという時に役に立ちますが、狭いウインドウ幅のことも考えて実装するというのが地味に面倒です。</p>
+<p>その点を Bootstrap 側で巻き取ってくれるというのは嬉しいです。</p>
+
+<h3><a id="h2-5-1"></a>Bootstrap のカスタマイズ</h3>
+<p>少し話は逸れますが、Bootstrap をそのままの状態で使うと、見た目が他と同じようなサイトができます。</p>
+<p>しかし、自分の頑張り次第では Bootstrap を使っていると感じさせないサイトを作ることができます。</p>
+<p>以下に Bootstrap を使っているとは感じさせないサイトの例を挙げます。これらのサイトを参考にして、より見た目の良いサイトを作ってみましょう。</p>
+<ul>
+<li><a href="http://expo.getbootstrap.com/" class="link">Bootstrap Expo</a></li>
+<li><a href="https://openstf.github.io/" class="link">STF | Smartphone Test Farm</a></li>
+<li><a href="https://pplog.net/" class="link">pplog - ゆるふわインターネットにポエムを刻もう</a></li>
+</ul>
+
+<h2><a id="h2-6"></a><span class="secno">2.6　</span>ライブラリの選定 JavaScript 編</h2>
+<p>今回 JavaScript 側で実現する必要がある機能は「カルーセル」があります。</p>
+<p>「カルーセル」は <a href="http://www.nike.com/jp/ja_jp/" class="link">Nike</a> などで使われている「注目させたい複数の画像を次々に横にスライドさせて表示させる」ものです。</p>
+<p>このカルーセルを実現するために、今回は <a href="http://meandmax.github.io/lory/" class="link">lory</a> というライブラリを使います。この lory というライブラリを選んだ理由は以下の通りです。</p>
+<ul>
+<li>外部のライブラリに依存せず、lory だけを読みこめばそれでカルーセルが実装することができる</li>
+<li>ライブラリのソースソースコードの全体が把握しやすい(<a href="https://github.com/meandmax/lory/blob/73244bb780e0214d7c4b446d27295a80c6872bd0/dist/lory.js" class="link">2015/7/10現在で520行</a>)</li>
+</ul>
+<p>なお、次々に横にスライドさせて表示させる際に、最後まで到達した時にまた最初まで戻る、無限ループがいらなければ <a href="http://hokaccha.github.io/js-flipsnap/" class="link">flipsnap.js</a> もおすすめです。</p>
+<p>また jQuery に依存するライブラリでは <a href="http://kenwheeler.github.io/slick/" class="link">slick</a> や <a href="http://owlgraphic.com/owlcarousel/" class="link">Owl Carousel</a> がよく使われます。</p>
+<p>ライブラリの選定が終わったので、サイトの実装をしていきます。</p>
+</body>
+</html>
