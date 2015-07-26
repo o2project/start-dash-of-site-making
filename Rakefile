@@ -58,14 +58,7 @@ task :redpen do
   target_files = './draft/*.md'
 
   Dir.glob(target_files) do |file|
-    redpen = RedpenRuby.check(config_file, file)
-
-    if redpen.valid?
-      puts 'Ok, Valid!'
-    else
-      puts redpen.messages
-      raise RedpenError, 'Proofreading results, sentence not good. Please check the error message.'
-    end
+    sh "redpen -c settings/redpen-conf-ja.xml -f markdown #{file}"
   end
 end
 
