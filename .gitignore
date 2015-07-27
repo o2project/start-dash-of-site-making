@@ -19,6 +19,8 @@ build/
 *.html
 *.pdf
 *.epub
+redpen-*
+!redpen-conf-*.xml
 !src/*.re
 !.travis.yml
 !settings/*.yml

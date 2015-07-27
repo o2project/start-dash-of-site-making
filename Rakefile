@@ -58,7 +58,7 @@ task :redpen do
   target_files = './draft/*.md'
 
   Dir.glob(target_files) do |file|
-    sh "redpen -c settings/redpen-conf-ja.xml -f markdown #{file}"
+    sh "redpen-distribution-*/bin/redpen -c settings/redpen-conf-ja.xml -f markdown #{file}"
   end
 end
 
