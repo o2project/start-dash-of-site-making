@@ -1,5 +1,4 @@
 require 'rake'
-require 'redpen_ruby'
 
 task default: :all
 
