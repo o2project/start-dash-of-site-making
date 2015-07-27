@@ -8,6 +8,15 @@ sudo: false
 cache: bundler
 
 env:
+  - REDPEN_URL=https://github.com/recruit-tech/redpen/releases/download
+  - REDPEN_VER=1.3.0
+  - REDPEN_BIN=redpen-distribution-1.3/bin/redpen
+
+install:
+  - curl -OL $REDPEN_URL/v$REDPEN_VER/redpen-$REDPEN_VER.tar.gz
+  - tar xvf redpen-$REDPEN_VER.tar.gz
+
+env:
   global:
     - export LC_CTYPE=ja_JP.UTF-8
     - GIT_COMMITTER_NAME=kubosho_
