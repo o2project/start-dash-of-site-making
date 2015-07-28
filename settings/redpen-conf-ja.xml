@@ -9,10 +9,6 @@
         <validator name="CommaNumber">
             <property name="max_num" value="5" />
         </validator>
-        <validator name="InvalidExpression" />
-        <validator name="KatakanaEndHyphen" />
-        <validator name="KatakanaSpellCheck" />
-        <validator name="SpaceBetweenAlphabeticalWord" />
         <validator name="Contraction" />
         <validator name="SuccessiveWord" />
     </validators>
