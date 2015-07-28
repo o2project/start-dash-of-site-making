@@ -307,7 +307,11 @@ img 要素の alt 属性には「電話で話している相手にも分かる�
 
 
 
-なお、@<tt>{role} 属性の @<tt>{main} という値は、@<href>{http://momdo.github.io/wai-aria-1.1/#main,サイトの主要な内容のこと}を指しており、一見すると @<tt>{main} 要素と用途がかぶっているのですが、Internet Explorer が @<href>{http://caniuse.com/#feat=html5semantic,IE11 までは main 要素をサポートしていない}ため、@<tt>{role} 属性で @<tt>{main} という値も一緒に書く必要があります。
+なお、@<tt>{role} 属性の @<tt>{main} という値は、@<href>{http://momdo.github.io/wai-aria-1.1/#main,サイトの主要な内容のこと}を指しており、一見すると @<tt>{main} 要素と用途がかぶっています。
+
+
+
+しかし、Internet Explorer が @<href>{http://caniuse.com/#feat=html5semantic,IE11 までは main 要素をサポートしていない}ため、@<tt>{role} 属性で @<tt>{main} という値も一緒に書く必要があります。
 
 
 //emlist[][html]{
@@ -470,7 +474,11 @@ CSS を使って、HTML でマークアップしたサイトの見た目を良�
 === なぜ HTML とは別ファイルにするのか
 
 
-CSS には HTML を書くファイル以外に別途ファイルを作って CSS を書いていくほかに、HTML 内で style 要素を定義してその中に CSS を書いていく(style 要素)方法と、HTML の要素に style 属性を定義してその中に CSS を書いていく(インライン style 属性)方法があります。
+CSS には HTML を書くファイル以外に別途ファイルを作って CSS を書く他に、CSS を書ける方法が二つあります。
+
+
+
+それは、HTML 内で style 要素を定義してその中に CSS を書いていく(style 要素)方法と、HTML の要素に style 属性を定義してその中に CSS を書いていく(インライン style 属性)方法があります。
 
 
 
@@ -635,7 +643,11 @@ HTML 内で class 属性を指定した要素に対してスタイルを適用�
 
 
 
-先ほどの指定だと @<tt>{nav-bar} という値が指定されている class 属性の孫要素の li 要素全てにスタイルが適用されていましたが、例えば、以下の HTML にあるように li 要素の孫要素の li 要素は文字色を赤くしたくないと思ったとします。
+先ほどの指定だと @<tt>{nav-bar} という値が指定されている class 属性の孫要素の li 要素全てにスタイルが適用されていました。
+
+
+
+しかし、例えば以下の HTML にあるように li 要素の孫要素の li 要素は文字色を赤くしたくないと思ったとします。
 
 
 //emlist[][html]{
@@ -706,7 +718,11 @@ HTML 内で class 属性を指定した要素に対してスタイルを適用�
 === 悪いクラス名の名付け方
 
 
-今回は Bootstrap を使っているので、基本は HTML 側で Boostrap で定義されているクラス名を付けていけば良いのですが、見た目を調整したい場合は HTML にクラスを付けて、CSS 側でスタイル定義をおこなう必要があります。
+今回は Bootstrap を使っているので、基本的には HTML の要素に Bootstrap で定義されているクラス名を付けていけば良いです。
+
+
+
+しかし、独自に見た目を調整したい場合は HTML の要素に独自のクラス名を付けて、CSS 側でスタイル定義をおこなう必要があります。
 
 
 
@@ -975,7 +991,7 @@ function setPaginationPoint(element) {
 
 
 
-この @<tt>{resetPaginationPoint()} で付けられた @<tt>{ll-carousel-pagination-item--current} を外して、上記の @<tt>{setPaginationPoint()} で改めてクラスを付け直すという動きを想定しています。
+これにより、すでに付けられた @<tt>{ll-carousel-pagination-item--current} を無くし、上記の @<tt>{setPaginationPoint()} で改めてクラスを付け直すという動きを想定しています。
 
 
 //emlist[][js]{
