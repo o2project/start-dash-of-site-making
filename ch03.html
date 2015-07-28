@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ops="http://www.idpf.org/2007/ops" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <meta name="generator" content="Re:VIEW" />
+  <title>サイトを実装してみよう</title>
+</head>
+<body>
+<h1><a id="h3"></a><span class="secno">第3章　</span>サイトを実装してみよう</h1>
+<p>ここでは、サイトを実装する上での注意点や調査を踏まえた上で、実際にトップページの実装をしていきます。</p>
+
+<h2><a id="h3-1"></a><span class="secno">3.1　</span>HTML で文章に構造を付ける</h2>
+<p>はじめに HTML を使ってサイトの実装をしていきましょう。</p>
+<p>HTML はただのテキストに「ここは見出しでここは段落だ」と、文章の構造を主にブラウザに対して伝えるための言語です。</p>
+
+<h3><a id="h3-1-1"></a>DOCTYPE</h3>
+<p>まず始めに DOCTYPE というものを書きます。これは必須となっています。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;!DOCTYPE html&gt;
+</pre>
+</div>
+<p><a href="https://html.spec.whatwg.org/#the-doctype" class="link">HTML Standard の 12.1.1 The DOCTYPE</a> を見てみると、まず始めの <tt>&lt;!DOCTYPE</tt> は「大文字小文字問わず」と書かれています。つまり <tt>&lt;!doctype</tt> と書いても問題ありません。</p>
+<p>その後は、一つ以上のスペースを書きます。とはいえ、スペース一つ書けば問題ないでしょう。</p>
+<p>スペースを書いた後は、<tt>html&gt;</tt> と書きます。<tt>html</tt> の部分も大文字小文字を問いません。</p>
+<p>つまり上記のコードは以下のように書いても問題ないです。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;!doctype html&gt;
+</pre>
+</div>
+<p>なお、DOCTYPE は過去の経緯から必須となっています。DOCTYPE を省略した場合、ブラウザ側では現在の仕様と違う挙動をするモードを使う傾向にあるため、DOCTYPE を上記のように書くと、これは新しいページということをブラウザ側が分かってくれます。</p>
+
+<h3><a id="h3-1-2"></a>サイトに関する情報のマークアップ</h3>
+<p>次に head 要素というものを書きます。これは、この要素内にサイトの情報を書いていくための要素となります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;head&gt;&lt;/head&gt;
+</pre>
+</div>
+<p>この head 要素内にまずは文字コードの指定をします。特に制限がなければ <tt>UTF-8</tt> と書いておくのが良いでしょう。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;meta charset=&quot;UTF-8&quot;&gt;
+</pre>
+</div>
+<p>次に title 要素を書きます。ページのタイトルを示す要素で、ブラウザのタブ部分にも表示されるものです。今回のラブライフ！募集サイトという要件では、以下のように書くと良いでしょう。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;title&gt;LoveLife! 2nd Tournament&lt;/title&gt;
+</pre>
+</div>
+<p>ライブステージのページでは、以下のように title 要素の内容を書き換えると良いでしょう。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;title&gt;Live stage - LoveLife! 2nd Tournament&lt;/title&gt;
+</pre>
+</div>
+<p>次にサイトの説明と、サイトを示すキーワードを書きます。サイトの説明のほうはあまり長く書かず、簡潔にサイトの特徴を示す文を書くと良いでしょう。</p>
+<p>キーワードについても、サイトにより関連しているキーワードを並べるのが良いでしょう。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;meta name=&quot;description&quot; content=&quot;ラブライフ！の参加者募集サイトです&quot;&gt;
+&lt;meta name=&quot;keywords&quot; content=&quot;特設サイト&quot;&gt;
+</pre>
+</div>
+<p>次に viewport の設定です。スマートフォン向けに表示領域を設定する必要があるのですが、だいたいは以下のように書いておけば、PC 版を相対的に小さくしたような表示になります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+</pre>
+</div>
+<p>link 要素で CSS ファイルを読み込みます。今回は Bootstrap を基本として CSS を書いていくため、Bootstrap を先に読み込むようにし、その後自分が書いた CSS ファイルを読み込むようにします。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;link rel=&quot;stylesheet&quot; href=&quot;styles/bootstrap.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+</pre>
+</div>
+<p>script 要素で JavaScript ファイルを読み込みます。今回トップページのカルーセルの実装で使う lory というライブラリを先に読み込むようにし、その後自分が書いた JavaScript ファイルを読み込むようにします。</p>
+<p>なお lory を読み込む際に <tt>defer</tt> というのを指定しています。<tt>defer</tt> は「非同期にファイルを読み込む」ことを指します。実行のタイミングは DOMContentLoaded という「HTML が全て読み込まれたタイミングで実行されるイベント」の前におこなわれます。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;script src=&quot;components/lory/dist/lory.min.js&quot; defer&gt;&lt;/script&gt;
+</pre>
+</div>
+<p>最終的なマークアップは以下の通りになります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;LoveLife! 2nd Tournament&lt;/title&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;ラブライフ！の参加者募集サイトです&quot;&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;特設サイト&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/bootstrap.min.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+    &lt;script src=&quot;components/lory/dist/lory.min.js&quot; defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+</div>
+
+<h3><a id="h3-1-3"></a>body のマークアップ</h3>
+<p>head 要素を書いた後は body 要素を書きます。body 要素内には HTML の主となる内容を書いていきます。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;body&gt;&lt;/body&gt;
+</pre>
+</div>
+<p>他の内容を書く前に、body の閉じタグの前に自分が書いた JavaScript ファイルを読み込むようにします。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;body&gt;
+    &lt;script src=&quot;scripts/main.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</pre>
+</div>
+
+<h3><a id="h3-1-4"></a>ヘッダー部分のマークアップ</h3>
+<p>次にサイトのヘッダー部分をマークアップしていきます。どの部分かを画像で示すと、以下の部分になります。</p>
+<p>まず始めに <tt>header</tt> 要素に付けられれている <tt>role</tt> 属性の値である <tt>banner</tt> について、説明します。</p>
+<p><tt>banner</tt> という値は<a href="http://momdo.github.io/wai-aria-1.1/#banner" class="link">サイト向けの内容を含む領域で、ページの上部に表示されるもの</a>です。</p>
+<p>サイト向けの内容とは、ロゴやサイトの広告、サイト内の検索などを指します。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;header class=&quot;navbar navbar-default  ll-navbar&quot; role=&quot;banner&quot;&gt;
+    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
+    &lt;/div&gt;
+&lt;/header&gt;
+</pre>
+</div>
+<p>次に <tt>ll-container</tt> とクラスが指定されている要素の中に入れる要素を見てみます。ここでは、サイトのロゴを表示するように指定しています。</p>
+<p>img 要素の alt 属性には「電話で話している相手にも分かるような説明文」を書くと良いでしょう。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;div class=&quot;navbar-header&quot;&gt;
+    &lt;h1 class=&quot;navbar-brand  ll-logo&quot;&gt;
+        &lt;img src=&quot;&quot; alt=&quot;LoveLife!&quot;&gt;
+    &lt;/h1&gt;
+&lt;/div&gt;
+</pre>
+</div>
+<p>ヘッダーの右上にあるリンクをマークアップします。こういったリンク集のようなものは ul 要素という「配置順に意味を持たないリスト」を示すものでマークアップします。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;ul class=&quot;nav navbar-nav navbar-right  ll-nav-links&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;mail-magazine.html&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;help.html&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+</div>
+<p>これらを踏まえた、最終的なマークアップは以下の通りになります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;header class=&quot;navbar navbar-default  ll-navbar&quot; role=&quot;banner&quot;&gt;
+    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
+        &lt;div class=&quot;navbar-header&quot;&gt;
+            &lt;h1 class=&quot;navbar-brand  ll-logo&quot;&gt;
+                &lt;img src=&quot;&quot; alt=&quot;LoveLife!&quot;&gt;
+            &lt;/h1&gt;
+        &lt;/div&gt;
+
+        &lt;ul class=&quot;nav navbar-nav navbar-right  ll-nav-links&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;mail-magazine.html&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;help.html&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/header&gt;
+</pre>
+</div>
+
+<h3><a id="h3-1-5"></a>ナビゲーション部分のマークアップ</h3>
+<p><tt>nav</tt> 要素の <tt>role</tt> 属性に <tt>navigation</tt> という値があります。</p>
+<p>これは<a href="http://momdo.github.io/wai-aria-1.1/#navigation" class="link">現在のページや関連するページへ案内するための要素に付けられるもの</a>です。</p>
+<p>今回の場合、このナビゲーション部分が他のページへのリンクになっているので「関連するページへ案内する」という目的を果たしているといえます。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;nav class=&quot;navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse&quot; role=&quot;navigation&quot;&gt;
+    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+</pre>
+</div>
+<p>次に、他のページへリンクする要素をマークアップします。これらのリンクは順不同で良いため、ul 要素と li 要素を使ってマークアップしていきます。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;ul class=&quot;nav navbar-nav  ll-nav-links&quot;&gt;
+    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;outline.html&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;schedule.html&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;special.html&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;link.html&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;faq.html&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+</div>
+<p>最終的なマークアップは以下の通りになります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;nav class=&quot;navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse&quot; role=&quot;navigation&quot;&gt;
+    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
+        &lt;ul class=&quot;nav navbar-nav  ll-nav-links&quot;&gt;
+            &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;outline.html&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;schedule.html&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;special.html&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;link.html&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;faq.html&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+</pre>
+</div>
+
+<h3><a id="h3-1-6"></a>メイン部分のマークアップ</h3>
+<p>まず <tt>main</tt> 要素というものを書きます。これはサイトの主要な内容を示すものとなります。</p>
+<p>先ほどから何度もでてきていますが <tt>main</tt> 要素にも <tt>role</tt> 属性の値として <tt>main</tt> という値を付けます。これは仕様書の<a href="http://momdo.github.io/html5/grouping-content.html#the-main-element" class="link">4.4.14 main要素</a>にも「書くことを勧める」と書かれています。</p>
+<p>なお、<tt>role</tt> 属性の <tt>main</tt> という値は、<a href="http://momdo.github.io/wai-aria-1.1/#main" class="link">サイトの主要な内容のこと</a>を指しており、一見すると <tt>main</tt> 要素と用途がかぶっています。</p>
+<p>しかし、Internet Explorer が <a href="http://caniuse.com/#feat=html5semantic" class="link">IE11 までは main 要素をサポートしていない</a>ため、<tt>role</tt> 属性で <tt>main</tt> という値も一緒に書く必要があります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;main role=&quot;main&quot;&gt;
+&lt;/main&gt;
+</pre>
+</div>
+<p>以下の HTML にはいくつか <tt>js_</tt> と頭についたクラスが付いています。これらはカルーセルの実装時に JavaScript で使うことを想定しています。</p>
+<p>そのため、これらのクラスにスタイルを付けることは避けたほうが良いでしょう。</p>
+<p>これらのクラスの使いどころは「JavaScript で動きを付ける」で説明します。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;div class=&quot;js_carousel container-fluid  ll-container&quot;&gt;
+    &lt;div class=&quot;js_frame  ll-carousel-frame&quot;&gt;
+        &lt;div class=&quot;js_slides  ll-carousel-slides&quot;&gt;
+            &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
+                &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;&quot;&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
+                &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+<p>以下の HTML にも <tt>js_</tt> と頭についたクラスが付いています。これはカルーセルの現在位置を示す実装をする際に JavaScript で使うことを想定して付けています。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;ol class=&quot;js_carousel-pagination  ll-carousel-pagination&quot;&gt;
+    &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
+    &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+</div>
+<p>最終的なマークアップは以下の通りになります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;main role=&quot;main&quot;&gt;
+    &lt;div class=&quot;js_carousel container-fluid  ll-container&quot;&gt;
+        &lt;div class=&quot;js_frame  ll-carousel-frame&quot;&gt;
+            &lt;div class=&quot;js_slides  ll-carousel-slides&quot;&gt;
+                &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
+                    &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;&quot;&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
+                    &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;ol class=&quot;js_carousel-pagination  ll-carousel-pagination&quot;&gt;
+        &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
+        &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/main&gt;
+</pre>
+</div>
+
+<h3><a id="h3-1-7"></a>フッター部分のマークアップ</h3>
+<p>まず <tt>footer</tt> 要素というものを書きます。body 要素の直下に書く場合、サイトに関する情報が中に含まれることを想定します。</p>
+<p>また、それを示すために、<tt>role</tt> 属性の値として <tt>contentinfo</tt> を指定しています。</p>
+<p>これは<a href="http://momdo.github.io/wai-aria-1.1/#contentinfo" class="link">サイトに関する情報を含む領域</a>を指します。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;footer class=&quot;navbar navbar-default  ll-navbar&quot; role=&quot;contentinfo&quot;&gt;
+    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</pre>
+</div>
+<p>著作権表示は <tt>p</tt> 要素を使ってマークアップします。クラス名で著作権表示と分かるようなクラス名を付けておくと良いでしょう。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;p class=&quot;nav navbar-text navbar-left  ll-copyright&quot;&gt;
+    © 2014 LoveLife! 運営事務局
+&lt;/p&gt;
+</pre>
+</div>
+<p>サイトに関する補足的なリンクは、並び順は順不同で良いため、ul 要素と li 要素を使ってマークアップしていきます。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;privacy-policy.html&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;sitemap.html&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+</div>
+<p>最終的なマークアップは以下の通りになります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;footer class=&quot;navbar navbar-default  ll-navbar&quot; role=&quot;contentinfo&quot;&gt;
+    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
+        &lt;p class=&quot;nav navbar-text navbar-left  ll-copyright&quot;&gt;
+            © 2014 LoveLife! 運営事務局
+        &lt;/p&gt;
+
+        &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;privacy-policy.html&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;sitemap.html&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</pre>
+</div>
+
+<h2><a id="h3-2"></a><span class="secno">3.2　</span>CSS で見た目を良くする</h2>
+<p>CSS を使って、HTML でマークアップしたサイトの見た目を良くしていきます。</p>
+
+<h3><a id="h3-2-1"></a>準備</h3>
+<p>まず始めに、HTML 側で CSS ファイルを読み込むようにします。とはいえ、実はもう読み込むようになっています。</p>
+<p>それが head 要素内に書いた、以下の記述です。これは Bootstrap と自分が独自に書いた CSS を読み込むような記述になっています。</p>
+<p>あとは HTML ファイルを置いたフォルダと同じフォルダに styles というフォルダを作って、その中に bootstrap.min.css と main.css を置けば CSS ファイルが読み込まれます。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;link rel=&quot;stylesheet&quot; href=&quot;styles/bootstrap.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+</pre>
+</div>
+
+<h3><a id="h3-2-2"></a>なぜ HTML とは別ファイルにするのか</h3>
+<p>CSS には HTML を書くファイル以外に別途ファイルを作って CSS を書く他に、CSS を書ける方法が二つあります。</p>
+<p>それは、HTML 内で style 要素を定義してその中に CSS を書いていく(style 要素)方法と、HTML の要素に style 属性を定義してその中に CSS を書いていく(インライン style 属性)方法があります。</p>
+<p>HTML 内で style 要素を定義してその中に CSS を書いていく(style 要素)方法の例は以下の通りです。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;style&gt;
+    p {
+        color: red;
+    }
+&lt;/style&gt;
+</pre>
+</div>
+<p>HTML の要素に style 属性を定義してその中に CSS を書いていく(インライン style 属性)方法の例は以下の通りです。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;p style=&quot;color: red;&quot;&gt;テスト&lt;/p&gt;
+</pre>
+</div>
+<p>この中でも CSS を外部ファイル化することが最良な理由としては、二点理由があります。</p>
+<p>まず始めに、各ページに link 要素で CSS ファイルを読みこませれば、サイト全体の見た目を変えたいと思った時に CSS ファイルだけを差し替えれば変えられることです。つまり、メンテナンス効率が上がります。</p>
+<p>次に、サイト全体の表現を統一しやすいことです。例えば各ページで style 要素内に CSS を書いていく場合、どのページでどのような CSS を書いたか忘れてしまった場合、表現が統一されなくなる確率が高くなります。その点 CSS を別のファイルにして、その中でのみ CSS を書くようにすれば、サイト全体の表現が統一されやすくなります。</p>
+
+<h3><a id="h3-2-3"></a>プロパティと値</h3>
+<p>CSS では「プロパティ」が「適用させたいスタイル」を示し「値」は「実際に適用させる値」を指します。具体例をソースコードで示すと以下の通りです。</p>
+<div class="emlist-code">
+<pre class="emlist">.test {
+    /* プロパティ: 値 */
+    /* 背景色: 白 */
+    background-color: #fff;
+}
+</pre>
+</div>
+
+<h3><a id="h3-2-4"></a>セレクタについて</h3>
+<p>セレクタとは「HTML 内の特定の要素に合致するパターン」のことを指します。<a href="http://standards.mitsue.co.jp/resources/w3c/TR/css3-selectors/#selectors" class="link">セレクタ Level 3 の 2. セレクタ</a>を見ると分かるように多種多様なセレクタがあります。</p>
+<p>しかし、よく使うものは限られてます。ここでは、そのよく使う以下のセレクタについて解説していきます。</p>
+<ul>
+<li>要素セレクタ</li>
+<li>ID セレクタ</li>
+<li>クラスセレクタ</li>
+<li>子孫セレクタ</li>
+<li>子セレクタ</li>
+<li>ユーザーアクション擬似クラス</li>
+</ul>
+
+<h4><a id="h3-2-4-1"></a>要素セレクタ</h4>
+<p>指定した要素があるかどうか探してスタイルを適用するものです。</p>
+<div class="emlist-code">
+<pre class="emlist">/* 全ての p 要素 */
+p {
+    color: #333;
+}
+
+/* 全ての h1 要素 */
+h1 {
+    font-size: 16px;
+}
+</pre>
+</div>
+
+<h4><a id="h3-2-4-2"></a>ID セレクタ</h4>
+<p>HTML 内で id 属性を指定した要素に対してスタイルを適用するものです。なお、同一の HTML ファイル内では、同じ id 属性の値を指定することはできません。</p>
+<p>以下の HTML の例だと、<tt>global-header</tt> と <tt>site-title</tt> という ID は他のところでは使えないということになります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;header id=&quot;global-header&quot;&gt;
+    &lt;h1 id=&quot;site-title&quot;&gt;テストテスト&lt;/h1&gt;
+&lt;/header&gt;
+</pre>
+</div>
+<div class="emlist-code">
+<pre class="emlist">#global-header {
+    background-color: #ccc;
+}
+
+#site-title {
+    color: #333;
+}
+</pre>
+</div>
+
+<h4><a id="h3-2-4-3"></a>クラスセレクタ</h4>
+<p>HTML 内で class 属性を指定した要素に対してスタイルを適用するものです。ID セレクタとは違い、同一の HTML ファイル内で同じ class 属性の値を指定することができます。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;div class=&quot;nav-bar&quot;&gt;&lt;/div&gt;
+</pre>
+</div>
+<div class="emlist-code">
+<pre class="emlist">.nav-bar {
+    background-color: #ccc;
+}
+</pre>
+</div>
+
+<h4><a id="h3-2-4-4"></a>子孫セレクタ</h4>
+<p>子孫要素に対してスタイルを適用するものです。まず子孫要素について説明します。</p>
+<p>例えば、以下のような HTML があったとします。この場合 <tt>nav-bar</tt> という値が指定されている class 属性が指定されている div 要素から見て、ul 要素は子要素の関係となります。そして、li 要素は孫要素の関係になります。li 要素の中にある a 要素については曾孫要素になります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;div class=&quot;nav-bar&quot;&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;/&quot;&gt;トップ&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;ライブステージ&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+</div>
+<p>では、この時に li 要素にのみ文字色を赤にするようなスタイルを適用したいとなった時はどうしたら良いでしょうか？答えは以下のように書きます。</p>
+<p>以下の CSS は「.nav-bar の 子要素である ul 要素内にある li 要素に対して、文字色を赤にする」という指定をおこなっています。</p>
+<div class="emlist-code">
+<pre class="emlist">.nav-bar ul li {
+    color: red;
+}
+</pre>
+</div>
+
+<h4><a id="h3-2-4-5"></a>子セレクタ</h4>
+<p>子要素に対してスタイルを適用するものです。</p>
+<p>先ほどの指定だと <tt>nav-bar</tt> という値が指定されている class 属性の孫要素の li 要素全てにスタイルが適用されていました。</p>
+<p>しかし、例えば以下の HTML にあるように li 要素の孫要素の li 要素は文字色を赤くしたくないと思ったとします。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;div class=&quot;nav-bar&quot;&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;/&quot;&gt;トップ&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href=&quot;livestage.html&quot;&gt;ライブステージ&lt;/a&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href=&quot;muse.html&quot;&gt;μ's&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;arise.html&quot;&gt;A-RISE&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+</div>
+<p>この場合、以下のように ul と li を結合する文字を半角スペースから大なり括弧に変えると、トップとライブステージという部分だけ文字色が赤くなります。</p>
+<div class="emlist-code">
+<pre class="emlist">.nav-bar ul &gt; li {
+    color: red;
+}
+</pre>
+</div>
+
+<h4><a id="h3-2-4-6"></a>ユーザーアクション擬似クラス</h4>
+<p>サイトの利用者がおこなった行動に対して、スタイルを適用するものです。<tt>:hover</tt>, <tt>:active</tt>, <tt>:focus</tt> があります。</p>
+<p><tt>:hover</tt> はある要素をマウスカーソルなどで示した場合に適用されるものです。例えば、リンクを示す文字列をマウスカーソルで指した場合に、文字色を変えてその要素が今指されているということを利用者に示したりします。</p>
+<p><tt>:active</tt> はある要素を選択した時に適用されます。例えば、マウスカーソルである要素を選択して、マウスから指を離すまでは <tt>:active</tt> で指定されたスタイルが適用されます。</p>
+<p><tt>:focus</tt> はある要素を選択した時に適用されます。<tt>:active</tt> と同じ概要になってしまいますが、違うところは、例えば入力フォームを選択した時にスタイルが適用されたり、キーボードで tab キーを押して、リンクを選択した時にスタイルが適用されるということです。</p>
+
+<h3><a id="h3-2-5"></a>スタイル適用の優先度</h3>
+<p>スタイルの適用には優先度があります。優先度の決め方は、セレクタの数や種類によって決まります。</p>
+<p><a href="http://momdo.github.io/css2/cascade.html#specificity" class="link">6.4.3 セレクタの詳細度を計算する</a> にあるように、以下の計算をします。</p>
+<ul>
+<li>style 属性の数を「a」として数える</li>
+<li>ID セレクタの数を「b」として数える</li>
+<li>セレクタの中のクラスセレクタ(.foo)、属性セレクタ([id=&quot;foo&quot;] など)、擬似クラス(:hover, :active など)の数を「c」として数える</li>
+<li>型セレクタ(要素そのものを指定する)、擬似要素(::before, ::after など)の数を「d」として数える</li>
+</ul>
+<p>難しそうに思えますが「要素に指定された style 属性が強く、その次に ID セレクタが強い」ということを覚えておけばだいたいなんとかなります(そしてこの二つはむやみやたらに書いてはいけないものというのが分かると思います)。</p>
+<p>なお「!important」というものを書くと、この優先度は関係なくなり「!important」が指定されたスタイルが適用されます。</p>
+
+<h3><a id="h3-2-6"></a>悪いクラス名の名付け方</h3>
+<p>今回は Bootstrap を使っているので、基本的には HTML の要素に Bootstrap で定義されているクラス名を付けていけば良いです。</p>
+<p>しかし、独自に見た目を調整したい場合は HTML の要素に独自のクラス名を付けて、CSS 側でスタイル定義をおこなう必要があります。</p>
+<p>この際のクラス名の付け方として、良くないクラス名の付け方というものがあります。</p>
+<p>例えば、文字の色を赤くしたいと思って、以下のような CSS を書いたとします。</p>
+<div class="emlist-code">
+<pre class="emlist">.red {
+    color: red;
+}
+</pre>
+</div>
+<p>しかし、これだと style 属性で <tt>&lt;div style=&quot;color: red&quot;&gt;テスト&lt;/div&gt;</tt> みたいに書くのと大差ありません。また、赤ではなく黄色くしたいと思った時に CSS のクラス名ごと <tt>.red</tt> から <tt>.yellow</tt> に書き換える手間が発生します。そして、以下のようになったりします。</p>
+<div class="emlist-code">
+<pre class="emlist">.red {
+    color: yellow;
+}
+</pre>
+</div>
+<p>そのため、この場合で言うのであれば「なぜ文字色を赤くしたかったのか」を考え、それがエラーということを伝えたいということであれば、以下のようにクラス名を付けるのが良いでしょう。</p>
+<div class="emlist-code">
+<pre class="emlist">.error {
+    color: red;
+}
+</pre>
+</div>
+
+<h3><a id="h3-2-7"></a>良いクラス名の名付け方</h3>
+<p>では、良いクラス名とはなんでしょうか？</p>
+<p>今回 HTML のクラス名の名付け方として <a href="http://blog.ruedap.com/2013/10/29/block-element-modifier" class="link">MindBEMding</a> という考えかたを採用しています。</p>
+<p>これはサイトを構成するそれぞれの要素を独立させて、将来的な仕様変更にもなるべく容易に応えられるように取り入れたものです。</p>
+<p>通常 MindBEMding はセレクタ名を以下のように書きます。</p>
+<div class="emlist-code">
+<pre class="emlist">.block__element--modifier {
+    /* スタイル定義がここに入る */
+}
+</pre>
+</div>
+<p>block にあたる部分は、例えば検索フォームであれば「検索窓と検索するボタンを囲む要素」を指します。element にあたる部分はそれぞれ「検索窓」と「検索するボタン」を指します。modifier にあたる部分は基本の検索フォームからは少し違う見た目を指します。</p>
+
+<h2><a id="h3-3"></a><span class="secno">3.3　</span>JavaScript で動きを付ける</h2>
+<p>JavaScript を使って、カルーセルを実装していきます。しかし、その前に準備をしていきます。</p>
+
+<h3><a id="h3-3-1"></a>準備</h3>
+<p>まず始めに、以下のように全体を <tt>(function () { ... })();</tt> というもので囲みます。</p>
+<p>これは、内部に書かれている変数や関数が他のライブラリと競合しないようにするためです。この <tt>(function () { ... })();</tt> を書かないと他のライブラリと競合してしまい、JavaScript が正常に動作しないという事態になります(そしてそのデバッグは大変です)。</p>
+<div class="emlist-code">
+<pre class="emlist">(function () {
+    // ここにソースコードを書く
+})();
+</pre>
+</div>
+<p>次に <tt>addEventListener()</tt> を使って「何か起きたら何かする」という実装をしていきます。</p>
+<p>次のようなソースコードがある場合、<tt>DOMContentLoaded</tt> が起きたら、function () 内のソースコードを実行するという処理になります。</p>
+<div class="emlist-code">
+<pre class="emlist">document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+  // ここにソースコードを書く
+});
+</pre>
+</div>
+<p><tt>DOMContentLoaded</tt> はブラウザなどが HTML を読み込み解釈し終えた後に起きるイベントです。この際、画像の読み込みは待たないので、他の読み込みが終わったタイミングで起きるイベントに比べて、高速といわれています。</p>
+<p>では、カルーセルの実装をおこなっていきます。まずは先ほどの以下の function () 内部に書いていくコードから解説していきます。</p>
+<div class="emlist-code">
+<pre class="emlist">(function () {
+    // ここにソースコードを書く
+})();
+</pre>
+</div>
+
+<h3><a id="h3-3-2"></a>カルーセルの初期化</h3>
+<p>始めに <tt>setupCarousel()</tt> という関数を用意します。これは lory を使うために定義する関数となります。</p>
+<p>カルーセルライブラリは、だいたい HTML の要素とカルーセルの動作設定を書くと実装できるものが多いので、例えば lory ではなく他のライブラリを使う場合でも、少し手直しをすれば使えることになります。</p>
+<div class="emlist-code">
+<pre class="emlist">function setupCarousel(targetElement, options) {
+    return lory(targetElement, options);
+}
+</pre>
+</div>
+
+<h3><a id="h3-3-3"></a>カルーセルの自動表示切り替え</h3>
+<p>表示される画像を自動で切り替えるために、自動表示切り替え機能を実装します。</p>
+<p>他のカルーセルライブラリだと、ライブラリ側でこの自動表示切り替え機能が実装されていることが多いですが、lory は<a href="https://github.com/meandmax/lory/issues/3" class="link">作った人がいらないと考えていて</a>、実装されていません。</p>
+<p>そのため、自分で実装する必要があります。しかし、その実装は簡単です。</p>
+<p>以下のように <tt>autoplay()</tt> の第一引数に先ほどの setupCarousel で作った lory を渡して、第二引数の delay でどれくらいの間隔で自動で表示切り替えをするか設定します。</p>
+<div class="emlist-code">
+<pre class="emlist">function autoplay(carousel, delay) {
+    return setInterval(function() {
+        carousel.next();
+    }, delay);
+}
+</pre>
+</div>
+
+<h3><a id="h3-3-4"></a>カルーセルが実際に動くようにする</h3>
+<p>ここまで準備してきましたが、いよいよカルーセルが動くようにしていきます。まず始めに、ここで解説するコードの完成形を見せると、以下のようになります。</p>
+<div class="emlist-code">
+<pre class="emlist">document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+    var carouselE = document.querySelector(&quot;.js_carousel&quot;);
+    var carousel = setupCarousel(carouselE, {
+        infinite: 1
+    });
+
+    autoplay(carousel, 5000);
+});
+</pre>
+</div>
+<p>まずはじめに <tt>querySelector()</tt> について解説していきます。これは引数に取得したい要素を CSS セレクタ形式で指定するというものです。</p>
+<p>今回カルーセル実装にあたり <tt>.js_carousel</tt> というクラスが付いた要素を元にカルーセル実装をしていくので <tt>querySelector()</tt> を使って、要素を取得しています。</p>
+<div class="emlist-code">
+<pre class="emlist">var carouselE = document.querySelector(&quot;.js_carousel&quot;);
+</pre>
+</div>
+<p>次にカルーセルの有効化をおこないます。先ほど実装した <tt>setupCarousel()</tt> に <tt>carouselE</tt> と、カルーセルの動作をどのようにするか設定するものを引数として渡します。</p>
+<div class="emlist-code">
+<pre class="emlist">var carousel = setupCarousel(carouselE, {
+    infinite: 1
+});
+</pre>
+</div>
+<p>そしてカルーセルを5000ミリ秒、つまり5秒ごとに表示される画像を切り替えるようにします。</p>
+<div class="emlist-code">
+<pre class="emlist">autoplay(carousel, 5000);
+</pre>
+</div>
+<p>ここまでのソースコードをまとめると、以下の通りになります。これでカルーセルが実装でき、表示される画像が自動で切り替わるようになりました。</p>
+<div class="emlist-code">
+<pre class="emlist">(function () {
+    function autoplay(carousel, delay) {
+        return setInterval(function() {
+            carousel.next();
+        }, delay);
+    }
+
+    function setupCarousel(targetElement, options) {
+        return lory(targetElement, options);
+    }
+
+    document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+        var carouselE = document.querySelector(&quot;.js_carousel&quot;);
+
+        var carousel = setupCarousel(carouselE, {
+            infinite: 1
+        });
+
+        autoplay(carousel, 5000);
+    });
+})();
+</pre>
+</div>
+<p>なお、対応する HTML は以下の通りとなります。<tt>js_carousel</tt> は先ほど出てきましたが、他の <tt>js_frame</tt>, <tt>js_slides</tt>, <tt>js_slide</tt> も lory を動作させるには必須の要素となっています。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;div class=&quot;js_carousel container-fluid  ll-container&quot;&gt;
+    &lt;div class=&quot;js_frame  ll-carousel-frame&quot;&gt;
+        &lt;div class=&quot;js_slides  ll-carousel-slides&quot;&gt;
+            &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
+                &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;&quot;&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
+                &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+
+<h3><a id="h3-3-5"></a>カルーセルの下部のドット実装</h3>
+<p>始めに <tt>setPaginationPoint()</tt> という関数を用意します。これは引数に渡された要素に対して、<tt>ll-carousel-pagination-item--current</tt> というクラスを付けるというものです。</p>
+<div class="emlist-code">
+<pre class="emlist">function setPaginationPoint(element) {
+    element.classList.add(&quot;ll-carousel-pagination-item--current&quot;);
+}
+</pre>
+</div>
+<p>次に <tt>resetPaginationPoint()</tt> という関数を用意します。これは引数に渡された要素達に対して、<tt>ll-carousel-pagination-item--current</tt> というクラスを外すというものです。</p>
+<p>これにより、すでに付けられた <tt>ll-carousel-pagination-item--current</tt> を無くし、上記の <tt>setPaginationPoint()</tt> で改めてクラスを付け直すという動きを想定しています。</p>
+<div class="emlist-code">
+<pre class="emlist">function resetPaginationPoint(paginationNodeList) {
+    Array.prototype.map.call(paginationNodeList, function (node) {
+        node.classList.remove(&quot;ll-carousel-pagination-item--current&quot;);
+    });
+}
+</pre>
+</div>
+<p><tt>addEventListener()</tt> 内にドット用のソースコードを書いていきます。</p>
+<p>まず始めに <tt>querySelector()</tt> でページネーションの親要素を取得します。その次に <tt>getElementsByClassName()</tt> でドットを囲む要素を取得します。</p>
+<div class="emlist-code">
+<pre class="emlist">var paginationE = document.querySelector(&quot;.js_carousel-pagination&quot;);
+var paginationItemElms = paginationE.getElementsByClassName(&quot;js_carousel-pagination-item&quot;)
+</pre>
+</div>
+<p>カルーセル下部のドット表示の初期化をおこないます。カルーセルの現在位置を元にドットの表示も切り替えます。</p>
+<div class="emlist-code">
+<pre class="emlist">setPaginationPoint(paginationItemElms[carousel.returnIndex() - 1]);
+</pre>
+</div>
+<p>カルーセル実装の元となる要素で <tt>after.lory.slide</tt> というイベントが起きないかを監視します。この <tt>after.lory.slide</tt> が起きるタイミングは、カルーセルの表示が切り替わった後に発生します。</p>
+<p><tt>after.lory.slide</tt> というイベントが発生したら、カルーセルのドットの表示を切り替えます。</p>
+<div class="emlist-code">
+<pre class="emlist">carouselE.addEventListener(&quot;after.lory.slide&quot;, function () {
+    resetPaginationPoint(paginationItemElms);
+    setPaginationPoint(paginationItemElms[carousel.returnIndex() - 1]);
+});
+</pre>
+</div>
+<p>ここまでのソースコードをまとめると、以下の通りになります。これでカルーセルの下部のドットが実装でき、カルーセル側の表示切り替えによって、ドットの表示が変わるようになりました。</p>
+<div class="emlist-code">
+<pre class="emlist">(function () {
+    function autoplay(carousel, delay) {
+        return setInterval(function() {
+            carousel.next();
+        }, delay);
+    }
+
+    function setPaginationPoint(element) {
+        element.classList.add(&quot;ll-carousel-pagination-item--current&quot;);
+    }
+
+    function resetPaginationPoint(paginationNodeList) {
+        Array.prototype.map.call(paginationNodeList, function (node) {
+            node.classList.remove(&quot;ll-carousel-pagination-item--current&quot;);
+        });
+    }
+
+    function setupCarousel(targetElement, options) {
+        return lory(targetElement, options);
+    }
+
+    document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+        var carouselE = document.querySelector(&quot;.js_carousel&quot;);
+        var paginationE = document.querySelector(&quot;.js_carousel-pagination&quot;);
+        var paginationItemElms = paginationE.getElementsByClassName(&quot;js_carousel-pagination-item&quot;)
+
+        var carousel = setupCarousel(carouselE, {
+            infinite: 1
+        });
+
+        setPaginationPoint(paginationItemElms[carousel.returnIndex() - 1]);
+        autoplay(carousel, 5000);
+
+        carouselE.addEventListener(&quot;after.lory.slide&quot;, function () {
+            resetPaginationPoint(paginationItemElms);
+            setPaginationPoint(paginationItemElms[carousel.returnIndex() - 1]);
+        });
+    });
+})();
+</pre>
+</div>
+<p>対応する HTML は以下の通りとなります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;ol class=&quot;js_carousel-pagination  ll-carousel-pagination&quot;&gt;
+    &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
+    &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+</div>
+</body>
+</html>
