@@ -51,8 +51,6 @@ end
 
 desc 'Proofreading by redpen'
 task :redpen do
-  class RedpenError < StandardError; end
-
   config_file = './settings/redpen-conf-ja.xml'
   target_files = './draft/*.md'
 
