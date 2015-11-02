@@ -19,3 +19,9 @@ group :build do
     watch(%r{^draft/.+\.md$})
   end
 end
+
+group :redpen do
+  guard 'rake', :task => 'redpen' do
+    watch(%r{^draft/.+\.md$})
+  end
+end
