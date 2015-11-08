@@ -407,7 +407,7 @@ Bootstrap は多くのサイトで使われています。理由としては、�
 このカルーセルを実現するためのライブラリは、@<href>{http://meandmax.github.io/lory/,lory} にします。この lory というライブラリを選んだ理由は以下の通りです。
 
  * 外部のライブラリに依存せず、lory だけを読みこめばカルーセルの実装をおこなえる
- * ライブラリのソースコードの全体が把握しやすい(@<href>{https://github.com/meandmax/lory/blob/73244bb780e0214d7c4b446d27295a80c6872bd0/dist/lory.js,2015/7/10現在で520行})
+ * ライブラリのソースコードの全体が把握しやすい (@<href>{https://github.com/meandmax/lory/blob/73244bb780e0214d7c4b446d27295a80c6872bd0/dist/lory.js,2015/7/10 現在で 520 行})
 
 
 次々と横にスライド表示する際、最後まで到達した時はまた最初へ戻る、無限ループがいらなければ @<href>{http://hokaccha.github.io/js-flipsnap/,flipsnap.js} もおすすめです。
