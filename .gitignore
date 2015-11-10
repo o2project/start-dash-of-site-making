@@ -4,6 +4,8 @@
 .bundle/
 bin/
 vendor/
+stats/
+node_modules/
 
 # Files
 .DS_Store
@@ -22,6 +24,6 @@ build/
 redpen-*
 !redpen-conf-*.xml
 !src/*.re
+!styles/**/*.css
 !.travis.yml
 !settings/*.yml
-!settings/*.css

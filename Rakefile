@@ -8,7 +8,6 @@ task all: [:html, :pdf, :epub]
 desc 'Copy settings files'
 task :copy do
   sh 'cp ./settings/*.yml .'
-  sh 'cp ./settings/*.css .'
   sh 'cp ./src/*.re .'
 end
 
@@ -28,7 +27,7 @@ end
 desc 'Create HTML'
 task :html do
   Rake::Task['copy'].invoke()
-  sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=style.css --chapterlink'
+  sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=styles/main.css --chapterlink'
 end
 
 desc 'Convert `draft/*.md` to `src/*.re`'
@@ -109,7 +108,7 @@ namespace :ci do
   task :html do
     Rake::Task['html'].invoke()
     sh 'cp *.html build/'
-    sh 'cp style.css build/'
+    sh 'cp -r styles/ build/'
   end
 
   task :publish do
