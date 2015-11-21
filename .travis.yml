@@ -29,7 +29,8 @@ before_script:
 script:
   - bundle exec rake redpen
   - bundle exec rake html
-  - bundle exec rake epub
+  - bundle exec rake pdf
 
 after_success:
+  - rm start-dash-of-site-making.pdf
   - '[ "$TRAVIS_BRANCH" == "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "$GH_TOKEN" ] && bundle exec rake ci:publish > /dev/null'
