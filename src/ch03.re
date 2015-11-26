@@ -62,7 +62,7 @@ HTML はテキストファイルの文章構造を、主にブラウザに対し
 
 
 //emlist[][html]{
-<title>LoveLife! 2nd Tournament</title>
+<title>LoveLive! 2nd Tournament</title>
 //}
 
 
@@ -70,7 +70,7 @@ HTML はテキストファイルの文章構造を、主にブラウザに対し
 
 
 //emlist[][html]{
-<title>Live stage - LoveLife! 2nd Tournament</title>
+<title>Live stage - LoveLive! 2nd Tournament</title>
 //}
 
 
@@ -82,7 +82,7 @@ HTML はテキストファイルの文章構造を、主にブラウザに対し
 
 
 //emlist[][html]{
-<meta name="description" content="ラブライフ！の参加者募集サイトです">
+<meta name="description" content="ラブライブ！の参加者募集サイトです">
 <meta name="keywords" content="特設サイト">
 //}
 
@@ -122,8 +122,8 @@ script 要素で JavaScript ファイルを読み込みます。今回はトッ�
 //emlist[][html]{
 <head>
     <meta charset="UTF-8">
-    <title>LoveLife! 2nd Tournament</title>
-    <meta name="description" content="ラブライフ！の参加者募集サイトです">
+    <title>LoveLive! 2nd Tournament</title>
+    <meta name="description" content="ラブライブ！の参加者募集サイトです">
     <meta name="keywords" content="特設サイト">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
@@ -188,7 +188,7 @@ img 要素の alt 属性は「電話で話している相手にも分かるよ�
 //emlist[][html]{
 <div class="navbar-header">
     <h1 class="navbar-brand  ll-logo">
-        <img src="" alt="LoveLife!">
+        <img src="" alt="LoveLive!">
     </h1>
 </div>
 //}
@@ -215,7 +215,7 @@ img 要素の alt 属性は「電話で話している相手にも分かるよ�
     <div class="container-fluid  ll-container">
         <div class="navbar-header">
             <h1 class="navbar-brand  ll-logo">
-                <img src="" alt="LoveLife!">
+                <img src="" alt="LoveLive!">
             </h1>
         </div>
 
@@ -394,7 +394,7 @@ img 要素の alt 属性は「電話で話している相手にも分かるよ�
 
 //emlist[][html]{
 <p class="nav navbar-text navbar-left  ll-copyright">
-    © 2014 LoveLife! 運営事務局
+    © 2014 LoveLive! 運営事務局
 </p>
 //}
 
@@ -417,7 +417,7 @@ img 要素の alt 属性は「電話で話している相手にも分かるよ�
 <footer class="navbar navbar-default  ll-navbar" role="contentinfo">
     <div class="container-fluid  ll-container">
         <p class="nav navbar-text navbar-left  ll-copyright">
-            © 2014 LoveLife! 運営事務局
+            © 2014 LoveLive! 運営事務局
         </p>
 
         <ul class="nav navbar-nav navbar-right">
