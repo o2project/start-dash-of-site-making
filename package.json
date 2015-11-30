@@ -1,6 +1,6 @@
 {
   "name": "start-dash-of-site-making",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "「ラブライブ！の参加者募集サイトの構成と作り方を具体的に説明する」というコンセプトの本",
   "scripts": {
     "build": "gulp build",
