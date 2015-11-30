@@ -5,9 +5,8 @@ task default: :all
 desc 'Create all books (HTML, PDF, ePub)'
 task all: [:html, :pdf, :epub]
 
-desc 'Copy settings files'
+desc 'Copy Re:VIEW files'
 task :copy do
-  sh 'cp ./settings/*.yml .'
   sh 'cp ./src/*.re .'
 end
 
@@ -56,7 +55,7 @@ task :redpen do
   sh "redpen-distribution-*/bin/redpen -v"
 
   Dir.glob(target_files) do |file|
-    sh "redpen-distribution-*/bin/redpen -c settings/redpen-conf-ja.xml -f markdown #{file}"
+    sh "redpen-distribution-*/bin/redpen -c redpen-conf-ja.xml -f markdown #{file}"
   end
 end
 

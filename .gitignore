@@ -15,15 +15,13 @@ node_modules/
 # Project Settings
 *pdf/
 build/
-*.yml
 *.css
 *.re
 *.html
 *.pdf
 *.epub
 redpen-*
-!redpen-conf-*.xml
+!redpen-conf-ja.xml
 !src/*.re
 !styles/**/*.css
 !.travis.yml
-!settings/*.yml
