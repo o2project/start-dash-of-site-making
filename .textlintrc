@@ -3,6 +3,7 @@
         "jtf-style"
     ],
     "rules": {
+        "jtf-style/2.1.6.カタカナの長音": false,
         "max-ten": {
             "max": 3
         },
