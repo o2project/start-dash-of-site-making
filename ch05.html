@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="styles/main.css">
     
     
-    <title>JavaScript で動きを付ける</title>
+    <title>JavaScriptで動きを付ける</title>
 </head>
 
 <body>
@@ -33,29 +33,25 @@
                 
             </ul>
 
-            <h1><a id="h5"></a><span class="secno">第5章　</span>JavaScript で動きを付ける</h1>
-<p>JavaScript で Web サイトに動きをつけていきます。しかし、その前に準備をしていきます。</p>
+            <h1><a id="h5"></a><span class="secno">第5章　</span>JavaScriptで動きを付ける</h1>
+<p>JavaScriptでWebサイトに動きをつけていきます。しかし、その前に準備をしていきます。</p>
 
 <h2><a id="h5-1"></a><span class="secno">5.1　</span>準備</h2>
-<p>はじめに、JavaScript のソースコード全体を <tt>(function () { ... })();</tt> で囲みます。</p>
-<p>理由としては、変数や関数が他のソースコードと競合しないようにするためです。</p>
-<p><tt>(function () { ... })();</tt> を書かなかった場合、他のソースコードと競合してしまい、JavaScript が正常に動作しないことが起こります。</p>
+<p>はじめに、JavaScriptのソースコード全体を <tt>(function () { ... })();</tt> で囲みます。理由としては、変数や関数が他のソースコードと競合しないようにするためです。<tt>(function () { ... })();</tt> を書かなかった場合、他のソースコードと競合してしまい、JavaScriptが正常に動作しなくなります。</p>
 <div class="emlist-code">
 <pre class="emlist">(function () {
     // ここにソースコードを書く
 })();
 </pre>
 </div>
-<p>次に「イベントが起きたら何か実行」という実装をしていきます。方法としては <tt>addEventListener()</tt> を使います。</p>
-<p>次のソースコードは、<tt>DOMContentLoaded</tt> が起きたら、<tt>function ()</tt> 内にあるソースコードを実行するという処理です。</p>
+<p>次に「イベントが起きたら何か実行」という実装をしていきます。方法としては <tt>addEventListener()</tt> を使います。次のソースコードは、<tt>DOMContentLoaded</tt> が起きたら、<tt>function ()</tt> 内にあるソースコードを実行するという処理です。</p>
 <div class="emlist-code">
 <pre class="emlist">document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
   // ここにソースコードを書く
 });
 </pre>
 </div>
-<p><tt>DOMContentLoaded</tt> はブラウザが HTML を読み込み、解釈し終えた後に起きるイベントです。この時、画像の読み込みは待たないため <tt>onload</tt> イベントに比べ高速といわれています。</p>
-<p>では、カルーセルの実装をおこなっていきます。まずは <tt>function ()</tt> 内部に書くコードから解説していきます。</p>
+<p><tt>DOMContentLoaded</tt> はブラウザーがHTMLを読み込み、解釈し終えた後に起きるイベントです。この時、画像の読み込みは待たないため <tt>onload</tt> イベントに比べ高速といわれています。では、カルーセルの実装をおこなっていきます。まずは <tt>function ()</tt> 内部に書くコードから解説していきます。</p>
 <div class="emlist-code">
 <pre class="emlist">(function () {
     // ここにソースコードを書く
@@ -64,9 +60,7 @@
 </div>
 
 <h2><a id="h5-2"></a><span class="secno">5.2　</span>カルーセルの初期化</h2>
-<p>始めに <tt>setupCarousel()</tt> という関数を用意します。これは lory を使うために定義する関数となります。</p>
-<p>カルーセルライブラリは、HTML とカルーセルの動作設定を書けば実装できるものが多いです。</p>
-<p>たとえば lory ではなく他のライブラリを使う場合でも、少し手直しすれば使えることになります。</p>
+<p>始めに <tt>setupCarousel()</tt> という関数を用意します。これはloryを使うために定義する関数となります。カルーセルライブラリは、HTMLとカルーセルの動作設定を書けば実装できるものが多いです。たとえばloryではなく他のライブラリを使う場合でも、少し手直しすれば使えることになります。</p>
 <div class="emlist-code">
 <pre class="emlist">function setupCarousel(targetElement, options) {
     return lory(targetElement, options);
@@ -75,9 +69,7 @@
 </div>
 
 <h2><a id="h5-3"></a><span class="secno">5.3　</span>カルーセルの自動表示切り替え</h2>
-<p>自動表示切り替え機能の実装をしていきます。他のカルーセルライブラリだと、ライブラリ側で自動表示切り替え機能は実装されていることが多いです。</p>
-<p>しかし、lory は<a href="https://github.com/meandmax/lory/issues/3" class="link">ライブラリ作者がいらないと考えているため</a>、実装されていません。</p>
-<p>そのため、自分で実装する必要があります。しかし、その実装は簡単です。</p>
+<p>自動表示切り替え機能の実装をしていきます。他のカルーセルライブラリだと、ライブラリ側で自動表示切り替え機能は実装されていることが多いです。しかし、loryは<a href="https://github.com/meandmax/lory/issues/3" class="link">ライブラリ作者がいらないと考えているため</a>、実装されていません。そのため、自分で実装する必要があります。しかし、その実装は簡単です。</p>
 <p>次のコードでは <tt>autoplay()</tt> の第1引数に、先ほど <tt>setupCarousel</tt> から返された <tt>lory</tt> を渡しています。第2引数の <tt>delay</tt> では表示切り替え間隔を設定します。</p>
 <div class="emlist-code">
 <pre class="emlist">function autoplay(carousel, delay) {
@@ -101,8 +93,7 @@
 });
 </pre>
 </div>
-<p>まずはじめに <tt>querySelector()</tt> について解説していきます。これは引数に取得したい要素を CSS セレクタ形式で指定するというものです。</p>
-<p><tt>querySelector()</tt> を使う理由は、<tt>.js_carousel</tt> というクラスが付いた要素を取得するためです。</p>
+<p>まずはじめに <tt>querySelector()</tt> について解説していきます。これは引数に取得したい要素をCSSセレクタ形式で指定するというものです。<tt>querySelector()</tt> を使う理由は、<tt>.js_carousel</tt> というクラスが付いた要素を取得するためです。</p>
 <div class="emlist-code">
 <pre class="emlist">var carouselE = document.querySelector(&quot;.js_carousel&quot;);
 </pre>
@@ -114,12 +105,12 @@
 });
 </pre>
 </div>
-<p>そして5000ミリ秒(5秒)間隔で、表示される画像を切り替えるようにします。</p>
+<p>そして5000ミリ秒（5秒）間隔で、表示される画像を切り替えるようにします。</p>
 <div class="emlist-code">
 <pre class="emlist">autoplay(carousel, 5000);
 </pre>
 </div>
-<p>ここまで書いたソースコードをまとめると、次の通りになります。これで自動表示切り替え機能付きカルーセルの実装ができました。</p>
+<p>ここまで書いたソースコードをまとめると、次のとおりになります。これで自動表示切り替え機能付きカルーセルの実装ができました。</p>
 <div class="emlist-code">
 <pre class="emlist">(function () {
     function autoplay(carousel, delay) {
@@ -144,7 +135,7 @@
 })();
 </pre>
 </div>
-<p>なお、対応する HTML は次の通りとなります。<tt>js_carousel</tt> 以外に <tt>js_frame</tt>, <tt>js_slides</tt>, <tt>js_slide</tt> も <tt>lory</tt> を動かすため必須となります。</p>
+<p>なお、対応するHTMLは次のとおりとなります。<tt>js_carousel</tt> 以外に <tt>js_frame</tt>, <tt>js_slides</tt>, <tt>js_slide</tt> も <tt>lory</tt> を動かすため必須となります。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;div class=&quot;js_carousel container-fluid  ll-container&quot;&gt;
     &lt;div class=&quot;js_frame  ll-carousel-frame&quot;&gt;
@@ -170,8 +161,7 @@
 }
 </pre>
 </div>
-<p>次に <tt>resetPaginationPoint()</tt> という関数を用意します。これは引数に渡された要素達に対して、<tt>ll-carousel-pagination-item--current</tt> クラスを外すというものです。</p>
-<p>これで、すでに付けられた <tt>ll-carousel-pagination-item--current</tt> は無くし、前述の <tt>setPaginationPoint()</tt> で改めてクラスを付けます。</p>
+<p>次に <tt>resetPaginationPoint()</tt> という関数を用意します。これは引数に渡された要素達に対して、<tt>ll-carousel-pagination-item--current</tt> クラスを外すというものです。これで、すでに付けられた <tt>ll-carousel-pagination-item--current</tt> は無くし、前述の <tt>setPaginationPoint()</tt> で改めてクラスを付けます。</p>
 <div class="emlist-code">
 <pre class="emlist">function resetPaginationPoint(paginationNodeList) {
     Array.prototype.map.call(paginationNodeList, function (node) {
@@ -180,8 +170,7 @@
 }
 </pre>
 </div>
-<p><tt>addEventListener()</tt> 内にドット用のソースコードを書いていきます。</p>
-<p>まず始めに <tt>querySelector()</tt> でページネーションの親要素を取得します。その次に <tt>getElementsByClassName()</tt> でより絞り込んで要素を取得します。</p>
+<p><tt>addEventListener()</tt> 内にドット用のソースコードを書いていきます。まず始めに <tt>querySelector()</tt> でページネーションの親要素を取得します。その次に <tt>getElementsByClassName()</tt> でより絞り込んで要素を取得します。</p>
 <div class="emlist-code">
 <pre class="emlist">var paginationE = document.querySelector(&quot;.js_carousel-pagination&quot;);
 var paginationItemElms = paginationE.getElementsByClassName(&quot;js_carousel-pagination-item&quot;)
@@ -192,8 +181,7 @@ var paginationItemElms = paginationE.getElementsByClassName(&quot;js_carousel-pa
 <pre class="emlist">setPaginationPoint(paginationItemElms[carousel.returnIndex() - 1]);
 </pre>
 </div>
-<p>カルーセル実装の元となる要素で <tt>after.lory.slide</tt> というイベントが起きないか監視します。<tt>after.lory.slide</tt> の起きるタイミングは、カルーセル表示が切り替わった後に発生します。</p>
-<p><tt>after.lory.slide</tt> というイベントが発生したら、カルーセルのドット表示を切り替えます。</p>
+<p>カルーセル実装の元となる要素で <tt>after.lory.slide</tt> というイベントが起きないか監視します。<tt>after.lory.slide</tt> の起きるタイミングは、カルーセル表示が切り替わった後に発生します。<tt>after.lory.slide</tt> というイベントが発生したら、カルーセルのドット表示を切り替えます。</p>
 <div class="emlist-code">
 <pre class="emlist">carouselE.addEventListener(&quot;after.lory.slide&quot;, function () {
     resetPaginationPoint(paginationItemElms);
@@ -201,7 +189,7 @@ var paginationItemElms = paginationE.getElementsByClassName(&quot;js_carousel-pa
 });
 </pre>
 </div>
-<p>今まで書いたソースコードをまとめると、次の通りになります。これでカルーセル下部のドット表示が実装できました。</p>
+<p>今まで書いたソースコードをまとめると、次のとおりになります。これでカルーセル下部のドット表示が実装できました。</p>
 <div class="emlist-code">
 <pre class="emlist">(function () {
     function autoplay(carousel, delay) {
@@ -244,7 +232,7 @@ var paginationItemElms = paginationE.getElementsByClassName(&quot;js_carousel-pa
 })();
 </pre>
 </div>
-<p>対応する HTML は以下の通りとなります。</p>
+<p>対応するHTMLは以下のとおりとなります。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;ol class=&quot;js_carousel-pagination  ll-carousel-pagination&quot;&gt;
     &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;

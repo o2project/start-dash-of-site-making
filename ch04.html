@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="styles/main.css">
     
     
-    <title>CSS で Web サイトの見た目を良くする</title>
+    <title>CSSでWebサイトの見た目を良くする</title>
 </head>
 
 <body>
@@ -35,23 +35,21 @@
                 
             </ul>
 
-            <h1><a id="h4"></a><span class="secno">第4章　</span>CSS で Web サイトの見た目を良くする</h1>
-<p>この章では、HTML でマークアップしたサイトの見た目を CSS で整えます。</p>
+            <h1><a id="h4"></a><span class="secno">第4章　</span>CSSでWebサイトの見た目を良くする</h1>
+<p>この章では、HTMLを使ってマークアップしたサイトの見た目をCSSによって整えます。</p>
 
 <h2><a id="h4-1"></a><span class="secno">4.1　</span>準備</h2>
-<p>はじめに、HTML 側で CSS ファイルを読み込みます。しかし、実はもう読み込むようになっています。</p>
-<p>それが head 要素内に書いた以下の記述です。これは Bootstrap と自分が書いた CSS を読み込んでいることになります。</p>
+<p>はじめに、HTML側でCSSファイルを読み込みます。しかし、実はもう読み込むようになっています。それがhead要素内に書いた以下の記述です。これはBootstrapと自分が書いたCSSを読み込んでいることになります。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;link rel=&quot;stylesheet&quot; href=&quot;styles/bootstrap.min.css&quot;&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
 </pre>
 </div>
-<p>HTML ファイルが置かれているフォルダに styles というフォルダを作ります。その中に bootstrap.min.css と main.css を置けば CSS ファイルが読み込まれます。</p>
+<p>HTMLファイルが置かれているフォルダーにstylesというフォルダーを作ります。その中にbootstrap.min.cssとmain.cssを置けばCSSファイルが読み込まれます。</p>
 
-<h2><a id="h4-2"></a><span class="secno">4.2　</span>なぜ HTML とは別ファイルにするのか</h2>
-<p>CSS は 別途 CSS ファイルを読み込ませる以外に、2つ用意する方法があります。</p>
-<p>1つめが HTML 内で style 要素を定義する方法です。2つめが HTML の要素に style 属性を定義する方法です。</p>
-<p>HTML 内で style 要素を定義する例:</p>
+<h2><a id="h4-2"></a><span class="secno">4.2　</span>なぜHTMLとは別ファイルにするのか</h2>
+<p>CSSは別途CSSファイルを読み込ませる以外に、2つ用意する方法があります。1つめがHTML内でstyle要素を定義する方法です。2つめがHTMLの要素にstyle属性を定義する方法です。</p>
+<p>HTML内でstyle要素を定義する例：</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;style&gt;
     p {
@@ -60,19 +58,17 @@
 &lt;/style&gt;
 </pre>
 </div>
-<p>HTML の要素に style 属性を定義する例:</p>
+<p>HTMLの要素にstyle属性を定義する例：</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;p style=&quot;color: red;&quot;&gt;テスト&lt;/p&gt;
 </pre>
 </div>
-<p>いくつか方法はある中で、CSS ファイルを読みこませる方法が最良な理由として、2つあります。</p>
-<p>1つめは、文書構造と見た目の定義を分離させることです。特に style 属性でスタイル定義をした場合、HTML 内に見た目の定義も混ざってしまいます。</p>
-<p>CSS を別ファイルにすることで、文書構造と見た目の定義が分離でき、管理しやすくなります。</p>
-<p>次に、サイト全体の表現を統一しやすいことです。</p>
-<p>たとえば各ページで style 要素内へ CSS を書く場合について考えます。この場合、各ページでスタイル定義の不統一になる確率が高くなります。</p>
+<p>いくつか方法はある中で、CSSファイルを読みこませる方法が最良な理由として、2つあります。</p>
+<p>1つめは、文書構造と見た目の定義を分離させることです。特にstyle属性でスタイル定義をした場合、HTML内に見た目の定義も混ざってしまいます。CSSを別ファイルにすることで、文書構造と見た目の定義が分離でき、管理しやすくなります。</p>
+<p>次に、サイト全体の表現を統一しやすいことです。たとえば各ページでstyle要素内へCSSを書く場合について考えます。この場合、各ページでスタイル定義の不統一になる確率が高くなります。</p>
 
 <h2><a id="h4-3"></a><span class="secno">4.3　</span>プロパティと値</h2>
-<p>CSS では「プロパティ」が「適用するスタイル」を示し「値」は「適用する値」です。具体例をソースコードで示すと以下の通りです。</p>
+<p>CSSでは「プロパティ」が「適用するスタイル」を示し「値」は「適用する値」です。具体例をソースコードで示すと以下のとおりです。</p>
 <div class="emlist-code">
 <pre class="emlist">.test {
     /* プロパティ: 値 */
@@ -83,11 +79,11 @@
 </div>
 
 <h2><a id="h4-4"></a><span class="secno">4.4　</span>セレクタについて</h2>
-<p>セレクタとは HTML 内の特定要素に合致するパターンを指します。<a href="http://standards.mitsue.co.jp/resources/w3c/TR/css3-selectors/#selectors" class="link">セレクタ Level 3 の 2. セレクタ</a>を見ると分かるように多種多様なセレクタがあります。</p>
+<p>セレクタとはHTML内の特定要素に合致するパターンを指します。[セレクタ Level3の2.セレクタ]（http://standards.mitsue.co.jp/resources/w3c/TR/css3-selectors/#selectors）を見ると分かるように多種多様なセレクタがあります。</p>
 <p>しかし、よく使うものは限られてます。ここでは、そのよく使う以下のセレクタについて解説していきます。</p>
 <ul>
 <li>要素セレクタ</li>
-<li>ID セレクタ</li>
+<li>IDセレクタ</li>
 <li>クラスセレクタ</li>
 <li>子孫セレクタ</li>
 <li>子セレクタ</li>
@@ -109,9 +105,8 @@ h1 {
 </pre>
 </div>
 
-<h2><a id="h4-6"></a><span class="secno">4.6　</span>ID セレクタ</h2>
-<p>id 属性が指定された HTML の要素に対し、スタイルを適用するものです。なお、id 属性の値は一意となります。</p>
-<p>id 属性を指定した要素へ、スタイル適用する例が次の例です。</p>
+<h2><a id="h4-6"></a><span class="secno">4.6　</span>IDセレクタ</h2>
+<p>id属性が指定されたHTMLの要素に対し、スタイルを適用するものです。なお、id属性の値は一意となります。id属性を指定した要素へ、スタイル適用する例が次の例です。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;header id=&quot;global-header&quot;&gt;
     &lt;h1 id=&quot;site-title&quot;&gt;テストテスト&lt;/h1&gt;
@@ -130,9 +125,9 @@ h1 {
 </div>
 
 <h2><a id="h4-7"></a><span class="secno">4.7　</span>クラスセレクタ</h2>
-<p>class 属性が指定された HTML の要素に対し、スタイルを適用するものです。ID セレクタとは違い、同じ HTML 内で同じ class 属性の値を指定することができます。</p>
+<p>class属性が指定されたHTMLの要素に対し、スタイルを適用するものです。IDセレクタとは違い、同じHTML内で同じclass属性の値を指定することができます。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;div class=&quot;nav-bar&quot;&gt;&lt;/div&gt;
+<pre class="emlist">&lt;divclass=&quot;nav-bar&quot;&gt;&lt;/div&gt;
 </pre>
 </div>
 <div class="emlist-code">
@@ -143,10 +138,9 @@ h1 {
 </div>
 
 <h2><a id="h4-8"></a><span class="secno">4.8　</span>子孫セレクタ</h2>
-<p>子孫要素に対してスタイルを適用するものです。まず子孫要素について説明します。</p>
-<p>たとえば、次の HTML があったとします。</p>
+<p>子孫要素に対してスタイルを適用するものです。まず子孫要素について説明します。たとえば、次のHTMLがあったとします。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;div class=&quot;nav-bar&quot;&gt;
+<pre class="emlist">&lt;divclass=&quot;nav-bar&quot;&gt;
     &lt;ul&gt;
         &lt;li&gt;&lt;a href=&quot;/&quot;&gt;トップ&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;ライブステージ&lt;/a&gt;&lt;/li&gt;
@@ -154,21 +148,19 @@ h1 {
 &lt;/div&gt;
 </pre>
 </div>
-<p>この場合 <tt>nav-bar</tt> という値の class 属性を指定している div 要素からすると、ul 要素は子要素になります。また、li 要素は孫要素の関係になります。li 要素内の a 要素は曾孫要素になります。</p>
-<p>この時、li 要素の文字色を赤にしたい時はどうしたら良いでしょうか？答えは次のように書きます。</p>
+<p>この場合 <tt>nav-bar</tt> という値のclass属性を指定しているdiv要素からすると、ul要素は子要素になります。また、li要素は孫要素の関係になります。li要素内のa要素はひ孫要素になります。この時、li要素の文字色を赤にしたい時は次のように書きます。</p>
 <div class="emlist-code">
 <pre class="emlist">.nav-bar li {
     color: red;
 }
 </pre>
 </div>
-<p>前述した CSS は、文字色を赤にするよう定義しています。適用対象は <tt>nav-bar</tt> というクラスが指定されている <tt>div</tt> 要素の子要素である <tt>li</tt> 要素になります。</p>
+<p>前述したCSSは、文字色を赤にするよう定義しています。適用対象は <tt>nav-bar</tt> というクラスが指定されている <tt>div</tt> 要素の子要素である <tt>li</tt> 要素になります。</p>
 
 <h2><a id="h4-9"></a><span class="secno">4.9　</span>子セレクタ</h2>
-<p>子要素のみに限定してスタイルを適用するものです。</p>
-<p>たとえば次の HTML 内にある <tt>li</tt> 要素全てへ対しては文字色を変更したくないという要望が来たとします。</p>
+<p>子要素のみに限定してスタイルを適用するものです。たとえば次のHTML内にある <tt>li</tt> 要素全てへ対しては文字色を変更したくないという要望が来たとします。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;div class=&quot;nav-bar&quot;&gt;
+<pre class="emlist">&lt;divclass=&quot;nav-bar&quot;&gt;
     &lt;ul&gt;
         &lt;li&gt;&lt;a href=&quot;/&quot;&gt;トップ&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;
@@ -192,22 +184,19 @@ h1 {
 
 <h2><a id="h4-10"></a><span class="secno">4.10　</span>ユーザーアクション擬似クラス</h2>
 <p>サイトの利用者がおこなった行動に対して、スタイルを適用するものです。<tt>:hover</tt>, <tt>:active</tt>, <tt>:focus</tt> があります。</p>
-<p><tt>:hover</tt> はある要素をマウスカーソルなどで示した場合に適用されるものです。</p>
-<p>例えば、リンクをマウスカーソルで指したとします。この場合、文字色の変更などで、その要素をいま指しているということが示せます。</p>
-<p><tt>:active</tt> はある要素を選択した時に適用されます。</p>
-<p>例えば、マウスカーソルである要素を選択したとします。この場合、マウスから指を離すまでは <tt>:active</tt> で指定されたスタイルが適用されます。</p>
-<p><tt>:focus</tt> はある要素を選択した時に適用されます。</p>
-<p><tt>:active</tt> と違うところは、入力フォームを選択した時にスタイルが適用されます。また、キーボードの tab キーでリンクを選択した時にスタイルが適用されるということです。</p>
+<p><tt>:hover</tt> はある要素をマウスカーソルなどで示した場合に適用されるものです。例えば、リンクをマウスカーソルで指したとします。この場合、文字色の変更などで、その要素をいま指しているということが示せます。</p>
+<p><tt>:active</tt> はある要素を選択した時に適用されます。例えば、マウスカーソルである要素を選択したとします。この場合、マウスから指を離すまでは <tt>:active</tt> で指定されたスタイルが適用されます。</p>
+<p><tt>:focus</tt> はある要素を選択した時に適用されます。<tt>:active</tt> と違うところは、入力フォームを選択した時にスタイルが適用されます。また、キーボードのtabキーでリンクを選択した時にスタイルが適用されるということです。</p>
 
 <h2><a id="h4-11"></a><span class="secno">4.11　</span>スタイル適用の優先度</h2>
 <p>スタイルの適用には優先度があります。優先度は、定義されているセレクタの数や種類によって決まります。</p>
 <ul>
-<li>style 属性の数を <tt>a</tt> として数える</li>
-<li>ID セレクタの数を <tt>b</tt> として数える</li>
-<li>セレクタ内のクラスセレクタ(.foo)、属性セレクタ([id=&quot;foo&quot;] など)、擬似クラス(:hover, :active など)の数を <tt>c</tt> として数える</li>
-<li>型セレクタ(要素そのものを指定する)、擬似要素(::before, ::after など)の数は <tt>d</tt> として数える</li>
+<li>style属性の数を <tt>a</tt> として数える</li>
+<li>IDセレクタの数を <tt>b</tt> として数える</li>
+<li>セレクタ内のクラスセレクタ（<tt>.foo</tt>）、属性セレクタ（例：<tt>[id=&quot;foo&quot;]</tt>）、擬似クラス（例：<tt>:hover</tt>）の数を <tt>c</tt> として数える</li>
+<li>型セレクタ（要素そのものを指定する）、擬似要素（<tt>::before</tt>, <tt>::after</tt>など）の数は <tt>d</tt> として数える</li>
 </ul>
-<p>この中でも、style 属性が1番強く、ID セレクタはその次に強いということを覚えておけばなんとかなります。</p>
+<p>この中でも、style属性が1番強く、IDセレクタはその次に強いということを覚えておけばなんとかなります。</p>
 <p>なお <tt>!important</tt> を書くと、この優先度は関係なくなります。<tt>!important</tt> は強力すぎるため、限られた場所のみ使うのがいいでしょう。</p>
 
 
