@@ -9,6 +9,5 @@
         </validator>
         <validator name="DoubleNegative" />
         <validator name="Contraction" />
-        <validator name="SuccessiveWord" />
     </validators>
 </redpen-conf>
