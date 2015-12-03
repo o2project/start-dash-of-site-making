@@ -3,9 +3,12 @@
 ##################################################
 
 dist/
-src/components/
-src/images/
+images/
 stats/
+components/lory/*
+components/lory/dist/*.js
+!components/lory/dist
+!components/lory/dist/lory.js
 
 # --------------------------------------------------
 
