@@ -23,15 +23,15 @@ gulp.task("clean", del.bind(null, [
   `${dir.dest}/*.css`
 ], {dot: true}));
 
+// ------------------------------
+// Build
+// ------------------------------
+
 gulp.task("sass", () => {
   return gulp.src([`${dir.src}/*.scss`])
     .pipe(sass().on("error", sass.logError))
     .pipe(gulp.dest(dir.dest));
 });
-
-// ------------------------------
-// Build
-// ------------------------------
 
 gulp.task("build", (cb) => {
   return sequence(
