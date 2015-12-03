@@ -21,6 +21,8 @@ build/
 *.pdf
 *.epub
 redpen-*
+!example/**/*.css
+!example/**/*.html
 !redpen-conf-ja.xml
 !src/*.re
 !styles/**/*.css
