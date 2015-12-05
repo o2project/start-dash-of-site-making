@@ -106,7 +106,7 @@ namespace :ci do
 
   task :example do
     Rake::Task['html'].invoke()
-    sh 'cp -r example/ build/'
+    sh 'cp -r example/ build/example'
   end
 
   task :html do
@@ -120,5 +120,6 @@ namespace :ci do
     Rake::Task['ci:html'].invoke()
     sh 'cd build'
     push_to_target_branch REPOSITORY, PUBLISH_BRANCH
+    sh 'cd ../ && rm -rf build'
   end
 end
