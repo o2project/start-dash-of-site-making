@@ -22,7 +22,7 @@ HTMLはテキストファイルの文章構造を、主にブラウザーに対�
 //}
 
 
-@<href>{https://html.spec.whatwg.org/#the-doctype,HTML Standard - 12.1.1 The DOCTYPE} では、@<tt>{<!DOCTYPE} について「大文字小文字問わず」と書かれています。
+@<href>{http://momdo.github.io/html51/syntax.html#the-doctype,8.1.1 DOCTYPE — HTML 5.1 日本語訳}では、@<tt>{<!DOCTYPE} について「大文字小文字問わず」と書かれています。
 つまり @<tt>{<!doctype} と書いても問題ありません。
 
 
@@ -211,50 +211,23 @@ img要素のalt属性は「電話で話している相手にも分かるよう�
 == ナビゲーション部分のマークアップ
 
 
-@<tt>{nav}要素の@<tt>{role}属性に@<tt>{navigation}という値があります。
-これは@<href>{http://momdo.github.io/wai-aria-1.1/#navigation,現在のページや関連するページへ案内する要素に付けられるもの}です。
-今回は、ナビゲーション部分が他ページのリンクになるため「関連するページへ案内する」という目的を果たしています。
-
-
-//emlist[][html]{
-<nav class="navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse" role="navigation">
-    <div class="container-fluid  ll-container">
-    </div>
-</nav>
-//}
-
-
+はじめに@<tt>{nav}要素で全体を囲みます。
+子ページの一覧を載せている部分かつサイト内の全ページにあるものなので、主要なナビゲーションとみなして、@<tt>{nav}要素を使っています。
 次に、他ページへリンクする要素をマークアップします。これらのリンクは順不同で良いため、ul要素とli要素を使ってマークアップします。
 
 
 //emlist[][html]{
-<ul class="nav navbar-nav  ll-nav-links">
-    <li class="active"><a href="/">Top</a></li>
-    <li><a href="livestage.html">Live stage</a></li>
-    <li><a href="outline.html">Outline</a></li>
-    <li><a href="schedule.html">Schedule</a></li>
-    <li><a href="special.html">Special</a></li>
-    <li><a href="link.html">Link</a></li>
-    <li><a href="faq.html">Faq</a></li>
-</ul>
-//}
-
-
-最終的なマークアップは以下のとおりになります。
-
-
-//emlist[][html]{
-<nav class="navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse" role="navigation">
+<nav class="navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse">
     <div class="container-fluid  ll-container">
-        <ul class="nav navbar-nav  ll-nav-links">
-            <li class="active"><a href="/">Top</a></li>
-            <li><a href="livestage.html">Live stage</a></li>
-            <li><a href="outline.html">Outline</a></li>
-            <li><a href="schedule.html">Schedule</a></li>
-            <li><a href="special.html">Special</a></li>
-            <li><a href="link.html">Link</a></li>
-            <li><a href="faq.html">Faq</a></li>
-        </ul>
+      <ul class="nav navbar-nav  ll-nav-links">
+        <li class="active"><a href="/">Top</a></li>
+        <li><a href="livestage.html">Live stage</a></li>
+        <li><a href="outline.html">Outline</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="special.html">Special</a></li>
+        <li><a href="link.html">Link</a></li>
+        <li><a href="faq.html">Faq</a></li>
+      </ul>
     </div>
 </nav>
 //}
@@ -263,9 +236,9 @@ img要素のalt属性は「電話で話している相手にも分かるよう�
 
 
 まず@<tt>{main}要素というものを書きます。これはサイトの主要な内容を示すものとなります。
-@<tt>{main}要素へ@<tt>{role}属性の値に@<tt>{main}という値を付けます。これは仕様書の@<href>{http://momdo.github.io/html5/grouping-content.html#the-main-element,4.4.14 main 要素}にも「書くことを勧める」と書かれています。
+@<tt>{main}要素へ@<tt>{role}属性の値に@<tt>{main}という値を付けます。これは仕様書の@<href>{http://momdo.github.io/html51/grouping-content.html#the-main-element,4.4.14 main要素}にも「書くことを勧める」と書かれています。
 なお、@<tt>{role}属性に指定した@<tt>{main}という値は、@<href>{http://momdo.github.io/wai-aria-1.1/#main,サイトの主要な内容}を指しています。一見した場合@<tt>{main}要素と用途がかぶっているように見えます。
-しかし、Internet Explorerが@<href>{http://caniuse.com/#feat=html5semantic,IE11 までは main 要素をサポートしていない}ため、@<tt>{role}属性で@<tt>{main}という値も一緒に書く必要があります。
+しかし、Internet Explorerが@<href>{http://caniuse.com/#feat=html5semantic,IE11まではmain要素をサポートしていない}ため、@<tt>{role}属性で@<tt>{main}という値も一緒に書く必要があります。
 
 
 //emlist[][html]{
