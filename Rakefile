@@ -13,18 +13,21 @@ end
 desc 'Create PDF'
 task :pdf do
   sh 'rm -rf *pdf'
+  Rake::Task['md2review'].invoke()
   Rake::Task['copy'].invoke()
   sh 'bundle exec review-pdfmaker config.yml'
 end
 
 desc 'Create ePub'
 task :epub do
+  Rake::Task['md2review'].invoke()
   Rake::Task['copy'].invoke()
   sh 'bundle exec review-epubmaker config.yml'
 end
 
 desc 'Create HTML'
 task :html do
+  Rake::Task['md2review'].invoke()
   Rake::Task['copy'].invoke()
   sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=styles/main.css --chapterlink'
 end
