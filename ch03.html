@@ -45,7 +45,7 @@
 <pre class="emlist">&lt;!DOCTYPE html&gt;
 </pre>
 </div>
-<p><a href="https://html.spec.whatwg.org/#the-doctype" class="link">HTML Standard - 12.1.1 The DOCTYPE</a> では、<tt>&lt;!DOCTYPE</tt> について「大文字小文字問わず」と書かれています。つまり <tt>&lt;!doctype</tt> と書いても問題ありません。</p>
+<p><a href="http://momdo.github.io/html51/syntax.html#the-doctype" class="link">8.1.1 DOCTYPE — HTML 5.1 日本語訳</a>では、<tt>&lt;!DOCTYPE</tt> について「大文字小文字問わず」と書かれています。つまり <tt>&lt;!doctype</tt> と書いても問題ありません。</p>
 <p>その後は、1つ以上のスペースを書きます。とはいえ、スペース1つ書けば問題ないでしょう。スペースを書いた後は、<tt>html&gt;</tt> と書きます。<tt>html</tt> の部分も大文字小文字を問いません。なお、DOCTYPEは過去の経緯から必須となっています。DOCTYPEは省略した場合、ブラウザー側で現在の仕様と違う挙動になるモードを使う傾向があります。</p>
 
 <h2><a id="h3-2"></a><span class="secno">3.2　</span>サイトに関する情報のマークアップ</h2>
@@ -170,47 +170,26 @@
 </div>
 
 <h2><a id="h3-5"></a><span class="secno">3.5　</span>ナビゲーション部分のマークアップ</h2>
-<p><tt>nav</tt>要素の<tt>role</tt>属性に<tt>navigation</tt>という値があります。これは<a href="http://momdo.github.io/wai-aria-1.1/#navigation" class="link">現在のページや関連するページへ案内する要素に付けられるもの</a>です。今回は、ナビゲーション部分が他ページのリンクになるため「関連するページへ案内する」という目的を果たしています。</p>
+<p>はじめに<tt>nav</tt>要素で全体を囲みます。子ページの一覧を載せている部分かつサイト内の全ページにあるものなので、主要なナビゲーションとみなして、<tt>nav</tt>要素を使っています。次に、他ページへリンクする要素をマークアップします。これらのリンクは順不同で良いため、ul要素とli要素を使ってマークアップします。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;nav class=&quot;navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse&quot; role=&quot;navigation&quot;&gt;
+<pre class="emlist">&lt;nav class=&quot;navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse&quot;&gt;
     &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
-    &lt;/div&gt;
-&lt;/nav&gt;
-</pre>
-</div>
-<p>次に、他ページへリンクする要素をマークアップします。これらのリンクは順不同で良いため、ul要素とli要素を使ってマークアップします。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;ul class=&quot;nav navbar-nav  ll-nav-links&quot;&gt;
-    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;outline.html&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;schedule.html&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;special.html&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;link.html&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;faq.html&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</pre>
-</div>
-<p>最終的なマークアップは以下のとおりになります。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;nav class=&quot;navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse&quot; role=&quot;navigation&quot;&gt;
-    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
-        &lt;ul class=&quot;nav navbar-nav  ll-nav-links&quot;&gt;
-            &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;outline.html&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;schedule.html&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;special.html&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;link.html&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;faq.html&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
+      &lt;ul class=&quot;nav navbar-nav  ll-nav-links&quot;&gt;
+        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;outline.html&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;schedule.html&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;special.html&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;link.html&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;faq.html&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
     &lt;/div&gt;
 &lt;/nav&gt;
 </pre>
 </div>
 
 <h2><a id="h3-6"></a><span class="secno">3.6　</span>メイン部分のマークアップ</h2>
-<p>まず<tt>main</tt>要素というものを書きます。これはサイトの主要な内容を示すものとなります。<tt>main</tt>要素へ<tt>role</tt>属性の値に<tt>main</tt>という値を付けます。これは仕様書の<a href="http://momdo.github.io/html5/grouping-content.html#the-main-element" class="link">4.4.14 main 要素</a>にも「書くことを勧める」と書かれています。なお、<tt>role</tt>属性に指定した<tt>main</tt>という値は、<a href="http://momdo.github.io/wai-aria-1.1/#main" class="link">サイトの主要な内容</a>を指しています。一見した場合<tt>main</tt>要素と用途がかぶっているように見えます。しかし、Internet Explorerが<a href="http://caniuse.com/#feat=html5semantic" class="link">IE11 までは main 要素をサポートしていない</a>ため、<tt>role</tt>属性で<tt>main</tt>という値も一緒に書く必要があります。</p>
+<p>まず<tt>main</tt>要素というものを書きます。これはサイトの主要な内容を示すものとなります。<tt>main</tt>要素へ<tt>role</tt>属性の値に<tt>main</tt>という値を付けます。これは仕様書の<a href="http://momdo.github.io/html51/grouping-content.html#the-main-element" class="link">4.4.14 main要素</a>にも「書くことを勧める」と書かれています。なお、<tt>role</tt>属性に指定した<tt>main</tt>という値は、<a href="http://momdo.github.io/wai-aria-1.1/#main" class="link">サイトの主要な内容</a>を指しています。一見した場合<tt>main</tt>要素と用途がかぶっているように見えます。しかし、Internet Explorerが<a href="http://caniuse.com/#feat=html5semantic" class="link">IE11まではmain要素をサポートしていない</a>ため、<tt>role</tt>属性で<tt>main</tt>という値も一緒に書く必要があります。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;main role=&quot;main&quot;&gt;
 &lt;/main&gt;
