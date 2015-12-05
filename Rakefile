@@ -122,8 +122,8 @@ namespace :ci do
   task :publish do
     Rake::Task['ci:example'].invoke()
     Rake::Task['ci:html'].invoke()
-    push_to_target_branch REPOSITORY, PUBLISH_BRANCH
-      Dir.chdir TEMP_DIR do
+    Dir.chdir TEMP_DIR do
+      push_to_target_branch REPOSITORY, PUBLISH_BRANCH
     end
   end
 end
