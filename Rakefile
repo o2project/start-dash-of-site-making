@@ -112,7 +112,7 @@ namespace :ci do
   task :html do
     Rake::Task['html'].invoke()
     sh 'cp *.html build/'
-    sh 'cp -r styles/ build/'
+    sh 'cp -r styles/ build/styles/'
   end
 
   task :publish do
