@@ -3,7 +3,6 @@
 ##################################################
 
 dist/
-images/
 stats/
 components/lory/*
 components/lory/dist/*.js
