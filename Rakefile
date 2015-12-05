@@ -117,6 +117,7 @@ namespace :ci do
     Rake::Task['copy'].invoke()
     sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=styles/main.css --chapterlink'
     sh 'cp *.html build/'
+    sh 'cp -r images/ build/images/'
     sh 'cp -r styles/ build/styles/'
   end
 
