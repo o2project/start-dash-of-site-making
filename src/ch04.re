@@ -81,7 +81,7 @@ CSSでは「プロパティ」が「適用するスタイル」を示し「値�
 
 
 セレクタとはHTML内の特定要素に合致するパターンを指します。
-[セレクタ Level3の2.セレクタ]（http://standards.mitsue.co.jp/resources/w3c/TR/css3-selectors/#selectors）を見ると分かるように多種多様なセレクタがあります。
+@<href>{http://standards.mitsue.co.jp/resources/w3c/TR/css3-selectors/#selectors,セレクタ Level3の2.セレクタ}を見ると分かるように多種多様なセレクタがあります。
 
 
 
