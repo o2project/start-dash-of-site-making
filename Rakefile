@@ -118,6 +118,7 @@ namespace :ci do
   task :publish do
     Rake::Task['ci:example'].invoke()
     Rake::Task['ci:html'].invoke()
+    sh 'cd build'
     push_to_target_branch REPOSITORY, PUBLISH_BRANCH
   end
 end
