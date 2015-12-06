@@ -1,189 +1,57 @@
-/* サイトのロゴ */
-.ll-logo {
-    height: auto;
-    margin-top: 11px;
+/* サイトのヘッダー */
+#ll-header {
     margin-bottom: 0;
+}
+
+/* サイトのロゴ */
+#ll-header .ll-logo {
+    height: auto;
+    margin-top: 15px;
     padding: 15px;
 }
 
-/* メインコンテンツ */
-[role="main"] {
-    background-color: #d9d9d9;
-}
-
-/* 著作権情報 */
-.ll-copyright {
-    /* navbar-text に指定されている文字色指定を上書きするため */
-    color: #555 !important;
-}
-@media (min-width: 768px) {
-    .ll-copyright {
-        margin-left: 0;
-    }
-}
-
-/* カルーセルを囲む要素 */
-.ll-carousel-frame {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    white-space: nowrap;
-}
-
-/* カルーセルの各要素 */
-.ll-carousel-slide {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-/* カルーセル内の画像 */
-.ll-carousel-slide img {
-    max-width: 100%;
-}
-
-/* カルーセル：ページングを囲む要素 */
-.ll-carousel-pagination {
-    list-style-type: none;
-    text-align: center;
-}
-
-/* カルーセル：ページングの丸 */
-.ll-carousel-pagination-item {
-    display: inline-block;
-}
-
-/* カルーセル：ページングの現在の丸 */
-.ll-carousel-pagination-item--current {
-    color: #fff;
-}
-
-/* ナビゲーション部分の共通スタイル */
-.ll-navbar {
-    min-height: 0; /* auto にすると Safari で auto が適用されない */
+/* サイトのグローバルナビゲーション */
+#ll-nav {
+    min-height: 0;
     margin-bottom: 0;
-    background-color: #f3d4df;
+    border-width: 0;
 }
 
-/* ナビゲーション部分のアクティブ時のスタイル */
-.ll-nav-links > .active > a {
-    position: relative;
-    pointer: default;
-    pointer-events: none;
-}
-
-.ll-nav-links > li:not(:last-child) {
+/* サイトのグローバルナビゲーション内の各アイテム */
+#ll-nav li {
     margin-right: 0;
 }
 
-/* 子ページ一覧のナビゲーション */
-.ll-navbar--bg-inverse {
-    border: 0;
-    background-color: #ff50ac;
-}
-
-/* 子ページ一覧のナビゲーション：リンク部分 */
-.ll-navbar--bg-inverse .ll-nav-links > li > a {
+/* サイトのグローバルナビゲーション内の各リンク */
+#ll-nav li > a {
     margin-top: 0;
     margin-bottom: 0;
     border-radius: 0;
     color: #fff;
     text-transform: uppercase;
 }
+/* 横幅が768px以上のときの設定 */
 @media (min-width: 768px) {
-    .ll-navbar--bg-inverse .ll-nav-links > li > a {
+    #ll-nav li > a {
         border-right: 1px solid #fff;
     }
 
-    .ll-navbar--bg-inverse .ll-nav-links > li:first-child > a {
+    #ll-nav li:first-child > a {
         border-left: 1px solid #fff;
     }
 }
 
-.ll-navbar--bg-inverse .ll-nav-links > li > a:focus,
-.ll-navbar--bg-inverse .ll-nav-links > li > a:hover {
-    background-color: #ff92cb;
-    color: #fff;
-}
-
-.ll-navbar--bg-inverse .ll-nav-links > .active > a,
-.ll-navbar--bg-inverse .ll-nav-links > .active > a:focus,
-.ll-navbar--bg-inverse .ll-nav-links > .active > a:hover {
-    background-color: #ff50ac;
-    color: #fff;
-}
-
-.ll-navbar--bg-inverse .ll-nav-links > .active > a:after,
-.ll-navbar--bg-inverse .ll-nav-links > .active > a:focus:after,
-.ll-navbar--bg-inverse .ll-nav-links > .active > a:hover:after {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: 5px solid #ffdc00;
-}
-
-/* パンくずリスト */
-.ll-breadcrumb {
-    /* .ll-navbar の margin-bottom の値を 0 にしているため */
-    margin-top: 22px;
-}
-
-/* ライブステージ：動画のスタイル */
-.ll-live-video-wrapper {
+/* グローバルナビゲーションの現在位置を示すスタイル */
+#ll-nav .active > a {
     position: relative;
-    height: 0;
-    padding-bottom: 56.25%;
-    padding-top: 25px;
-}
-
-.ll-live-video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* ライブステージ：動画のコメント */
-.ll-video-tabs {
-    background-color: #ff50ac;
-}
-
-.ll-video-tabs > li > a {
-    border-bottom: 0;
-    color: #fff;
-    text-transform: uppercase;
-}
-@media (min-width: 768px) {
-    .ll-video-tabs > li > a {
-        border-right: 1px solid #fff;
-    }
-
-    .ll-video-tabs > li:last-child > a {
-        border-right: 0;
-    }
-}
-
-.ll-video-tabs > li > a:focus,
-.ll-video-tabs > li > a:hover {
-    background-color: #ff92cb;
-    color: #fff;
-}
-
-.ll-video-tabs > li.active > a,
-.ll-video-tabs > li.active > a:focus,
-.ll-video-tabs > li.active > a:hover {
-    border-bottom: 0;
+    pointer: default;
+    pointer-events: none;
     background-color: #ff50ac;
     color: #fff;
 }
 
-.ll-video-tabs > li.active > a:after,
-.ll-video-tabs > li.active > a:focus:after,
-.ll-video-tabs > li.active > a:hover:after {
+/* グローバルナビゲーションの現在位置を示すスタイル */
+#ll-nav .active > a:after {
     content: "";
     display: block;
     position: absolute;
