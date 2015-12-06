@@ -108,6 +108,7 @@ namespace :ci do
   task :example do
     Rake::Task['copy'].invoke()
     sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=styles/main.css --chapterlink'
+    sh 'rm -rf build/example'
     sh 'cp -a example/ build/example'
   end
 
