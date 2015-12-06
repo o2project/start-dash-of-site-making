@@ -4,7 +4,6 @@
 
 dist/
 stats/
-styles/styles
 components/lory/*
 components/lory/dist/*.js
 !components/lory/dist
