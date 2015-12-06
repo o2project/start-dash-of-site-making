@@ -1,0 +1,20 @@
+{
+  "name": "lovelive-scout-site",
+  "version": "1.0.0",
+  "homepage": "https://github.com/o2project/start-dash-of-site-making",
+  "authors": [
+    "kubosho <ta2@o2p.jp>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lory": "^1.6.8",
+    "Nico": "3.3.6-1.1.0"
+  }
+}
