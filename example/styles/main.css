@@ -1,24 +1,4 @@
-main {
-    background-color: #d9d9d9;
-}
-
-.ll-carousel-frame {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    white-space: nowrap;
-}
-
-.ll-carousel-slide {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-.ll-carousel-slide img {
-    max-width: 100%;
-}
-
+/* サイトのロゴ */
 .ll-logo {
     height: auto;
     margin-top: 11px;
@@ -26,21 +6,83 @@ main {
     padding: 15px;
 }
 
+/* メインコンテンツ */
+[role="main"] {
+    background-color: #d9d9d9;
+}
+
+/* 著作権情報 */
+.ll-copyright {
+    /* navbar-text に指定されている文字色指定を上書きするため */
+    color: #555 !important;
+}
+@media (min-width: 768px) {
+    .ll-copyright {
+        margin-left: 0;
+    }
+}
+
+/* カルーセルを囲む要素 */
+.ll-carousel-frame {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+}
+
+/* カルーセルの各要素 */
+.ll-carousel-slide {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+/* カルーセル内の画像 */
+.ll-carousel-slide img {
+    max-width: 100%;
+}
+
+/* カルーセル：ページングを囲む要素 */
+.ll-carousel-pagination {
+    list-style-type: none;
+    text-align: center;
+}
+
+/* カルーセル：ページングの丸 */
+.ll-carousel-pagination-item {
+    display: inline-block;
+}
+
+/* カルーセル：ページングの現在の丸 */
+.ll-carousel-pagination-item--current {
+    color: #fff;
+}
+
+/* ナビゲーション部分の共通スタイル */
+.ll-navbar {
+    min-height: 0; /* auto にすると Safari で auto が適用されない */
+    margin-bottom: 0;
+    background-color: #f3d4df;
+}
+
+/* ナビゲーション部分のアクティブ時のスタイル */
 .ll-nav-links > .active > a {
     position: relative;
     pointer: default;
     pointer-events: none;
 }
 
-.ll-navbar {
-    min-height: 0; /* auto にすると Safari で auto が適用されない */
-    margin-bottom: 0;
+.ll-nav-links > li:not(:last-child) {
+    margin-right: 0;
 }
 
+/* 子ページ一覧のナビゲーション */
 .ll-navbar--bg-inverse {
     border: 0;
+    background-color: #ff50ac;
 }
 
+/* 子ページ一覧のナビゲーション：リンク部分 */
 .ll-navbar--bg-inverse .ll-nav-links > li > a {
     margin-top: 0;
     margin-bottom: 0;
@@ -56,6 +98,12 @@ main {
     .ll-navbar--bg-inverse .ll-nav-links > li:first-child > a {
         border-left: 1px solid #fff;
     }
+}
+
+.ll-navbar--bg-inverse .ll-nav-links > li > a:focus,
+.ll-navbar--bg-inverse .ll-nav-links > li > a:hover {
+    background-color: #ff92cb;
+    color: #fff;
 }
 
 .ll-navbar--bg-inverse .ll-nav-links > .active > a,
@@ -77,25 +125,13 @@ main {
     border-bottom: 5px solid #ffdc00;
 }
 
-.ll-navbar .ll-container {
-    padding: 0;
-}
-@media (min-width: 768px) {
-    .ll-navbar .ll-container {
-        padding-right: 15px;
-        padding-left: 15px;
-    }
-}
-
-.ll-nav-links > li:not(:last-child) {
-    margin-right: 0;
-}
-
+/* パンくずリスト */
 .ll-breadcrumb {
     /* .ll-navbar の margin-bottom の値を 0 にしているため */
     margin-top: 22px;
 }
 
+/* ライブステージ：動画のスタイル */
 .ll-live-video-wrapper {
     position: relative;
     height: 0;
@@ -111,6 +147,7 @@ main {
     height: 100%;
 }
 
+/* ライブステージ：動画のコメント */
 .ll-video-tabs {
     background-color: #ff50ac;
 }
@@ -154,27 +191,4 @@ main {
     left: 0;
     width: 100%;
     border-bottom: 5px solid #ffdc00;
-}
-
-.ll-carousel-pagination {
-    list-style-type: none;
-    text-align: center;
-}
-
-.ll-carousel-pagination-item {
-    display: inline-block;
-}
-
-.ll-carousel-pagination-item--current {
-    color: #fff;
-}
-
-.ll-copyright {
-    /* navbar-text に指定されている文字色指定を上書きするため */
-    color: #555 !important;
-}
-@media (min-width: 768px) {
-    .ll-copyright {
-        margin-left: 0;
-    }
 }
