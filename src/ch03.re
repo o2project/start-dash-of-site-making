@@ -111,7 +111,7 @@
 </head>
 
 <body>
-<main role="main">
+<main>
 </main>
 </body>
 </html>
@@ -275,7 +275,7 @@
   </div>
 </nav>
 
-<main role="main">
+<main>
 </main>
 
 <footer id="ll-footer" class="navbar navbar-default" role="contentinfo">
