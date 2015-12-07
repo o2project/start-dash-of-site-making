@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="styles/main.css">
     
     
-    <title>HTMLでWebサイトの構造を定義する</title>
+    <title>トップページ・ライブステージページ共通の構造を作る</title>
 </head>
 
 <body>
@@ -35,255 +35,394 @@
                 
             </ul>
 
-            <h1><a id="h3"></a><span class="secno">第3章　</span>HTMLでWebサイトの構造を定義する</h1>
-<p>この章は、Webサイトの実装をしていきます。実装する上で、前章にて解説した注意点や調査する点を思い出しましょう。</p>
-<p>はじめにHTMLでWebサイトの構造を作っていきます。HTMLはテキストファイルの文章構造を、主にブラウザーに対して伝える言語です。</p>
+            <h1><a id="h3"></a><span class="secno">第3章　</span>トップページ・ライブステージページ共通の構造を作る</h1>
+<p>いよいよ、サイトを作っていきます。まずはサイト共通の構造を今回作るトップページとライブステージから洗い出し、それをマークアップしていきます。</p>
 
-<h2><a id="h3-1"></a><span class="secno">3.1　</span>DOCTYPE</h2>
-<p>まず始めにDOCTYPEというものを書きます。これは必須となっています。</p>
+<h2><a id="h3-1"></a><span class="secno">3.1　</span>共通の構造を洗い出し</h2>
+<p>トップページやライブステージのアニメ画像キャプチャから共通構造を抜き出すと、次に挙げる3つが共通構造となります。</p>
+<ul>
+<li>ヘッダー</li>
+<li>グローバルナビゲーション</li>
+<li>フッター</li>
+</ul>
+<p>これら共通構造にサイトの各ページへたどれるリンクを置くことで、どのページからもサイト内にあるページへ行くことができます。そのため、今回のような多岐に渡る情報を提供するサイトでは、ヘッダー・グローバルナビゲーション・フッターの3つがだいたいあります。</p>
+<p>また、ヘッダー・グローバルナビゲーション・フッターを使ったサイト構成は多く見られるため、訪問者も見慣れていることが期待できます。つまりどこに主となる情報があり、ナビゲーションはどこにあるか、初めてサイトへ来た人にも分かってもらえるという効果も期待できます。</p>
+<p>特に今回は主に見てもらいたい層として、スクールアイドルというコンピューター・リテラシーが一定ではない人たちのため、分かりやすさ重視にしたと思われます。</p>
+<div id="lovelive-screenshot-top" class="image">
+<img src="images/ch03/lovelive-screenshot-top.jpg" alt="サイトトップ（ラブライブ！第2期 1話より）© プロジェクトラブライブ！" />
+<p class="caption">
+図3.1: サイトトップ（ラブライブ！第2期 1話より）© プロジェクトラブライブ！
+</p>
+</div>
+<div id="lovelive-screenshot-livestage" class="image">
+<img src="images/ch03/lovelive-screenshot-livestage.jpg" alt="ライブステージページ（ラブライブ！第2期 3話より）© プロジェクトラブライブ！" />
+<p class="caption">
+図3.2: ライブステージページ（ラブライブ！第2期 3話より）© プロジェクトラブライブ！
+</p>
+</div>
+
+<h2><a id="h3-2"></a><span class="secno">3.2　</span>ファイル構成</h2>
+<p>今回作成するサイトのファイル構成を考えていきます。ファイル構成は次のとおりとなります。ディレクトリーとしては<tt>components</tt>・<tt>styles</tt>・<tt>scripts</tt>・<tt>images</tt>の4つがあり、その中に各ファイルを置く想定です。</p>
+<div class="emlist-code">
+<pre class="emlist">/
+├- components
+├- styles
+│  └ main.css
+├- scripts
+│  └ index.js
+└- images
+   ├- image_01.jpg
+   └- ...
+</pre>
+</div>
+<p>各ディレクトリーには、以下の規則に則ってファイルを置きます。</p>
+<ul>
+<li>components<ul>
+<li>CSS・JavaScript問わず、ライブラリを置くディレクトリ</li>
+</ul>
+</li>
+<li>styles<ul>
+<li>CSSファイルを置くディレクトリ</li>
+</ul>
+</li>
+<li>scripts<ul>
+<li>JavaScriptファイルを置くディレクトリ</li>
+</ul>
+</li>
+<li>images<ul>
+<li>画像ファイルを置くディレクトリ</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="h3-3"></a><span class="secno">3.3　</span>基本構造のマークアップ</h2>
+<p>それでは実際にHTMLでサイトの構造を作っていきます。はじめに<tt>DOCTYPE</tt>というものを書きます。この<tt>DOCTYPE</tt>ですが、過去の経緯から書くことが必須となっています。</p>
+<p>続く<tt>html</tt>要素内には<tt>head</tt>要素と<tt>body</tt>要素が含まれます。<tt>head</tt>要素内には<tt>title</tt>要素や<tt>meta</tt>要素でサイト情報を書いていきます。また、CSSやJavaScriptの読み込みも<tt>head</tt>要素内でおこないます。</p>
+<p><tt>body</tt>要素内にはこのページの主となるものを書いていきます。現在は<tt>main</tt>要素のみ用意しています。この要素はサイトの主要な内容を示すものとなります。</p>
+<p>なお<tt>main</tt>要素で<tt>role</tt>属性の値に<tt>main</tt>を指定していますが、これは<a href="http://caniuse.com/#feat=html5semantic" class="link">IE11がmain要素をサポートしていない</a>ためです。そのため<tt>role</tt>属性で<tt>main</tt>を指定して、サイトの主要な内容だということをIE11にも伝える意図で指定しています。</p>
+<p>このHTMLを基礎として、肉付けしていきます。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;!DOCTYPE html&gt;
-</pre>
-</div>
-<p><a href="http://momdo.github.io/html51/syntax.html#the-doctype" class="link">8.1.1 DOCTYPE — HTML 5.1 日本語訳</a>では、<tt>&lt;!DOCTYPE</tt> について「大文字小文字問わず」と書かれています。つまり <tt>&lt;!doctype</tt> と書いても問題ありません。</p>
-<p>その後は、1つ以上のスペースを書きます。とはいえ、スペース1つ書けば問題ないでしょう。スペースを書いた後は、<tt>html&gt;</tt> と書きます。<tt>html</tt> の部分も大文字小文字を問いません。なお、DOCTYPEは過去の経緯から必須となっています。DOCTYPEは省略した場合、ブラウザー側で現在の仕様と違う挙動になるモードを使う傾向があります。</p>
-
-<h2><a id="h3-2"></a><span class="secno">3.2　</span>サイトに関する情報のマークアップ</h2>
-<p>次にhead要素を書きます。head要素内には、meta要素でサイト情報を書いていきます。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;head&gt;&lt;/head&gt;
-</pre>
-</div>
-<p>このhead要素内にまずは文字コードの指定をします。特に制限がなければ <tt>UTF-8</tt> を書いておくと良いでしょう。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;metacharset=&quot;UTF-8&quot;&gt;
-</pre>
-</div>
-<p>次にtitle要素を書きます。title要素はページのタイトルを示す要素です。たとえば、トップページでは以下のように書きます。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;title&gt;LoveLive! 2nd Tournament&lt;/title&gt;
-</pre>
-</div>
-<p>ライブステージページでは、title要素の内容をライブステージページ用に書きかえます。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;title&gt;Live stage - LoveLive! 2nd Tournament&lt;/title&gt;
-</pre>
-</div>
-<p>次にサイトの説明とキーワードを書きます。サイトの説明は特徴を示すように書きます。キーワードも、サイトに関連するキーワードのみを並べて書きます。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;metaname=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
-&lt;metaname=&quot;keywords&quot; content=&quot;特設サイト&quot;&gt;
-</pre>
-</div>
-<p>次にviewportの設定です。スマートフォン向けに表示領域を設定する必要があります。次のとおり書いておけば、PC版を相対的に小さくしたような表示となります。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;metaname=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
-</pre>
-</div>
-<p>link要素でCSSファイルを読み込みます。今回はライブラリとしてBootstrapを使います。Bootstrapは自分が書いたCSSファイルより先に読み込ませます。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;link rel=&quot;stylesheet&quot; href=&quot;styles/bootstrap.min.css&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
-</pre>
-</div>
-<p>script要素でJavaScriptファイルを読み込みます。今回はトップページのカルーセル実装にloryというライブラリを使います。loryは自分が書いたJavaScriptファイルより先に読み込ませます。なおloryの読み込み時に、<tt>defer</tt>を指定しています。<tt>defer</tt>は「非同期にファイルを読み込む」という意味のHTML属性です。<tt>defer</tt>は<tt>DOMContentLoaded</tt>という <strong>HTMLが全て読み込まれたタイミングで実行されるイベント</strong> の前に実行されます。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;script src=&quot;components/lory/dist/lory.min.js&quot; defer&gt;&lt;/script&gt;
-</pre>
-</div>
-<p>最終的なマークアップは以下のとおりになります。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;head&gt;
-    &lt;metacharset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;LoveLive! 2nd Tournament&lt;/title&gt;
-    &lt;metaname=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
-    &lt;metaname=&quot;keywords&quot; content=&quot;特設サイト&quot;&gt;
-    &lt;metaname=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/bootstrap.min.css&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
-    &lt;script src=&quot;components/lory/dist/lory.min.js&quot; defer&gt;&lt;/script&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;LoveLive! 2nd トーナメント&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
+  &lt;meta name=&quot;keywords&quot; content=&quot;ラブライブ,特設サイト&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;components/Nico/bootstrap.min.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+  &lt;script src=&quot;components/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
 &lt;/head&gt;
-</pre>
-</div>
 
-<h2><a id="h3-3"></a><span class="secno">3.3　</span>bodyのマークアップ</h2>
-<p>head要素の次はbody要素を書きます。body要素内にはHTMLの主となる内容を書いていきます。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;body&gt;&lt;/body&gt;
-</pre>
-</div>
-<p>まず始めに、自分が書いたJavaScriptファイルを読み込みます。bodyの閉じタグ部分にscript要素を追加します。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;body&gt;
-    &lt;script src=&quot;scripts/main.js&quot;&gt;&lt;/script&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;/main&gt;
 &lt;/body&gt;
+&lt;/html&gt;
 </pre>
 </div>
 
-<h2><a id="h3-4"></a><span class="secno">3.4　</span>ヘッダー部分のマークアップ</h2>
-<p>次にサイトのヘッダー部分をマークアップしていきます。どの部分かを画像で示すと、以下の部分になります。まず始めに<tt>header</tt>要素の<tt>role</tt>属性値である<tt>banner</tt>を説明します。<tt>banner</tt>という値は<a href="http://momdo.github.io/wai-aria-1.1/#banner" class="link">サイト向けの内容を含む領域で、ページ上部に表示されるもの</a>です。サイト向けの内容とは、ロゴや広告、サイト内検索などを指します。</p>
+<h2><a id="h3-4"></a><span class="secno">3.4　</span>ヘッダーのマークアップ</h2>
+<p>基礎部分のマークアップが終わったので、次にヘッダーをマークアップしていきます。ヘッダーにはサイトのタイトルロゴと、メールマガジンやSNS、ヘルプなどのリンクがあります。</p>
+<p>今回はCSSライブラリとして、BootstrapのテーマであるNicoを使っているため、各要素の<tt>class</tt>属性にBootstrapで定義されているクラス名を定義します。</p>
+<p>なお今回作らないページについては、図のように<tt>a</tt>要素の<tt>href</tt>属性に<tt>#</tt>を入れておきます。こうすることで、作っていないページを検索するとき、検索が楽になることを狙っています。</p>
+<p>またBootstrapにはないクラス名を定義する際、図のように<tt>ll-</tt>という接頭辞を付けています（<strong>l</strong> ove <strong>l</strong> ive）。これはBootstrapで定義されているクラス名と競合しないように、安全策で接頭辞を付けています。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;header class=&quot;navbar navbar-default  ll-navbar&quot; role=&quot;banner&quot;&gt;
-    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
+<pre class="emlist">&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot; role=&quot;banner&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;navbar-header&quot;&gt;
+      &lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
     &lt;/div&gt;
+
+    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
 &lt;/header&gt;
 </pre>
 </div>
-<p><tt>ll-container</tt>というクラスが指定されているdiv要素に注目します。この中には、サイトのロゴ表示をするよう指定しています。img要素のalt属性は「電話で話している相手にも分かるような説明文」を書くと良いでしょう。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;div class=&quot;navbar-header&quot;&gt;
-    &lt;h1 class=&quot;navbar-brand  ll-logo&quot;&gt;
-        &lt;img src=&quot;&quot; alt=&quot;LoveLive!&quot;&gt;
-    &lt;/h1&gt;
-&lt;/div&gt;
+<pre class="emlist">&lt;a href=&quot;#&quot;&gt;Mail magazine&lt;/a&gt;
 </pre>
 </div>
-<p>ヘッダーの右上にあるリンクをマークアップします。こういったリンク集のようなものはul要素という「配置順に意味がないリスト」を示すものでマークアップします。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;ul class=&quot;nav navbar-nav navbar-right  ll-nav-links&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;mail-magazine.html&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;help.html&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</pre>
-</div>
-<p>これらを踏まえた、最終的なマークアップは以下のとおりになります。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;header class=&quot;navbar navbar-default  ll-navbar&quot; role=&quot;banner&quot;&gt;
-    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
-        &lt;div class=&quot;navbar-header&quot;&gt;
-            &lt;h1 class=&quot;navbar-brand  ll-logo&quot;&gt;
-                &lt;img src=&quot;&quot; alt=&quot;LoveLive!&quot;&gt;
-            &lt;/h1&gt;
-        &lt;/div&gt;
-
-        &lt;ul class=&quot;nav navbar-nav navbar-right  ll-nav-links&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;mail-magazine.html&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;help.html&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/header&gt;
+<pre class="emlist">&lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
 </pre>
 </div>
 
-<h2><a id="h3-5"></a><span class="secno">3.5　</span>ナビゲーション部分のマークアップ</h2>
-<p>はじめに<tt>nav</tt>要素で全体を囲みます。子ページの一覧を載せている部分かつサイト内の全ページにあるものなので、主要なナビゲーションとみなして、<tt>nav</tt>要素を使っています。次に、他ページへリンクする要素をマークアップします。これらのリンクは順不同で良いため、ul要素とli要素を使ってマークアップします。</p>
+<h2><a id="h3-5"></a><span class="secno">3.5　</span>グローバルナビゲーションのマークアップ</h2>
+<p>ヘッダーの次はグローバルナビゲーションをマークアップしていきます。グローバルナビゲーションは、サイト内の主要なページへリンクしているものです。</p>
+<p>はじめに、nav要素で全体を囲みます。nav要素は主要なページへリンクしている箇所で使われる要素となります。そして、各要素の<tt>class</tt>属性にはBootstrapで定義されているクラス名を定義します。先ほどと同じく、今回作らないページについては、図のように<tt>a</tt>要素の<tt>href</tt>属性に<tt>#</tt>を入れておきます。</p>
+<p>また、現在見ているページを示すためのクラス名として、Top部分に<tt>active</tt>というクラス名を付けています。<tt>active</tt>に関しては、クラス名に接頭辞を付けなくて大丈夫です。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;nav class=&quot;navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse&quot;&gt;
-    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
-      &lt;ul class=&quot;nav navbar-nav  ll-nav-links&quot;&gt;
-        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;outline.html&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;schedule.html&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;special.html&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;link.html&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;faq.html&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
+<pre class="emlist">&lt;nav id=&quot;ll-nav&quot; class=&quot;navbar navbar-inverse&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
 &lt;/nav&gt;
 </pre>
 </div>
 
-<h2><a id="h3-6"></a><span class="secno">3.6　</span>メイン部分のマークアップ</h2>
-<p>まず<tt>main</tt>要素というものを書きます。これはサイトの主要な内容を示すものとなります。<tt>main</tt>要素へ<tt>role</tt>属性の値に<tt>main</tt>という値を付けます。これは仕様書の<a href="http://momdo.github.io/html51/grouping-content.html#the-main-element" class="link">4.4.14 main要素</a>にも「書くことを勧める」と書かれています。なお、<tt>role</tt>属性に指定した<tt>main</tt>という値は、<a href="http://momdo.github.io/wai-aria-1.1/#main" class="link">サイトの主要な内容</a>を指しています。一見した場合<tt>main</tt>要素と用途がかぶっているように見えます。しかし、Internet Explorerが<a href="http://caniuse.com/#feat=html5semantic" class="link">IE11まではmain要素をサポートしていない</a>ため、<tt>role</tt>属性で<tt>main</tt>という値も一緒に書く必要があります。</p>
+<h2><a id="h3-6"></a><span class="secno">3.6　</span>フッターのマークアップ</h2>
+<p>ヘッダー、グローバルナビゲーションと来たので、最後にフッターをマークアップしていきます。ここには著作権情報やプライバシーポリシー、サイトマップといったリンクを追加します。</p>
+<p>また、アニメの画像キャプチャを見ると、フッター部分には「●○○○○」のような表示があります。これはページネーションといわれる、ある要素内にどれだけの要素が内包されているかを示すものです。しかし、フッター内にページネーションを含めるのは一般的でないため、特にマークアップしません。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;main role=&quot;main&quot;&gt;
-&lt;/main&gt;
-</pre>
-</div>
-<p>以下のHTMLはいくつか<tt>js_</tt>と頭についたクラスが付いています。これらはカルーセルの実装時にJavaScriptで使うことを想定しています。そのため、これらのクラスにスタイルを付けることは避けたほうが良いでしょう。後ほどこれらについて &quot;JavaScriptで動きを付ける&quot; の節で説明します。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;div class=&quot;js_carousel container-fluid  ll-container&quot;&gt;
-    &lt;div class=&quot;js_frame  ll-carousel-frame&quot;&gt;
-        &lt;div class=&quot;js_slides  ll-carousel-slides&quot;&gt;
-            &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
-                &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;&quot;&gt;
-            &lt;/div&gt;
+<pre class="emlist">&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot; role=&quot;contentinfo&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;p class=&quot;nav navbar-text navbar-left&quot;&gt;
+      このサイトは&lt;a href=&quot;http://startdash.o2p.jp/&quot;&gt;サイト制作のSTART:DASH!!&lt;/a&gt;用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
+    &lt;/p&gt;
 
-            &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
-                &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;&quot;&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</pre>
-</div>
-<p>以下のHTMLも<tt>js_</tt>と頭についたクラスが付いています。これはカルーセルの現在位置を示す実装で使うために付けました。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;ol class=&quot;js_carousel-pagination  ll-carousel-pagination&quot;&gt;
-    &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
-    &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
-&lt;/ol&gt;
-</pre>
-</div>
-<p>最終的なマークアップは以下のとおりになります。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;main role=&quot;main&quot;&gt;
-    &lt;div class=&quot;js_carousel container-fluid  ll-container&quot;&gt;
-        &lt;div class=&quot;js_frame  ll-carousel-frame&quot;&gt;
-            &lt;div class=&quot;js_slides  ll-carousel-slides&quot;&gt;
-                &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
-                    &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;&quot;&gt;
-                &lt;/div&gt;
-
-                &lt;div class=&quot;js_slide  ll-carousel-slide&quot;&gt;
-                    &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;&quot;&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;ol class=&quot;js_carousel-pagination  ll-carousel-pagination&quot;&gt;
-        &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
-        &lt;li class=&quot;js_carousel-pagination-item  ll-carousel-pagination-item&quot;&gt;●&lt;/li&gt;
-    &lt;/ol&gt;
-&lt;/main&gt;
-</pre>
-</div>
-
-<h2><a id="h3-7"></a><span class="secno">3.7　</span>フッター部分のマークアップ</h2>
-<p>まず <tt>footer</tt>要素というものを書きます。body要素直下に書く場合、サイトの情報が<tt>footer</tt>要素へ含まれることを想定します。また、<tt>role</tt>属性の値に<tt>contentinfo</tt>を指定します。こうすることで、<a href="http://momdo.github.io/wai-aria-1.1/#contentinfo" class="link">サイトに関する情報が含まれる領域</a>ということを示します。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;footer class=&quot;navbar navbar-default  ll-navbar&quot; role=&quot;contentinfo&quot;&gt;
-    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
-    &lt;/div&gt;
+    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
 &lt;/footer&gt;
 </pre>
 </div>
-<p>著作権表示は<tt>p</tt>要素を使ってマークアップします。クラス名で著作権表示と分かるようなクラス名を付けておくのが良いでしょう。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;p class=&quot;nav navbar-text navbar-left  ll-copyright&quot;&gt;
-    © 2014 LoveLive! 運営事務局
-&lt;/p&gt;
-</pre>
-</div>
-<p>サイトの補足的情報となるリンクをマークアップします。並び順は順不同で良いため、ul要素とli要素を使います。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;privacy-policy.html&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;sitemap.html&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</pre>
-</div>
-<p>最終的なマークアップは以下のとおりになります。</p>
-<div class="emlist-code">
-<pre class="emlist">&lt;footer class=&quot;navbar navbar-default  ll-navbar&quot; role=&quot;contentinfo&quot;&gt;
-    &lt;div class=&quot;container-fluid  ll-container&quot;&gt;
-        &lt;p class=&quot;nav navbar-text navbar-left  ll-copyright&quot;&gt;
-            © 2014 LoveLive! 運営事務局
-        &lt;/p&gt;
 
-        &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
-            &lt;li&gt;&lt;a href=&quot;privacy-policy.html&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href=&quot;sitemap.html&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
+<h2><a id="h3-7"></a><span class="secno">3.7　</span>HTMLのまとめ</h2>
+<p>ここまでをまとめると、次のHTMLになります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;LoveLive! 2nd トーナメント&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
+  &lt;meta name=&quot;keywords&quot; content=&quot;ラブライブ,特設サイト&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;components/Nico/bootstrap.min.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+  &lt;script src=&quot;components/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot; role=&quot;banner&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;navbar-header&quot;&gt;
+      &lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
     &lt;/div&gt;
+
+    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;nav id=&quot;ll-nav&quot; class=&quot;navbar navbar-inverse&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+&lt;/main&gt;
+
+&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot; role=&quot;contentinfo&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;p class=&quot;nav navbar-text navbar-left&quot;&gt;
+      このサイトは&lt;a href=&quot;http://startdash.o2p.jp/&quot;&gt;サイト制作のSTART:DASH!!&lt;/a&gt;用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
+    &lt;/p&gt;
+
+    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
 &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </pre>
+</div>
+<p>スクリーンショットは次のとおりになります。Bootstrapを読み込んだ上で、Bootstrapに定義されているクラス名を<tt>class</tt>属性へ適宜書いていたため、殺風景ではない見た目になっています。ただし、見た目がアニメのキャプチャ画像と違うところがあるため、CSSで微調整をしていきます。</p>
+<div id="common-html" class="image">
+<img src="images/ch03/common-html.jpg" alt="HTMLだけで作ったサイト" />
+<p class="caption">
+図3.3: HTMLだけで作ったサイト
+</p>
+</div>
+
+<h2><a id="h3-8"></a><span class="secno">3.8　</span>ヘッダーの見た目をよくする</h2>
+<p>はじめに、CSSでヘッダーの下部にある隙間を無くします。これは<tt>margin-bottom: 0;</tt>とするだけで下部の隙間がなくなります。</p>
+<p>また、間延びしたようなスタイルとなっているロゴ部分のスタイルを調整します。これは要素の高さ調整と、<tt>margin</tt>・<tt>padding</tt>を使って要素内外にある隙間を調整すれば、間延びした見た目ではなくなります。</p>
+<div class="emlist-code">
+<pre class="emlist">/* サイトのヘッダー */
+#ll-header {
+  margin-bottom: 0;
+}
+
+/* サイトのロゴ */
+#ll-header .ll-logo {
+  height: auto;
+  margin-top: 15px;
+  padding: 15px;
+}
+</pre>
+</div>
+
+<h2><a id="h3-9"></a><span class="secno">3.9　</span>グローバルナビゲーションの見た目をよくする</h2>
+<p>次に、グローバルナビゲーションへスタイルを適用します。グローバルナビゲーションは、Bootstrapのスタイル定義をそのまま使った場合、高さがそれなりにあります。これをラブライブ参加者募集サイトの見た目に合わせるため、<tt>min-height: 0;</tt>と指定して、グローバルナビゲーションの高さを狭めておきます。</p>
+<p>また今回のラブライブ参加者募集サイトは、全て大文字でグローバルナビゲーション内の文字が書かれています。そのためグローバルナビゲーション内の各要素に対し、<tt>text-transform: uppercase;</tt>と指定して、グローバルナビゲーション内の文字を全て大文字にします。他のスタイル定義に関しては、Bootstrapで定義されているスタイルを打ち消すための指定となります。</p>
+<div class="emlist-code">
+<pre class="emlist">/* サイトのグローバルナビゲーション */
+#ll-nav {
+  min-height: 0;
+  margin-bottom: 0;
+  border-width: 0;
+}
+
+/* サイトのグローバルナビゲーション内の各アイテム */
+#ll-nav li {
+  margin-right: 0;
+}
+
+/* サイトのグローバルナビゲーション内の各リンク */
+#ll-nav li &gt; a {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  color: #fff;
+  text-transform: uppercase;
+}
+/* 横幅が768px以上のときの設定 */
+@media (min-width: 768px) {
+  #ll-nav li &gt; a {
+    border-right: 1px solid #fff;
+  }
+
+  #ll-nav li:first-child &gt; a {
+    border-left: 1px solid #fff;
+  }
+}
+</pre>
+</div>
+<p>さらに元のデザインに合わせるため、グローバルナビゲーションで現在開いているページを示すセレクター（<tt>.active</tt>）に対し、背景色や前景色を指定します。次に選択できないことを示すため、<tt>pointer: default;</tt>としてマウスカーソルの形を矢印にします。またリンクをマウスカーソルで押したらリンク先に飛ぶというマウスイベントが起こらないように、<tt>pointer-events: none;</tt>の指定でマウスイベント無効化をします。</p>
+<div class="emlist-code">
+<pre class="emlist">/* グローバルナビゲーションの現在位置のスタイルを改善する */
+#ll-nav .active &gt; a {
+  position: relative;
+  pointer: default;
+  pointer-events: none;
+  background-color: #ff50ac;
+  color: #fff;
+}
+</pre>
+</div>
+<p>最後に現在開いているページをグローバルナビゲーション上で分かりやすくするため、下部に黄色の線を引きます。これで、共通構造のマークアップは終わりです。</p>
+<div class="emlist-code">
+<pre class="emlist">/* グローバルナビゲーションの現在位置を示すスタイル */
+#ll-nav .active &gt; a:after,
+#ll-nav .active &gt; a:focus:after,
+#ll-nav .active &gt; a:hover:after {
+  content: &quot;&quot;;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 5px solid #ffdc00;
+}
+</pre>
+</div>
+
+<h2><a id="h3-10"></a><span class="secno">3.10　</span>CSSのまとめ</h2>
+<p>ここまでをまとめると、次のCSSになります。</p>
+<div class="emlist-code">
+<pre class="emlist">/* サイトのヘッダー */
+#ll-header {
+  margin-bottom: 0;
+}
+
+/* サイトのロゴ */
+#ll-header .ll-logo {
+  height: auto;
+  margin-top: 15px;
+  padding: 15px;
+}
+
+/* サイトのグローバルナビゲーション */
+#ll-nav {
+  min-height: 0;
+  margin-bottom: 0;
+  border-width: 0;
+}
+
+/* サイトのグローバルナビゲーション内の各アイテム */
+#ll-nav li {
+  margin-right: 0;
+}
+
+/* サイトのグローバルナビゲーション内の各リンク */
+#ll-nav li &gt; a {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  color: #fff;
+  text-transform: uppercase;
+}
+/* 横幅が768px以上のときの設定 */
+@media (min-width: 768px) {
+  #ll-nav li &gt; a {
+    border-right: 1px solid #fff;
+  }
+
+  #ll-nav li:first-child &gt; a {
+    border-left: 1px solid #fff;
+  }
+}
+
+/* グローバルナビゲーションの現在位置を示すスタイル */
+#ll-nav .active &gt; a {
+  position: relative;
+  pointer: default;
+  pointer-events: none;
+  background-color: #ff50ac;
+  color: #fff;
+}
+
+/* グローバルナビゲーションの現在位置を示すスタイル */
+#ll-nav .active &gt; a:after {
+  content: &quot;&quot;;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 5px solid #ffdc00;
+}
+</pre>
+</div>
+<p>スクリーンショットは次のとおりになります。細部は違いますが、CSSでいろいろ調整したぶん、元のアニメキャプチャ画像に似てきたと思います。</p>
+<div id="common-elements" class="image">
+<img src="images/ch03/common-elements.jpg" alt="CSSで調整したサイト" />
+<p class="caption">
+図3.4: CSSで調整したサイト
+</p>
 </div>
 
 
