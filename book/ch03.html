@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="generator" content="Re:VIEW">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    <link rel="stylesheet" href="styles/main.css">
+    
+    
+    <title>トップページ・ライブステージページ共通の構造を作る</title>
+</head>
+
+<body>
+    <header class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="//o2project.github.io/start-dash-of-site-making/">サイト制作のSTART:DASH!!</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <ul class="pager">
+                
+                <li><a class="prev" href="ch02.html">前の章へ</a></li>
+                
+                
+                <li><a class="next" href="ch04.html">次の章へ</a></li>
+                
+            </ul>
+
+            <h1><a id="h3"></a><span class="secno">第3章　</span>トップページ・ライブステージページ共通の構造を作る</h1>
+<p>いよいよ、サイトを作っていきます。まずはサイト共通の構造を今回作るトップページとライブステージから洗い出し、それをマークアップしていきます。</p>
+
+<h2><a id="h3-1"></a><span class="secno">3.1　</span>共通の構造を洗い出し</h2>
+<p>トップページやライブステージのアニメ画像キャプチャから共通構造を抜き出すと、次に挙げる3つが共通構造となります。</p>
+<ul>
+<li>ヘッダー</li>
+<li>グローバルナビゲーション</li>
+<li>フッター</li>
+</ul>
+<p>これら共通構造にサイトの各ページへたどれるリンクを置くことで、どのページからもサイト内にあるページへ行くことができます。そのため、今回のような多岐に渡る情報を提供するサイトでは、ヘッダー・グローバルナビゲーション・フッターの3つがだいたいあります。</p>
+<p>また、ヘッダー・グローバルナビゲーション・フッターを使ったサイト構成は多く見られるため、訪問者も見慣れていることが期待できます。つまりどこに主となる情報があり、ナビゲーションはどこにあるか、初めてサイトへ来た人にも分かってもらえるという効果も期待できます。</p>
+<p>特に今回は主に見てもらいたい層として、スクールアイドルというコンピューター・リテラシーが一定ではない人たちのため、分かりやすさ重視にしたと思われます。</p>
+<div id="lovelive-screenshot-top" class="image">
+<img src="images/ch03/lovelive-screenshot-top.jpg" alt="サイトトップ（ラブライブ！第2期 1話より）© プロジェクトラブライブ！" />
+<p class="caption">
+図3.1: サイトトップ（ラブライブ！第2期 1話より）© プロジェクトラブライブ！
+</p>
+</div>
+<div id="lovelive-screenshot-livestage" class="image">
+<img src="images/ch03/lovelive-screenshot-livestage.jpg" alt="ライブステージページ（ラブライブ！第2期 3話より）© プロジェクトラブライブ！" />
+<p class="caption">
+図3.2: ライブステージページ（ラブライブ！第2期 3話より）© プロジェクトラブライブ！
+</p>
+</div>
+
+<h2><a id="h3-2"></a><span class="secno">3.2　</span>ファイル構成</h2>
+<p>今回作成するサイトのファイル構成を考えていきます。ファイル構成は次のとおりとなります。ディレクトリーとしては<tt>components</tt>・<tt>styles</tt>・<tt>scripts</tt>・<tt>images</tt>の4つがあり、その中に各ファイルを置く想定です。</p>
+<div class="emlist-code">
+<pre class="emlist">/
+├- components
+├- styles
+│  └ main.css
+├- scripts
+│  └ index.js
+└- images
+   ├- image_01.jpg
+   └- ...
+</pre>
+</div>
+<p>各ディレクトリーには、以下の規則に則ってファイルを置きます。</p>
+<ul>
+<li>components<ul>
+<li>CSS・JavaScript問わず、ライブラリを置くディレクトリ</li>
+</ul>
+</li>
+<li>styles<ul>
+<li>CSSファイルを置くディレクトリ</li>
+</ul>
+</li>
+<li>scripts<ul>
+<li>JavaScriptファイルを置くディレクトリ</li>
+</ul>
+</li>
+<li>images<ul>
+<li>画像ファイルを置くディレクトリ</li>
+</ul>
+</li>
+</ul>
+
+<h2><a id="h3-3"></a><span class="secno">3.3　</span>基本構造のマークアップ</h2>
+<p>それでは実際にHTMLでサイトの構造を作っていきます。はじめに<tt>DOCTYPE</tt>というものを書きます。この<tt>DOCTYPE</tt>ですが、過去の経緯から書くことが必須となっています。</p>
+<p>続く<tt>html</tt>要素内には<tt>head</tt>要素と<tt>body</tt>要素が含まれます。<tt>head</tt>要素内には<tt>title</tt>要素や<tt>meta</tt>要素でサイト情報を書いていきます。また、CSSやJavaScriptの読み込みも<tt>head</tt>要素内でおこないます。</p>
+<p><tt>body</tt>要素内にはこのページの主となるものを書いていきます。現在は<tt>main</tt>要素のみ用意しています。この要素はサイトの主要な内容を示すものとなります。</p>
+<p>なお<tt>main</tt>要素で<tt>role</tt>属性の値に<tt>main</tt>を指定していますが、これは<a href="http://caniuse.com/#feat=html5semantic" class="link">IE11がmain要素をサポートしていない</a>ためです。そのため<tt>role</tt>属性で<tt>main</tt>を指定して、サイトの主要な内容だということをIE11にも伝える意図で指定しています。</p>
+<p>このHTMLを基礎として、肉付けしていきます。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;LoveLive! 2nd トーナメント&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
+  &lt;meta name=&quot;keywords&quot; content=&quot;ラブライブ,特設サイト&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;components/Nico/bootstrap.min.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+  &lt;script src=&quot;components/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;main&gt;
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2><a id="h3-4"></a><span class="secno">3.4　</span>ヘッダーのマークアップ</h2>
+<p>基礎部分のマークアップが終わったので、次にヘッダーをマークアップしていきます。ヘッダーにはサイトのタイトルロゴと、メールマガジンやSNS、ヘルプなどのリンクがあります。</p>
+<p>今回はCSSライブラリとして、BootstrapのテーマであるNicoを使っているため、各要素の<tt>class</tt>属性にBootstrapで定義されているクラス名を定義します。</p>
+<p>なお今回作らないページについては、図のように<tt>a</tt>要素の<tt>href</tt>属性に<tt>#</tt>を入れておきます。こうすることで、作っていないページを検索するとき、検索が楽になることを狙っています。</p>
+<p>またBootstrapにはないクラス名を定義する際、図のように<tt>ll-</tt>という接頭辞を付けています（<strong>l</strong> ove <strong>l</strong> ive）。これはBootstrapで定義されているクラス名と競合しないように、安全策で接頭辞を付けています。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot; role=&quot;banner&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;navbar-header&quot;&gt;
+      &lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
+    &lt;/div&gt;
+
+    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</pre>
+</div>
+<div class="emlist-code">
+<pre class="emlist">&lt;a href=&quot;#&quot;&gt;Mail magazine&lt;/a&gt;
+</pre>
+</div>
+<div class="emlist-code">
+<pre class="emlist">&lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
+</pre>
+</div>
+
+<h2><a id="h3-5"></a><span class="secno">3.5　</span>グローバルナビゲーションのマークアップ</h2>
+<p>ヘッダーの次はグローバルナビゲーションをマークアップしていきます。グローバルナビゲーションは、サイト内の主要なページへリンクしているものです。</p>
+<p>はじめに、nav要素で全体を囲みます。nav要素は主要なページへリンクしている箇所で使われる要素となります。そして、各要素の<tt>class</tt>属性にはBootstrapで定義されているクラス名を定義します。先ほどと同じく、今回作らないページについては、図のように<tt>a</tt>要素の<tt>href</tt>属性に<tt>#</tt>を入れておきます。</p>
+<p>また、現在見ているページを示すためのクラス名として、Top部分に<tt>active</tt>というクラス名を付けています。<tt>active</tt>に関しては、クラス名に接頭辞を付けなくて大丈夫です。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;nav id=&quot;ll-nav&quot; class=&quot;navbar navbar-inverse&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+</pre>
+</div>
+
+<h2><a id="h3-6"></a><span class="secno">3.6　</span>フッターのマークアップ</h2>
+<p>ヘッダー、グローバルナビゲーションと来たので、最後にフッターをマークアップしていきます。ここには著作権情報やプライバシーポリシー、サイトマップといったリンクを追加します。</p>
+<p>また、アニメの画像キャプチャを見ると、フッター部分には「●○○○○」のような表示があります。これはページネーションといわれる、ある要素内にどれだけの要素が内包されているかを示すものです。しかし、フッター内にページネーションを含めるのは一般的でないため、特にマークアップしません。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot; role=&quot;contentinfo&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;p class=&quot;nav navbar-text navbar-left&quot;&gt;
+      このサイトは&lt;a href=&quot;http://startdash.o2p.jp/&quot;&gt;サイト制作のSTART:DASH!!&lt;/a&gt;用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
+    &lt;/p&gt;
+
+    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</pre>
+</div>
+
+<h2><a id="h3-7"></a><span class="secno">3.7　</span>HTMLのまとめ</h2>
+<p>ここまでをまとめると、次のHTMLになります。</p>
+<div class="emlist-code">
+<pre class="emlist">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;LoveLive! 2nd トーナメント&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
+  &lt;meta name=&quot;keywords&quot; content=&quot;ラブライブ,特設サイト&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;components/Nico/bootstrap.min.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+  &lt;script src=&quot;components/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot; role=&quot;banner&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;navbar-header&quot;&gt;
+      &lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
+    &lt;/div&gt;
+
+    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;nav id=&quot;ll-nav&quot; class=&quot;navbar navbar-inverse&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+&lt;/main&gt;
+
+&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot; role=&quot;contentinfo&quot;&gt;
+  &lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;p class=&quot;nav navbar-text navbar-left&quot;&gt;
+      このサイトは&lt;a href=&quot;http://startdash.o2p.jp/&quot;&gt;サイト制作のSTART:DASH!!&lt;/a&gt;用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
+    &lt;/p&gt;
+
+    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+<p>スクリーンショットは次のとおりになります。Bootstrapを読み込んだ上で、Bootstrapに定義されているクラス名を<tt>class</tt>属性へ適宜書いていたため、殺風景ではない見た目になっています。ただし、見た目がアニメのキャプチャ画像と違うところがあるため、CSSで微調整をしていきます。</p>
+<div id="common-html" class="image">
+<img src="images/ch03/common-html.jpg" alt="HTMLだけで作ったサイト" />
+<p class="caption">
+図3.3: HTMLだけで作ったサイト
+</p>
+</div>
+
+<h2><a id="h3-8"></a><span class="secno">3.8　</span>ヘッダーの見た目をよくする</h2>
+<p>はじめに、CSSでヘッダーの下部にある隙間を無くします。これは<tt>margin-bottom: 0;</tt>とするだけで下部の隙間がなくなります。</p>
+<p>また、間延びしたようなスタイルとなっているロゴ部分のスタイルを調整します。これは要素の高さ調整と、<tt>margin</tt>・<tt>padding</tt>を使って要素内外にある隙間を調整すれば、間延びした見た目ではなくなります。</p>
+<div class="emlist-code">
+<pre class="emlist">/* サイトのヘッダー */
+#ll-header {
+  margin-bottom: 0;
+}
+
+/* サイトのロゴ */
+#ll-header .ll-logo {
+  height: auto;
+  margin-top: 15px;
+  padding: 15px;
+}
+</pre>
+</div>
+
+<h2><a id="h3-9"></a><span class="secno">3.9　</span>グローバルナビゲーションの見た目をよくする</h2>
+<p>次に、グローバルナビゲーションへスタイルを適用します。グローバルナビゲーションは、Bootstrapのスタイル定義をそのまま使った場合、高さがそれなりにあります。これをラブライブ参加者募集サイトの見た目に合わせるため、<tt>min-height: 0;</tt>と指定して、グローバルナビゲーションの高さを狭めておきます。</p>
+<p>また今回のラブライブ参加者募集サイトは、全て大文字でグローバルナビゲーション内の文字が書かれています。そのためグローバルナビゲーション内の各要素に対し、<tt>text-transform: uppercase;</tt>と指定して、グローバルナビゲーション内の文字を全て大文字にします。他のスタイル定義に関しては、Bootstrapで定義されているスタイルを打ち消すための指定となります。</p>
+<div class="emlist-code">
+<pre class="emlist">/* サイトのグローバルナビゲーション */
+#ll-nav {
+  min-height: 0;
+  margin-bottom: 0;
+  border-width: 0;
+}
+
+/* サイトのグローバルナビゲーション内の各アイテム */
+#ll-nav li {
+  margin-right: 0;
+}
+
+/* サイトのグローバルナビゲーション内の各リンク */
+#ll-nav li &gt; a {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  color: #fff;
+  text-transform: uppercase;
+}
+/* 横幅が768px以上のときの設定 */
+@media (min-width: 768px) {
+  #ll-nav li &gt; a {
+    border-right: 1px solid #fff;
+  }
+
+  #ll-nav li:first-child &gt; a {
+    border-left: 1px solid #fff;
+  }
+}
+</pre>
+</div>
+<p>さらに元のデザインに合わせるため、グローバルナビゲーションで現在開いているページを示すセレクター（<tt>.active</tt>）に対し、背景色や前景色を指定します。次に選択できないことを示すため、<tt>pointer: default;</tt>としてマウスカーソルの形を矢印にします。またリンクをマウスカーソルで押したらリンク先に飛ぶというマウスイベントが起こらないように、<tt>pointer-events: none;</tt>の指定でマウスイベント無効化をします。</p>
+<div class="emlist-code">
+<pre class="emlist">/* グローバルナビゲーションの現在位置のスタイルを改善する */
+#ll-nav .active &gt; a {
+  position: relative;
+  pointer: default;
+  pointer-events: none;
+  background-color: #ff50ac;
+  color: #fff;
+}
+</pre>
+</div>
+<p>最後に現在開いているページをグローバルナビゲーション上で分かりやすくするため、下部に黄色の線を引きます。これで、共通構造のマークアップは終わりです。</p>
+<div class="emlist-code">
+<pre class="emlist">/* グローバルナビゲーションの現在位置を示すスタイル */
+#ll-nav .active &gt; a:after,
+#ll-nav .active &gt; a:focus:after,
+#ll-nav .active &gt; a:hover:after {
+  content: &quot;&quot;;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 5px solid #ffdc00;
+}
+</pre>
+</div>
+
+<h2><a id="h3-10"></a><span class="secno">3.10　</span>CSSのまとめ</h2>
+<p>ここまでをまとめると、次のCSSになります。</p>
+<div class="emlist-code">
+<pre class="emlist">/* サイトのヘッダー */
+#ll-header {
+  margin-bottom: 0;
+}
+
+/* サイトのロゴ */
+#ll-header .ll-logo {
+  height: auto;
+  margin-top: 15px;
+  padding: 15px;
+}
+
+/* サイトのグローバルナビゲーション */
+#ll-nav {
+  min-height: 0;
+  margin-bottom: 0;
+  border-width: 0;
+}
+
+/* サイトのグローバルナビゲーション内の各アイテム */
+#ll-nav li {
+  margin-right: 0;
+}
+
+/* サイトのグローバルナビゲーション内の各リンク */
+#ll-nav li &gt; a {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+  color: #fff;
+  text-transform: uppercase;
+}
+/* 横幅が768px以上のときの設定 */
+@media (min-width: 768px) {
+  #ll-nav li &gt; a {
+    border-right: 1px solid #fff;
+  }
+
+  #ll-nav li:first-child &gt; a {
+    border-left: 1px solid #fff;
+  }
+}
+
+/* グローバルナビゲーションの現在位置を示すスタイル */
+#ll-nav .active &gt; a {
+  position: relative;
+  pointer: default;
+  pointer-events: none;
+  background-color: #ff50ac;
+  color: #fff;
+}
+
+/* グローバルナビゲーションの現在位置を示すスタイル */
+#ll-nav .active &gt; a:after {
+  content: &quot;&quot;;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 5px solid #ffdc00;
+}
+</pre>
+</div>
+<p>スクリーンショットは次のとおりになります。細部は違いますが、CSSでいろいろ調整したぶん、元のアニメキャプチャ画像に似てきたと思います。</p>
+<div id="common-elements" class="image">
+<img src="images/ch03/common-elements.jpg" alt="CSSで調整したサイト" />
+<p class="caption">
+図3.4: CSSで調整したサイト
+</p>
+</div>
+
+
+            <ul class="pager">
+                
+                <li><a class="prev" href="ch02.html">前の章へ</a></li>
+                
+                
+                <li><a class="next" href="ch04.html">次の章へ</a></li>
+                
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h1>サイト制作のSTART:DASH!!</h1>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-8">
+                    <div class="list-group">
+                        <a class="list-group-item" href="https://github.com/o2project/start-dash-of-site-making">https://github.com/o2project/start-dash-of-site-making</a>
+                        <a class="list-group-item" href="mailto:ta2+startdash@o2p.jp">ta2+startdash@o2p.jp</a>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-4">
+                    <div class="list-group social-media">
+                        <a class="list-group-item github-icon" href="//github.com/kubosho">
+                            <svg viewBox="0 0 16 16">
+                                <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"></path>
+                            </svg>
+                            <span class="username">kubosho</span>
+                        </a>
+
+                        <a class="list-group-item twitter-icon" href="//twitter.com/kubosho_">
+                            <svg viewBox="0 0 16 16">
+                                <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                                c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"></path>
+                            </svg>
+                            <span class="username">kubosho_</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
