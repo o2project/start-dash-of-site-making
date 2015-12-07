@@ -43,7 +43,6 @@ end
 desc 'Clean working files'
 task :clean do
   sh 'rm -f *.re'
-  sh 'rm -f *.yml'
   sh 'rm -f *.css'
   sh 'rm -f *.html'
   sh 'rm -f *.pdf'
@@ -112,7 +111,7 @@ namespace :ci do
     sh 'cp -a example/ build/example'
   end
 
-  task :html do
+  task :book do
     Rake::Task['copy'].invoke()
     sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=styles/main.css --chapterlink'
     sh 'rm -rf build/book/*html build/book/images build/book/styles'
@@ -121,9 +120,17 @@ namespace :ci do
     sh 'cp -a styles build/book/styles'
   end
 
+  task :tokusetsu do
+    Rake::Task['copy'].invoke()
+    sh 'rm -rf build/*.html build/styles build/scripts build/images'
+    sh 'cp -a tokusetsu/ build/'
+  end
+
   task :publish do
     Rake::Task['ci:example'].invoke()
-    Rake::Task['ci:html'].invoke()
+    Rake::Task['ci:book'].invoke()
+    Rake::Task['clean'].invoke()
+    Rake::Task['ci:tokusetsu'].invoke()
     Dir.chdir TEMP_DIR do
       push_to_target_branch REPOSITORY, PUBLISH_BRANCH
     end
