@@ -1,82 +1,60 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>LoveLive! 2nd Tournament</title>
-    <meta name="description" content="ラブライブ！の参加者募集サイトです">
-    <meta name="keywords" content="特設サイト">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="components/Nico/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <script src="components/lory/dist/lory.js" defer></script>
+  <meta charset="UTF-8">
+  <title>LoveLive! 2nd トーナメント</title>
+  <meta name="description" content="ラブライブ！の参加者募集サイトです">
+  <meta name="keywords" content="ラブライブ,特設サイト">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="components/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="components/lory/lory.min.js" defer></script>
 </head>
 
 <body>
-    <header class="navbar navbar-default  ll-navbar" role="banner">
-        <div class="container-fluid  ll-container">
-            <div class="navbar-header">
-                <h1 class="navbar-brand  ll-logo">
-                    LoveLive!
-                </h1>
-            </div>
+<header id="ll-header" class="navbar navbar-default" role="banner">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <h1 class="navbar-brand ll-logo">LoveLive!</h1>
+    </div>
 
-            <ul class="nav navbar-nav navbar-right  ll-nav-links">
-                <li><a href="mail-magazine.html">Mail magazine</a></li>
-                <li><a href="">SNS</a></li>
-                <li><a href="">Share</a></li>
-                <li><a href="help.html">Help</a></li>
-            </ul>
-        </div>
-    </header>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="mail-magazine.html">Mail magazine</a></li>
+      <li><a href="#">SNS</a></li>
+      <li><a href="#">Share</a></li>
+      <li><a href="#">Help</a></li>
+    </ul>
+  </div>
+</header>
 
-    <nav class="navbar navbar-inverse  ll-navbar ll-navbar--bg-inverse" role="navigation">
-        <div class="container-fluid  ll-container">
-            <ul class="nav navbar-nav  ll-nav-links">
-                <li class="active"><a href="/">Top</a></li>
-                <li><a href="livestage.html">Live stage</a></li>
-                <li><a href="outline.html">Outline</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
-                <li><a href="special.html">Special</a></li>
-                <li><a href="link.html">Link</a></li>
-                <li><a href="faq.html">Faq</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav id="ll-nav" class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Top</a></li>
+      <li><a href="livestage.html">Live stage</a></li>
+      <li><a href="#">Outline</a></li>
+      <li><a href="#">Schedule</a></li>
+      <li><a href="#">Special</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Faq</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <main role="main">
-        <div class="js_carousel container-fluid  ll-container">
-            <div class="js_frame  ll-carousel-frame">
-                <div class="js_slides  ll-carousel-slides">
-                    <div class="js_slide  ll-carousel-slide">
-                        <img src="images/image_01.jpg" alt="">
-                    </div>
+<main role="main">
+</main>
 
-                    <div class="js_slide  ll-carousel-slide">
-                        <img src="images/image_02.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+<footer id="ll-footer" class="navbar navbar-default" role="contentinfo">
+  <div class="container-fluid">
+    <p class="nav navbar-text navbar-left">
+      このサイトは<a href="http://startdash.o2p.jp/">サイト制作のSTART:DASH!!</a>用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
+    </p>
 
-        <ol class="js_carousel-pagination  ll-carousel-pagination">
-            <li class="js_carousel-pagination-item  ll-carousel-pagination-item">●</li>
-            <li class="js_carousel-pagination-item  ll-carousel-pagination-item">●</li>
-        </ol>
-    </main>
-
-    <footer class="navbar navbar-default  ll-navbar" role="contentinfo">
-        <div class="container-fluid  ll-container">
-            <p class="nav navbar-text navbar-left  ll-copyright">
-                このサイトは<a href="http://startdash.o2p.jp/">サイト制作のSTART:DASH!!</a>用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
-            </p>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="privacy-policy.html">Privacy policy</a></li>
-                <li><a href="sitemap.html">Sitemap</a></li>
-            </ul>
-        </div>
-    </footer>
-
-    <script src="scripts/main.js"></script>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Privacy policy</a></li>
+      <li><a href="#">Sitemap</a></li>
+    </ul>
+  </div>
+</footer>
 </body>
 </html>

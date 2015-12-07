@@ -4,6 +4,7 @@
     ],
     "rules": {
         "jtf-style/2.1.6.カタカナの長音": false,
+        "jtf-style/4.2.1.感嘆符(！)": false,
         "max-ten": {
             "max": 3
         },
