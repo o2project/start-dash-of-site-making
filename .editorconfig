@@ -45,7 +45,7 @@ indent_size = 2
 # CSS(altCSS)
 # ==================================================
 [*.css]
-indent_size = 4
+indent_size = 2
 
 [*.{sass,scss}]
 indent_size = 4
