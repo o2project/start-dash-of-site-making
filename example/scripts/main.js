@@ -39,8 +39,8 @@ $(function() {
   var paginationItemElms = $(".js_slides-pagination li");
 
   var carousel = new Carousel(carouselE, {
-    autoplaySpeed: 5000,
     autoplay: true,
+    autoplaySpeed: 5000,
     arrows: false
   });
 
