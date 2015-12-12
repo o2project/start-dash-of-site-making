@@ -1,39 +1,54 @@
-(function () {
-    function autoplay(carousel, delay) {
-        return setInterval(function() {
-            carousel.next();
-        }, delay);
-    }
+$(function() {
+  "use strict";
 
-    function setPaginationPoint(element) {
-        element.classList.add("ll-carousel-pagination-item--current");
-    }
+  //////////////////////////////////////////////////
 
-    function resetPaginationPoint(paginationNodeList) {
-        Array.prototype.map.call(paginationNodeList, function (node) {
-            node.classList.remove("ll-carousel-pagination-item--current");
-        });
-    }
+  function Carousel(carouselE, config) {
+    this.carouselE = carouselE;
+    carouselE.slick(config);
+  }
 
-    function setupCarousel(targetElement, options) {
-        return lory(targetElement, options);
-    }
+  Carousel.prototype.currentIndex = function() {
+    return this.carouselE.slick("slickCurrentSlide");
+  };
 
-    document.addEventListener("DOMContentLoaded", function () {
-        var carouselE = document.querySelector(".js_carousel");
-        var paginationE = document.querySelector(".js_carousel-pagination");
-        var paginationItemElms = paginationE.getElementsByClassName("js_carousel-pagination-item")
+  //////////////////////////////////////////////////
 
-        var carousel = setupCarousel(carouselE, {
-            infinite: 1
-        });
+  function CarouselPagination(paginationE, paginationItemElms, activePageName) {
+    this.activePageName = activePageName;
+    this.paginationE = paginationE;
+    this.paginationItemElms = paginationItemElms;
+  }
 
-        setPaginationPoint(paginationItemElms[carousel.returnIndex() - 1]);
-        autoplay(carousel, 5000);
+  CarouselPagination.prototype.activatePage = function(index) {
+    this.paginationItemElms[index].classList.add(this.activePageName);
+  };
 
-        carouselE.addEventListener("after.lory.slide", function () {
-            resetPaginationPoint(paginationItemElms);
-            setPaginationPoint(paginationItemElms[carousel.returnIndex() - 1]);
-        });
+  CarouselPagination.prototype.deactivatePage = function() {
+    var _this = this;
+
+    Array.prototype.map.call(this.paginationItemElms, function(paginationItemE) {
+      paginationItemE.classList.remove(_this.activePageName);
     });
-})();
+  };
+
+  //////////////////////////////////////////////////
+
+  var carouselE = $(".js_slides");
+  var paginationE = $(".js_slides-pagination");
+  var paginationItemElms = $(".js_slides-pagination li");
+
+  var carousel = new Carousel(carouselE, {
+    autoplaySpeed: 5000,
+    autoplay: true,
+    arrows: false
+  });
+
+  var carouselPagination = new CarouselPagination(paginationE, paginationItemElms, "ll-slides-pagination__active");
+  carouselPagination.activatePage(carousel.currentIndex());
+
+  carouselE.on("afterChange", function() {
+    carouselPagination.deactivatePage();
+    carouselPagination.activatePage(carousel.currentIndex());
+  });
+});

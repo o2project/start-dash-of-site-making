@@ -6,13 +6,16 @@
   <meta name="description" content="ラブライブ！の参加者募集サイトです">
   <meta name="keywords" content="ラブライブ,特設サイト">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="components/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/slick/slick.css">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="components/lory/lory.min.js" defer></script>
+  <script src="external/jquery/jquery-2.1.4.min.js" defer></script>
+  <script src="external/slick/slick.min.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
-<header id="ll-header" class="navbar navbar-default" role="banner">
+<header id="ll-header" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <h1 class="navbar-brand ll-logo">LoveLive!</h1>
@@ -25,37 +28,35 @@
       <li><a href="#">Help</a></li>
     </ul>
   </div>
+
+  <nav id="ll-nav" class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Top</a></li>
+        <li><a href="livestage.html">Live stage</a></li>
+        <li><a href="#">Outline</a></li>
+        <li><a href="#">Schedule</a></li>
+        <li><a href="#">Special</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Faq</a></li>
+      </ul>
+    </div>
+  </nav>
 </header>
 
-<nav id="ll-nav" class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Top</a></li>
-      <li><a href="livestage.html">Live stage</a></li>
-      <li><a href="#">Outline</a></li>
-      <li><a href="#">Schedule</a></li>
-      <li><a href="#">Special</a></li>
-      <li><a href="#">Link</a></li>
-      <li><a href="#">Faq</a></li>
-    </ul>
-  </div>
-</nav>
-
 <main>
-  <div class="js_frame">
-    <ul class="js_slides">
-      <li><img src="images/image_01.jpg" alt=""></li>
-      <li><img src="images/image_02.jpg" alt=""></li>
-    </ul>
+  <div class="js_slides ll-slides">
+    <img src="images/image_01.jpg" alt="">
+    <img src="images/image_02.jpg" alt="">
   </div>
 
-  <ol class="js_carousel-pagination ll-carousel-pagination">
-    <li class="js_carousel-pagination-item ll-carousel-pagination-item">●</li>
-    <li class="js_carousel-pagination-item ll-carousel-pagination-item">●</li>
+  <ol class="js_slides-pagination ll-slides-pagination">
+    <li>●</li>
+    <li>●</li>
   </ol>
 </main>
 
-<footer id="ll-footer" class="navbar navbar-default" role="contentinfo">
+<footer id="ll-footer" class="navbar navbar-default">
   <div class="container-fluid">
     <p class="nav navbar-text navbar-left">
       このサイトは<a href="http://startdash.o2p.jp/">サイト制作のSTART:DASH!!</a>用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
