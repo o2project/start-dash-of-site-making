@@ -370,6 +370,7 @@ Bootstrapを読み込んだ上で、Bootstrapに定義されているクラス�
 /* 横幅が768px以上のときの設定 */
 @media (min-width: 768px) {
   #ll-nav li > a {
+    padding: 0.75em 5em;
     border-right: 1px solid #fff;
   }
 
@@ -458,6 +459,7 @@ Bootstrapを読み込んだ上で、Bootstrapに定義されているクラス�
 /* 横幅が768px以上のときの設定 */
 @media (min-width: 768px) {
   #ll-nav li > a {
+    padding: 0.75em 5em;
     border-right: 1px solid #fff;
   }
 
