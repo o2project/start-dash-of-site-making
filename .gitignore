@@ -21,6 +21,8 @@ build/
 *.pdf
 *.epub
 redpen-*
+!tokusetsu/**/*.html
+!tokusetsu/**/*.css
 !example/**/*.css
 !example/**/*.html
 !redpen-conf-ja.xml
