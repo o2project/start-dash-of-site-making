@@ -123,7 +123,7 @@ namespace :ci do
   task :tokusetsu do
     Rake::Task['copy'].invoke()
     sh 'rm -rf build/*.html build/styles build/scripts build/images'
-    sh 'cp -a tokusetsu/ build/'
+    sh 'cp tokusetsu/**/*.* build/'
   end
 
   task :publish do
