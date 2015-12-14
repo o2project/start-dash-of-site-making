@@ -42,12 +42,15 @@
 
 
 今回作成するサイトのファイル構成を考えていきます。
-ファイル構成は次のとおりとなります。ディレクトリーとしては@<tt>{components}・@<tt>{styles}・@<tt>{scripts}・@<tt>{images}の4つがあり、その中に各ファイルを置く想定です。
+ファイル構成は次のとおりとなります。@<tt>{index.html}はトップページ、@<tt>{livestage.html}はライブステージ用のHTMLとなります。
+ディレクトリーとしては@<tt>{external}・@<tt>{styles}・@<tt>{scripts}・@<tt>{images}の4つがあり、その中に各ファイルを置く想定です。
 
 
 //emlist{
 /
-├- components
+├- index.html
+├- livestage.html
+├- external
 ├- styles
 │  └ main.css
 ├- scripts
@@ -60,7 +63,7 @@
 
 各ディレクトリーには、以下の規則に則ってファイルを置きます。
 
- * components
+ * external
  ** CSS・JavaScript問わず、ライブラリを置くディレクトリ
  * styles
  ** CSSファイルを置くディレクトリ
@@ -105,9 +108,9 @@
   <meta name="description" content="ラブライブ！の参加者募集サイトです">
   <meta name="keywords" content="ラブライブ,特設サイト">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="components/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="components/lory/lory.min.js" defer></script>
+  <script src="external/lory/lory.min.js" defer></script>
 </head>
 
 <body>
@@ -139,7 +142,7 @@
 
 
 //emlist[][html]{
-<header id="ll-header" class="navbar navbar-default" role="banner">
+<header id="ll-header" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <h1 class="navbar-brand ll-logo">LoveLive!</h1>
@@ -177,15 +180,15 @@
 
 
 
-また、現在見ているページを示すためのクラス名として、Top部分に@<tt>{active}というクラス名を付けています。
-@<tt>{active}に関しては、クラス名に接頭辞を付けなくて大丈夫です。
+また、現在見ているページを示すためのクラス名として、Top部分に@<tt>{ll-active}というクラス名を付けています。
+@<tt>{ll-active}内でBootstrapが@<tt>{active}に対してスタイル定義しているところを上書きします。
 
 
 //emlist[][html]{
 <nav id="ll-nav" class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Top</a></li>
+      <li class="active ll-active"><a href="/">Top</a></li>
       <li><a href="livestage.html">Live stage</a></li>
       <li><a href="#">Outline</a></li>
       <li><a href="#">Schedule</a></li>
@@ -211,7 +214,7 @@
 
 
 //emlist[][html]{
-<footer id="ll-footer" class="navbar navbar-default" role="contentinfo">
+<footer id="ll-footer" class="navbar navbar-default">
   <div class="container-fluid">
     <p class="nav navbar-text navbar-left">
       このサイトは<a href="http://startdash.o2p.jp/">サイト制作のSTART:DASH!!</a>用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
@@ -240,13 +243,13 @@
   <meta name="description" content="ラブライブ！の参加者募集サイトです">
   <meta name="keywords" content="ラブライブ,特設サイト">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="components/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="components/lory/lory.min.js" defer></script>
+  <script src="external/lory/lory.min.js" defer></script>
 </head>
 
 <body>
-<header id="ll-header" class="navbar navbar-default" role="banner">
+<header id="ll-header" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <h1 class="navbar-brand ll-logo">LoveLive!</h1>
@@ -264,7 +267,7 @@
 <nav id="ll-nav" class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Top</a></li>
+      <li class="active ll-active"><a href="/">Top</a></li>
       <li><a href="livestage.html">Live stage</a></li>
       <li><a href="#">Outline</a></li>
       <li><a href="#">Schedule</a></li>
@@ -278,7 +281,7 @@
 <main>
 </main>
 
-<footer id="ll-footer" class="navbar navbar-default" role="contentinfo">
+<footer id="ll-footer" class="navbar navbar-default">
   <div class="container-fluid">
     <p class="nav navbar-text navbar-left">
       このサイトは<a href="http://startdash.o2p.jp/">サイト制作のSTART:DASH!!</a>用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
@@ -381,16 +384,16 @@ Bootstrapを読み込んだ上で、Bootstrapに定義されているクラス�
 //}
 
 
-さらに元のデザインに合わせるため、グローバルナビゲーションで現在開いているページを示すセレクター（@<tt>{.active}）に対し、背景色や前景色を指定します。
-次に選択できないことを示すため、@<tt>{pointer: default;}としてマウスカーソルの形を矢印にします。
+さらに元のデザインに合わせるため、グローバルナビゲーションで現在開いているページを示すセレクター（@<tt>{.ll-active}）に対し、背景色や前景色を指定します。
+次に選択できないことを示すため、@<tt>{cursor: default;}としてマウスカーソルの形を矢印にします。
 またリンクをマウスカーソルで押したらリンク先に飛ぶというマウスイベントが起こらないように、@<tt>{pointer-events: none;}の指定でマウスイベント無効化をします。
 
 
 //emlist[][css]{
 /* グローバルナビゲーションの現在位置のスタイルを改善する */
-#ll-nav .active > a {
+#ll-nav .ll-active > a {
   position: relative;
-  pointer: default;
+  cursor: default;
   pointer-events: none;
   background-color: #ff50ac;
   color: #fff;
@@ -404,9 +407,7 @@ Bootstrapを読み込んだ上で、Bootstrapに定義されているクラス�
 
 //emlist[][css]{
 /* グローバルナビゲーションの現在位置を示すスタイル */
-#ll-nav .active > a:after,
-#ll-nav .active > a:focus:after,
-#ll-nav .active > a:hover:after {
+#ll-nav .ll-active > a::after {
   content: "";
   display: block;
   position: absolute;
@@ -469,16 +470,16 @@ Bootstrapを読み込んだ上で、Bootstrapに定義されているクラス�
 }
 
 /* グローバルナビゲーションの現在位置を示すスタイル */
-#ll-nav .active > a {
+#ll-nav .ll-active > a {
   position: relative;
-  pointer: default;
+  cursor: default;
   pointer-events: none;
   background-color: #ff50ac;
   color: #fff;
 }
 
 /* グローバルナビゲーションの現在位置を示すスタイル */
-#ll-nav .active > a:after {
+#ll-nav .ll-active > a::after {
   content: "";
   display: block;
   position: absolute;
