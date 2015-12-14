@@ -36,7 +36,7 @@
             </ul>
 
             <h1><a id="h4"></a><span class="secno">第4章　</span>トップページを作る</h1>
-<p>前の章では共通の構造部分を作っていきました。第3章で作ったHTMLを元に、この章ではトップページを作っていきます。</p>
+<p>第3章では共通の構造部分を作っていきました。そこで作ったHTMLを元に、この章ではトップページを作っていきます。</p>
 <p>はじめに、第3章の共通部分ではヘッダーやフッターなどはマークアップしましたが、<tt>main</tt>要素の中身は空だったと思います。この章では、空のままだった<tt>main</tt>要素の中をHTMLでマークアップしていきます。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;main&gt;
@@ -44,7 +44,9 @@
 </pre>
 </div>
 
-<h2><a id="h4-1"></a><span class="secno">4.1　</span>カルーセル部分のマークアップ</h2>
+<h2><a id="h4-1"></a><span class="secno">4.1　</span>トップページ全体の見た目を整える</h2>
+
+<h2><a id="h4-2"></a><span class="secno">4.2　</span>カルーセル部分のマークアップ</h2>
 <p>まずカルーセル部分のマークアップをしていきます。カルーセルは第2章でも説明しましたが、<a href="http://www.nike.com/jp/ja_jp/" class="link">Nike</a>などで使われている「注目させたい複数の画像などをつぎつぎと横にスライド表示する」ものです。</p>
 <p>今回カルーセルの実装に使う<a href="http://kenwheeler.github.io/slick/" class="link">slick</a>用に次のHTMLを用意します。とはいっても、切り替え表示させる画像を<tt>js_slides ll-slides</tt>というクラスを付けた<tt>div</tt>要素で囲むだけです。</p>
 <div class="emlist-code">
@@ -55,7 +57,7 @@
 </pre>
 </div>
 
-<h2><a id="h4-2"></a><span class="secno">4.2　</span>ページネーション部分のマークアップ</h2>
+<h2><a id="h4-3"></a><span class="secno">4.3　</span>ページネーション部分のマークアップ</h2>
 <p>次にカルーセルと連携したページネーション部分のマークアップをしていきます。ページネーションを画像で示すと、図の赤丸部分になります。</p>
 <div id="pagination" class="image">
 <img src="images/ch04/pagination.jpg" alt="ページネーション（ラブライブ！第2期 1話より）© プロジェクトラブライブ！" />
@@ -73,7 +75,7 @@
 </pre>
 </div>
 
-<h2><a id="h4-3"></a><span class="secno">4.3　</span>カルーセルの見た目を整える</h2>
+<h2><a id="h4-4"></a><span class="secno">4.4　</span>カルーセルの見た目を整える</h2>
 <p>カルーセルに使う要素の見た目を整えます。スタイル定義は簡単で、ウィンドウの描画領域が狭いときに画像をはみ出させないよう、<tt>max-width</tt>というプロパティで要素幅の最大値を指定します。</p>
 <div class="emlist-code">
 <pre class="emlist">/* トップページ：カルーセル内の画像 */
@@ -105,10 +107,10 @@
 </pre>
 </div>
 
-<h2><a id="h4-4"></a><span class="secno">4.4　</span>ここまでのHTML・CSSまとめ</h2>
+<h2><a id="h4-5"></a><span class="secno">4.5　</span>ここまでのHTML・CSSまとめ</h2>
 <p>トップページのHTML・CSSについてはこれで完成です。ここまでのHTML・CSSをまとめると次のとおりになります。</p>
 
-<h3><a id="h4-4-1"></a>トップページのHTML</h3>
+<h3><a id="h4-5-1"></a>トップページのHTML</h3>
 <div class="emlist-code">
 <pre class="emlist">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -182,7 +184,7 @@
 </pre>
 </div>
 
-<h3><a id="h4-4-2"></a>トップページのCSS</h3>
+<h3><a id="h4-5-2"></a>トップページのCSS</h3>
 <div class="emlist-code">
 <pre class="emlist">/* サイトのヘッダー */
 #ll-header {
@@ -292,10 +294,10 @@
 </pre>
 </div>
 
-<h2><a id="h4-5"></a><span class="secno">4.5　</span>JavaScriptを使ってカルーセルの実装をする</h2>
+<h2><a id="h4-6"></a><span class="secno">4.6　</span>JavaScriptを使ってカルーセルの実装をする</h2>
 <p>トップページのHTMLマークアップやCSSによるスタイル適用が終わったので、JavaScriptを使ってカルーセルの実装をします。</p>
 
-<h2><a id="h4-6"></a><span class="secno">4.6　</span>JavaScriptの準備</h2>
+<h2><a id="h4-7"></a><span class="secno">4.7　</span>JavaScriptの準備</h2>
 <p>はじめに、JavaScriptのソースコード全体を<tt>(function() { ... });</tt>で囲みます。理由は、定義した変数や関数が他のJavaScriptと競合しないようにするためです。<tt>(function() { ... })();</tt>を書かなかった場合、他のJavaScriptと競合してしまい正常に動作しなくなる場合があります。</p>
 <p>またjQueryを使う場合は<tt>(function() { ... })();</tt>の前に<tt>$</tt>を書きます。つまり<tt>$(function() { ... })();</tt>と書きます。<tt>$</tt>を書く理由は、ブラウザーがHTMLを読み込んで解釈した後にJavaScriptを実行させるためです。HTMLを解釈した後にJavaScriptの実行をしないと、JavaScript内でHTMLの要素を取得できない可能性があるためです。</p>
 <p>また、<tt>$(function() { ... })();</tt>の中には<tt>&quot;use strict&quot;;</tt>という文字列を書いています。これは、JavaScriptでやってしまうミスの一部をエラーとして検出してくれるものです。将来に備えていくつかの単語を使えなくする（たとえば<tt>let</tt>や<tt>yield</tt>など）効果もあるので、<tt>&quot;use strict&quot;;</tt>は書いても損はありません。</p>
@@ -319,7 +321,7 @@
 </ol>
 <p>処理の流れを洗い出したところで、上から順に説明します。</p>
 
-<h2><a id="h4-7"></a><span class="secno">4.7　</span>カルーセルで使うためにHTMLの要素を取得する</h2>
+<h2><a id="h4-8"></a><span class="secno">4.8　</span>カルーセルで使うためにHTMLの要素を取得する</h2>
 <p>はじめに、JavaScriptでHTMLの要素を扱えるようにします。これはjQueryの<tt>$</tt>関数を使って、HTMLの要素をJavaScriptから次のとおり取得します。</p>
 <p>準備の節では、ブラウザーがJavaScriptをHTMLの解釈後に実行するため<tt>$</tt>関数を使いました。ここでは、HTMLの要素をJavaScriptで利用できるようにするため<tt>$</tt>関数を使います。jQueryの<tt>$</tt>関数はこのように万能なものとなります。</p>
 <div class="emlist-code">
@@ -329,7 +331,7 @@ var paginationItemElms = $(&quot;.js_slides-pagination li&quot;);
 </pre>
 </div>
 
-<h2><a id="h4-8"></a><span class="secno">4.8　</span>カルーセルの実装をする</h2>
+<h2><a id="h4-9"></a><span class="secno">4.9　</span>カルーセルの実装をする</h2>
 <p>HTMLの要素を取得できるようにしたら、カルーセルの実装をしていきます。今回カルーセルの実装をする上でslickというライブラリを使っていきます。ここでは次のように、slickを使えるよう初期化する関数と、どのページがいま表示されているか示すための関数を実装します。</p>
 <p>まずカルーセルの元になる<tt>Carousel</tt>関数から説明します。<tt>Carousel</tt>関数ではパラメーターとして、次の2つがあります</p>
 <ul>
@@ -351,7 +353,7 @@ Carousel.prototype.currentIndex = function() {
 </div>
 <p>カルーセルの実装が終わったところで、現在どのページを表示しているのか視覚的に分かりやすくするページネーションの実装をしていきます。</p>
 
-<h2><a id="h4-9"></a><span class="secno">4.9　</span>ページネーションの実装をする</h2>
+<h2><a id="h4-10"></a><span class="secno">4.10　</span>ページネーションの実装をする</h2>
 <p>ページネーションの元になる<tt>CarouselPagination</tt>関数を説明します。<tt>CarouselPagination</tt>関数ではパラメーターとして、次の3つがあります。</p>
 <ul>
 <li>ページネーションの要素を示す<tt>paginationE</tt></li>
@@ -381,7 +383,7 @@ CarouselPagination.prototype.deactivatePage = function() {
 </div>
 <p>次からはいよいよカルーセルやページネーションを動作するようにします。</p>
 
-<h2><a id="h4-10"></a><span class="secno">4.10　</span>カルーセルが動くようにする</h2>
+<h2><a id="h4-11"></a><span class="secno">4.11　</span>カルーセルが動くようにする</h2>
 <p>先ほど実装したカルーセルを次のとおり呼び出して動くようにします。カルーセルの設定として3項目設定します。</p>
 <ul>
 <li>autoplay：カルーセルを自動的にページ送りするか</li>
@@ -397,7 +399,7 @@ CarouselPagination.prototype.deactivatePage = function() {
 </pre>
 </div>
 
-<h2><a id="h4-11"></a><span class="secno">4.11　</span>ページネーションが動くようにする</h2>
+<h2><a id="h4-12"></a><span class="secno">4.12　</span>ページネーションが動くようにする</h2>
 <p>カルーセルと同じように、実装したページネーションを次のとおり呼び出してページネーションを動かします。ページネーションの初期設定として、現在アクティブであることを示すクラス名が最初のドットへ付くようにします。</p>
 <div class="emlist-code">
 <pre class="emlist">var carouselPagination = new CarouselPagination(paginationE, paginationItemElms, &quot;ll-slides-pagination__active&quot;);
@@ -405,7 +407,7 @@ carouselPagination.activatePage(carousel.currentIndex());
 </pre>
 </div>
 
-<h2><a id="h4-12"></a><span class="secno">4.12　</span>カルーセル表示が切り替わったときの処理を設定する</h2>
+<h2><a id="h4-13"></a><span class="secno">4.13　</span>カルーセル表示が切り替わったときの処理を設定する</h2>
 <p>カルーセル表示が切り替わったときに、連動してページネーションの表示を切り替えるようにします。この実装にはslickで定義されている<tt>afterChange</tt>というイベントをjQueryの<tt>on</tt>関数を使って拾えるようにします。</p>
 <div class="emlist-code">
 <pre class="emlist">carouselE.on(&quot;afterChange&quot;, function() {
@@ -415,7 +417,7 @@ carouselPagination.activatePage(carousel.currentIndex());
 </pre>
 </div>
 
-<h2><a id="h4-13"></a><span class="secno">4.13　</span>トップページのJavaScriptまとめ</h2>
+<h2><a id="h4-14"></a><span class="secno">4.14　</span>トップページのJavaScriptまとめ</h2>
 <p>これまでのJavaScriptをまとめると次のとおりになります。</p>
 <div class="emlist-code">
 <pre class="emlist">$(function() {

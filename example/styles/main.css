@@ -46,7 +46,7 @@
     padding: 0.75em 2em;
   }
 }
-@media (min-width: 1000px) {
+@media (min-width: 992px) {
   #ll-nav li > a {
     padding: 0.75em 2.5em;
   }
@@ -82,24 +82,165 @@
   border-bottom: 5px solid #ffdc00;
 }
 
+/* トップページ：コンテンツ */
+#ll-top-page main {
+  background-color: #dcdcdc;
+}
+
 /* トップページ：カルーセル内の画像 */
 .ll-slides img {
   max-width: 100%;
 }
 
-/* トップページ：カルーセル連携ページネーションの外枠 */
+/* トップページ：ページネーションの外枠 */
 .ll-slides-pagination {
   list-style-type: none;
+  margin: 0;
   text-align: center;
 }
 
-/* トップページ：カルーセル連携ページネーションの各要素 */
+/* トップページ：ページネーションの各要素 */
 .ll-slides-pagination li {
   display: inline-block;
   color: #ff64b1;
 }
 
-/* トップページ：カルーセル連携ページネーションの現在のページを示す要素 */
+/* トップページ：ページネーションの現在のページを示す要素 */
 .ll-slides-pagination .ll-slides-pagination__active {
   color: #fff;
+}
+
+/* ライブステージ：コンテンツ */
+#ll-livestage-page main {
+  padding: 1em 0;
+  background-color: #dcdcdc;
+}
+
+/* ライブステージページ：見出し */
+.ll-video-title-and-artist,
+.ll-ad-title {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* ライブステージページ：アーティスト名 */
+.ll-video-artist {
+  padding: 3px 0.5em;
+  border-top: 2px solid #ffdc00;
+  border-bottom: 2px solid #ffdc00;
+  background-color: #fff;
+}
+
+/* ライブステージページ：曲名 */
+.ll-video-title::before {
+  content: "【";
+}
+
+.ll-video-title::after {
+  content: "】";
+}
+
+/* ライブステージページ：動画部分をレスポンシブにする */
+.ll-live-video-wrapper {
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+}
+
+.ll-live-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ライブステージページ：動画の詳細 */
+.ll-video-detail {
+  margin: 1em 0;
+}
+@media (min-width: 992px) {
+  .ll-video-detail {
+    margin: 0;
+  }
+}
+
+/* ライブステージページ：動画の情報タブ */
+.ll-video-tabs {
+  background-color: #ff50ac;
+}
+
+.ll-video-tabs > li > a {
+  margin-bottom: 0 !important;
+  text-transform: uppercase;
+}
+
+.ll-video-tabs > li > a:link,
+.ll-video-tabs > li > a:visited {
+  color: #fff;
+}
+
+.ll-video-tabs > li > a:hover,
+.ll-video-tabs > li > a:focus {
+  color: #ff188b;
+}
+
+.ll-video-tabs > li.active > a {
+  color: #555;
+}
+
+/* ライブステージページ：動画の情報タブの各描画領域ごとのスタイル定義 */
+@media (min-width: 768px) {
+  .ll-video-tabs > li > a {
+    padding: 5px 0;
+    border-bottom: 0;
+    border-right: 1px solid #fff;
+  }
+
+  .ll-video-tabs > li:last-child > a {
+    border-right: 0;
+  }
+
+  .ll-video-tabs > li > a:focus,
+  .ll-video-tabs > li > a:hover {
+    background-color: #ff92cb;
+    color: #fff;
+  }
+
+  .ll-video-tabs > li.active > a {
+    border-bottom: 0;
+    background-color: #ff50ac;
+    color: #fff;
+  }
+
+  .ll-video-tabs > li.active > a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 3px solid #ffdc00;
+  }
+}
+@media (min-width: 992px) {
+  .ll-video-tabs > li > a {
+    font-size: 0.8125em;
+  }
+}
+@media (min-width: 1000px) {
+  .ll-video-tabs > li > a {
+    font-size: 0.875em;
+  }
+}
+
+/* ライブステージページ：広告 */
+.ll-livestage-ad {
+  margin: 1em 0;
+}
+@media (min-width: 992px) {
+  .ll-livestage-ad {
+    margin: 0;
+  }
 }
