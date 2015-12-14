@@ -62,10 +62,12 @@
 </div>
 
 <h2><a id="h3-2"></a><span class="secno">3.2　</span>ファイル構成</h2>
-<p>今回作成するサイトのファイル構成を考えていきます。ファイル構成は次のとおりとなります。ディレクトリーとしては<tt>components</tt>・<tt>styles</tt>・<tt>scripts</tt>・<tt>images</tt>の4つがあり、その中に各ファイルを置く想定です。</p>
+<p>今回作成するサイトのファイル構成を考えていきます。ファイル構成は次のとおりとなります。<tt>index.html</tt>はトップページ、<tt>livestage.html</tt>はライブステージ用のHTMLとなります。ディレクトリーとしては<tt>external</tt>・<tt>styles</tt>・<tt>scripts</tt>・<tt>images</tt>の4つがあり、その中に各ファイルを置く想定です。</p>
 <div class="emlist-code">
 <pre class="emlist">/
-├- components
+├- index.html
+├- livestage.html
+├- external
 ├- styles
 │  └ main.css
 ├- scripts
@@ -77,7 +79,7 @@
 </div>
 <p>各ディレクトリーには、以下の規則に則ってファイルを置きます。</p>
 <ul>
-<li>components<ul>
+<li>external<ul>
 <li>CSS・JavaScript問わず、ライブラリを置くディレクトリ</li>
 </ul>
 </li>
@@ -110,9 +112,9 @@
   &lt;meta name=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
   &lt;meta name=&quot;keywords&quot; content=&quot;ラブライブ,特設サイト&quot;&gt;
   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;components/Nico/bootstrap.min.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;external/Nico/bootstrap.min.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
-  &lt;script src=&quot;components/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
+  &lt;script src=&quot;external/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
@@ -129,7 +131,7 @@
 <p>なお今回作らないページについては、図のように<tt>a</tt>要素の<tt>href</tt>属性に<tt>#</tt>を入れておきます。こうすることで、作っていないページを検索するとき、検索が楽になることを狙っています。</p>
 <p>またBootstrapにはないクラス名を定義する際、図のように<tt>ll-</tt>という接頭辞を付けています（<strong>l</strong> ove <strong>l</strong> ive）。これはBootstrapで定義されているクラス名と競合しないように、安全策で接頭辞を付けています。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot; role=&quot;banner&quot;&gt;
+<pre class="emlist">&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot;&gt;
   &lt;div class=&quot;container-fluid&quot;&gt;
     &lt;div class=&quot;navbar-header&quot;&gt;
       &lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
@@ -157,12 +159,12 @@
 <h2><a id="h3-5"></a><span class="secno">3.5　</span>グローバルナビゲーションのマークアップ</h2>
 <p>ヘッダーの次はグローバルナビゲーションをマークアップしていきます。グローバルナビゲーションは、サイト内の主要なページへリンクしているものです。</p>
 <p>はじめに、nav要素で全体を囲みます。nav要素は主要なページへリンクしている箇所で使われる要素となります。そして、各要素の<tt>class</tt>属性にはBootstrapで定義されているクラス名を定義します。先ほどと同じく、今回作らないページについては、図のように<tt>a</tt>要素の<tt>href</tt>属性に<tt>#</tt>を入れておきます。</p>
-<p>また、現在見ているページを示すためのクラス名として、Top部分に<tt>active</tt>というクラス名を付けています。<tt>active</tt>に関しては、クラス名に接頭辞を付けなくて大丈夫です。</p>
+<p>また、現在見ているページを示すためのクラス名として、Top部分に<tt>ll-active</tt>というクラス名を付けています。<tt>ll-active</tt>内でBootstrapが<tt>active</tt>に対してスタイル定義しているところを上書きします。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;nav id=&quot;ll-nav&quot; class=&quot;navbar navbar-inverse&quot;&gt;
   &lt;div class=&quot;container-fluid&quot;&gt;
     &lt;ul class=&quot;nav navbar-nav&quot;&gt;
-      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;active ll-active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
@@ -179,7 +181,7 @@
 <p>ヘッダー、グローバルナビゲーションと来たので、最後にフッターをマークアップしていきます。ここには著作権情報やプライバシーポリシー、サイトマップといったリンクを追加します。</p>
 <p>また、アニメの画像キャプチャを見ると、フッター部分には「●○○○○」のような表示があります。これはページネーションといわれる、ある要素内にどれだけの要素が内包されているかを示すものです。しかし、フッター内にページネーションを含めるのは一般的でないため、特にマークアップしません。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot; role=&quot;contentinfo&quot;&gt;
+<pre class="emlist">&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot;&gt;
   &lt;div class=&quot;container-fluid&quot;&gt;
     &lt;p class=&quot;nav navbar-text navbar-left&quot;&gt;
       このサイトは&lt;a href=&quot;http://startdash.o2p.jp/&quot;&gt;サイト制作のSTART:DASH!!&lt;/a&gt;用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
@@ -205,13 +207,13 @@
   &lt;meta name=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
   &lt;meta name=&quot;keywords&quot; content=&quot;ラブライブ,特設サイト&quot;&gt;
   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;components/Nico/bootstrap.min.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;external/Nico/bootstrap.min.css&quot;&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
-  &lt;script src=&quot;components/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
+  &lt;script src=&quot;external/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
-&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot; role=&quot;banner&quot;&gt;
+&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot;&gt;
   &lt;div class=&quot;container-fluid&quot;&gt;
     &lt;div class=&quot;navbar-header&quot;&gt;
       &lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
@@ -229,7 +231,7 @@
 &lt;nav id=&quot;ll-nav&quot; class=&quot;navbar navbar-inverse&quot;&gt;
   &lt;div class=&quot;container-fluid&quot;&gt;
     &lt;ul class=&quot;nav navbar-nav&quot;&gt;
-      &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;active ll-active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
@@ -243,7 +245,7 @@
 &lt;main&gt;
 &lt;/main&gt;
 
-&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot; role=&quot;contentinfo&quot;&gt;
+&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot;&gt;
   &lt;div class=&quot;container-fluid&quot;&gt;
     &lt;p class=&quot;nav navbar-text navbar-left&quot;&gt;
       このサイトは&lt;a href=&quot;http://startdash.o2p.jp/&quot;&gt;サイト制作のSTART:DASH!!&lt;/a&gt;用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
@@ -322,12 +324,12 @@
 }
 </pre>
 </div>
-<p>さらに元のデザインに合わせるため、グローバルナビゲーションで現在開いているページを示すセレクター（<tt>.active</tt>）に対し、背景色や前景色を指定します。次に選択できないことを示すため、<tt>pointer: default;</tt>としてマウスカーソルの形を矢印にします。またリンクをマウスカーソルで押したらリンク先に飛ぶというマウスイベントが起こらないように、<tt>pointer-events: none;</tt>の指定でマウスイベント無効化をします。</p>
+<p>さらに元のデザインに合わせるため、グローバルナビゲーションで現在開いているページを示すセレクター（<tt>.ll-active</tt>）に対し、背景色や前景色を指定します。次に選択できないことを示すため、<tt>cursor: default;</tt>としてマウスカーソルの形を矢印にします。またリンクをマウスカーソルで押したらリンク先に飛ぶというマウスイベントが起こらないように、<tt>pointer-events: none;</tt>の指定でマウスイベント無効化をします。</p>
 <div class="emlist-code">
 <pre class="emlist">/* グローバルナビゲーションの現在位置のスタイルを改善する */
-#ll-nav .active &gt; a {
+#ll-nav .ll-active &gt; a {
   position: relative;
-  pointer: default;
+  cursor: default;
   pointer-events: none;
   background-color: #ff50ac;
   color: #fff;
@@ -337,9 +339,7 @@
 <p>最後に現在開いているページをグローバルナビゲーション上で分かりやすくするため、下部に黄色の線を引きます。これで、共通構造のマークアップは終わりです。</p>
 <div class="emlist-code">
 <pre class="emlist">/* グローバルナビゲーションの現在位置を示すスタイル */
-#ll-nav .active &gt; a:after,
-#ll-nav .active &gt; a:focus:after,
-#ll-nav .active &gt; a:hover:after {
+#ll-nav .ll-active &gt; a::after {
   content: &quot;&quot;;
   display: block;
   position: absolute;
@@ -399,16 +399,16 @@
 }
 
 /* グローバルナビゲーションの現在位置を示すスタイル */
-#ll-nav .active &gt; a {
+#ll-nav .ll-active &gt; a {
   position: relative;
-  pointer: default;
+  cursor: default;
   pointer-events: none;
   background-color: #ff50ac;
   color: #fff;
 }
 
 /* グローバルナビゲーションの現在位置を示すスタイル */
-#ll-nav .active &gt; a:after {
+#ll-nav .ll-active &gt; a::after {
   content: &quot;&quot;;
   display: block;
   position: absolute;
