@@ -127,9 +127,7 @@
 
 <h2><a id="h3-4"></a><span class="secno">3.4　</span>ヘッダーのマークアップ</h2>
 <p>基礎部分のマークアップが終わったので、次にヘッダーをマークアップしていきます。ヘッダーにはサイトのタイトルロゴと、メールマガジンやSNS、ヘルプなどのリンクがあります。</p>
-<p>今回はCSSライブラリとして、BootstrapのテーマであるNicoを使っているため、各要素の<tt>class</tt>属性にBootstrapで定義されているクラス名を定義します。</p>
-<p>作らないページについては、図のように<tt>a</tt>要素の<tt>href</tt>属性に<tt>#</tt>を入れておきます。こうすることで、作っていないページの検索が楽になることを狙っています。</p>
-<p>Bootstrapにはないクラス名を定義する際、図のように<tt>ll-</tt>という接頭辞を付けています（<strong>l</strong> ove <strong>l</strong> ive）。これはBootstrapで定義されているクラス名と競合しないように、安全策で接頭辞を付けています。</p>
+<p>今回はCSSライブラリとしてBootstrapのテーマであるNicoを使っているため、各要素の<tt>class</tt>属性にBootstrapで定義されているクラス名を定義します。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot;&gt;
   &lt;div class=&quot;container-fluid&quot;&gt;
@@ -147,10 +145,12 @@
 &lt;/header&gt;
 </pre>
 </div>
+<p>作らないページについては、図のように<tt>a</tt>要素の<tt>href</tt>属性に<tt>#</tt>を入れておきます。こうすることで、作っていないページの検索が楽になることを狙っています。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;a href=&quot;#&quot;&gt;Mail magazine&lt;/a&gt;
 </pre>
 </div>
+<p>Bootstrapにはないクラス名を定義する際、図のように<tt>ll-</tt>という接頭辞を付けています（<strong>l</strong> ove <strong>l</strong> ive）。これはBootstrapで定義されているクラス名と競合しないように、安全策で接頭辞を付けています。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
 </pre>
