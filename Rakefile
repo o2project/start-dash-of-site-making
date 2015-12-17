@@ -21,7 +21,7 @@ end
 desc 'Create HTML'
 task :html do
   Dir.chdir ARTICLES_DIR do
-    sh "bundle exec review-compile --all --target=html --footnotetext --stylesheet=#{BOOK_DIR}/styles/main.css --chapterlink"
+    sh "bundle exec review-compile --all --chapterlink --footnotetext --target=html --stylesheet=#{BOOK_DIR}/styles/main.css"
   end
 end
 
@@ -73,7 +73,8 @@ namespace :ci do
   task :copy_html do
     sh 'rm -rf build/book/*.html build/book/images build/book/styles'
     Rake::Task['html'].invoke()
-    sh 'cp book/*.html build/book'
+    sh "mv articles/*.html book/"
+    sh 'cp articles/*.html build/book'
     sh 'cp -a articles/images build/book/images'
     sh 'cp -a book/styles build/book/styles'
   end
