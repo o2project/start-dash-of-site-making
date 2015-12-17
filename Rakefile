@@ -1,68 +1,43 @@
 require 'rake'
 
-task default: :all
-
-desc 'Create all books (HTML, PDF, ePub)'
-task all: [:html, :pdf, :epub]
-
-desc 'Copy Re:VIEW files'
-task :copy do
-  sh 'cp ./src/*.re .'
-end
+REPOSITORY_NAME = 'o2project/start-dash-of-site-making'
+ARTICLES_DIR = 'articles'
+BOOK_DIR = 'book'
 
 desc 'Create PDF'
 task :pdf do
-  sh 'rm -rf *pdf'
-  Rake::Task['md2review'].invoke()
-  Rake::Task['copy'].invoke()
-  sh 'bundle exec review-pdfmaker config.yml'
+  Dir.chdir ARTICLES_DIR do
+    sh "bundle exec review-pdfmaker config.yml"
+  end
 end
 
 desc 'Create ePub'
 task :epub do
-  Rake::Task['md2review'].invoke()
-  Rake::Task['copy'].invoke()
-  sh 'bundle exec review-epubmaker config.yml'
+  Dir.chdir ARTICLES_DIR do
+    sh "bundle exec review-epubmaker config.yml"
+  end
 end
 
 desc 'Create HTML'
 task :html do
-  Rake::Task['md2review'].invoke()
-  Rake::Task['copy'].invoke()
-  sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=styles/main.css --chapterlink'
+  Dir.chdir ARTICLES_DIR do
+    sh "bundle exec review-compile --all --target=html --footnotetext --stylesheet=#{BOOK_DIR}/styles/main.css --chapterlink"
+  end
 end
 
-desc 'Convert `draft/*.md` to `src/*.re`'
+desc 'Convert Markdown to Re:VIEW'
 task :md2review do
-  Dir.glob('draft/*.md') do |md|
+  Dir.glob("#{ARTICLES_DIR}/draft/*.md") do |md|
     re = File.basename(md).sub(/\.md$/, '.re')
-    sh "bundle exec md2review #{md} > src/#{re}"
+    sh "bundle exec md2review #{md} > #{ARTICLES_DIR}/#{re}"
   end
 end
 
-desc 'Clean working files'
-task :clean do
-  sh 'rm -f *.re'
-  sh 'rm -f *.css'
-  sh 'rm -f *.html'
-  sh 'rm -f *.pdf'
-  sh 'rm -f *.epub'
-end
-
-desc 'Proofreading by redpen'
-task :redpen do
-  config_file = './settings/redpen-conf-ja.xml'
-  target_files = './draft/*.md'
-
-  sh "redpen-distribution-*/bin/redpen -v"
-
-  Dir.glob(target_files) do |file|
-    sh "redpen-distribution-*/bin/redpen -c redpen-conf-ja.xml -f markdown #{file}"
-  end
-end
+desc 'Create all books (HTML, PDF, ePub)'
+task all: [:md2review, :html, :pdf, :epub]
+task default: :all
 
 namespace :ci do
-  REPOSITORY_NAME = 'o2project/start-dash-of-site-making'
   REPOSITORY = if ENV['GH_TOKEN']
                  "https://$GH_TOKEN@github.com/#{REPOSITORY_NAME}"
                else
@@ -70,6 +45,53 @@ namespace :ci do
                end
   PUBLISH_BRANCH = 'gh-pages'
   TEMP_DIR = 'build'
+
+  desc 'CI setup'
+  task :setup do
+    init_repo REPOSITORY, PUBLISH_BRANCH
+    update_repo PUBLISH_BRANCH
+  end
+
+  desc 'Proofreading by redpen'
+  task :redpen do
+    config_file = 'articles/redpen-conf-ja.xml'
+    target_files = 'articles/draft/*.md'
+    redpen_bin = 'redpen-distribution-*/bin/redpen'
+
+    sh "#{redpen_bin} -v"
+
+    Dir.glob(target_files) do |file|
+      sh "#{redpen_bin} -c #{config_file} -f markdown #{file}"
+    end
+  end
+
+  task :copy_example do
+    sh 'rm -rf build/example'
+    sh 'cp -a example/ build/example'
+  end
+
+  task :copy_html do
+    sh 'rm -rf build/book/*.html build/book/images build/book/styles'
+    Rake::Task['html'].invoke()
+    sh 'cp book/*.html build/book'
+    sh 'cp -a articles/images build/book/images'
+    sh 'cp -a book/styles build/book/styles'
+  end
+
+  task :copy_tokusetsu do
+    sh 'rm -rf build/*.html'
+    sh 'cp tokusetsu/index.html build/'
+  end
+
+  task :publish do
+    Rake::Task['ci:copy_example'].invoke()
+    Rake::Task['ci:copy_html'].invoke()
+    Rake::Task['ci:copy_tokusetsu'].invoke()
+
+    Dir.chdir TEMP_DIR do
+      push_to_target_branch REPOSITORY, PUBLISH_BRANCH
+    end
+  end
 
   def init_repo(repo, branch)
     require 'fileutils'
@@ -97,42 +119,5 @@ namespace :ci do
     sh 'git add -A'
     sh "git commit -m '[ci skip] Update with #{sha1}'"
     sh "git push --quiet #{repo} #{branch}"
-  end
-
-  task :setup do
-    init_repo REPOSITORY, PUBLISH_BRANCH
-    update_repo PUBLISH_BRANCH
-  end
-
-  task :example do
-    Rake::Task['copy'].invoke()
-    sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=styles/main.css --chapterlink'
-    sh 'rm -rf build/example'
-    sh 'cp -a example/ build/example'
-  end
-
-  task :book do
-    Rake::Task['copy'].invoke()
-    sh 'bundle exec review-compile --all --target=html --footnotetext --stylesheet=styles/main.css --chapterlink'
-    sh 'rm -rf build/book/*.html build/book/images build/book/styles'
-    sh 'cp -a *.html build/book'
-    sh 'cp -a images build/book/images'
-    sh 'cp -a styles build/book/styles'
-  end
-
-  task :tokusetsu do
-    Rake::Task['copy'].invoke()
-    sh 'rm -rf build/*.html build/styles build/scripts build/images'
-    sh 'cp tokusetsu/index.html build/'
-  end
-
-  task :publish do
-    Rake::Task['ci:example'].invoke()
-    Rake::Task['ci:book'].invoke()
-    Rake::Task['clean'].invoke()
-    Rake::Task['ci:tokusetsu'].invoke()
-    Dir.chdir TEMP_DIR do
-      push_to_target_branch REPOSITORY, PUBLISH_BRANCH
-    end
   end
 end
