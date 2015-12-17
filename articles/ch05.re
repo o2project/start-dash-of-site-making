@@ -101,7 +101,7 @@ YouTubeの動画をページ内に埋め込みます。
 == HTMLのまとめ
 
 
-ライブステージのHTMLをまとめると次のとおりになります。
+ライブステージページのHTMLをまとめると次のとおりになります。
 
 
 //emlist[][html]{
@@ -171,7 +171,7 @@ HTMLのマークアップが終わったので、スタイルの適用をして�
 
 
 //emlist[][css]{
-/* ライブステージ：コンテンツ */
+/* ライブステージページ：コンテンツ */
 #ll-livestage-page main {
   padding: 1em 0;
   background-color: #dcdcdc;
@@ -360,11 +360,11 @@ HTMLのマークアップが終わったので、スタイルの適用をして�
 == CSSのまとめ
 
 
-ライブステージのCSSをまとめると次のとおりになります。
+ライブステージページのCSSをまとめると次のとおりになります。
 
 
 //emlist[][css]{
-/* ライブステージ：コンテンツ */
+/* ライブステージページ：コンテンツ */
 #ll-livestage-page main {
   padding: 1em 0;
   background-color: #dcdcdc;

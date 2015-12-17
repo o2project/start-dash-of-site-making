@@ -10,8 +10,7 @@
         },
         "spellcheck-tech-word": true,
         "no-doubled-joshi": {
-            "min_interval" : 2,
-            "strict": true
+            "min_interval" : 2
         },
         "no-mix-dearu-desumasu": true,
         "sentence-length": {
