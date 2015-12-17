@@ -7,6 +7,7 @@ BOOK_DIR = 'book'
 desc 'Create PDF'
 task :pdf do
   Dir.chdir ARTICLES_DIR do
+    sh "rm -rf *pdf"
     sh "bundle exec review-pdfmaker config.yml"
   end
 end
