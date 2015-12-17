@@ -2,30 +2,11 @@
 .sass-cache/
 .idea/
 .bundle/
-bin/
 vendor/
-stats/
 node_modules/
+*pdf/
 
 # Files
 .DS_Store
 *.elc
 *.swp
-
-# Project Settings
-*pdf/
-build/
-*.css
-*.re
-*.html
-*.pdf
-*.epub
-redpen-*
-!tokusetsu/**/*.html
-!tokusetsu/**/*.css
-!example/**/*.css
-!example/**/*.html
-!redpen-conf-ja.xml
-!src/*.re
-!styles/**/*.css
-!.travis.yml
