@@ -36,9 +36,8 @@ before_script:
   - '[ "$GH_TOKEN" ] && bundle exec rake ci:setup > /dev/null'
 
 script:
-  - bundle exec rake redpen
+  - bundle exec rake ci:redpen
   - npm test
-  - bundle exec rake html
 
 after_success:
   - '[ "$TRAVIS_BRANCH" == "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "$GH_TOKEN" ] && bundle exec rake ci:publish > /dev/null'
