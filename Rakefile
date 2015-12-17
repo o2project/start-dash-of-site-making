@@ -75,7 +75,7 @@ namespace :ci do
     sh 'rm -rf build/book/*.html build/book/images build/book/styles'
     Rake::Task['html'].invoke()
     sh "mv articles/*.html book/"
-    sh 'cp articles/*.html build/book'
+    sh 'cp book/*.html build/book'
     sh 'cp -a articles/images build/book/images'
     sh 'cp -a book/styles build/book/styles'
   end
