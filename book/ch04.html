@@ -36,7 +36,7 @@
             </ul>
 
             <h1><a id="h4"></a><span class="secno">第4章　</span>トップページを作る</h1>
-<p>第3章では共通の構造部分を作っていきました。そこではヘッダーやフッターなどはマークアップしましたが、<tt>main</tt>要素の中身は空だったと思います。この章では空のままだった<tt>main</tt>要素の中をHTMLでマークアップしていきます。</p>
+<p>第3章では共通の構造部分を作っていきました。そこではヘッダーやフッターなどはマークアップしましたが、<tt>main</tt>要素の中身は空だったと思います。この章では、トップページの空のままだった<tt>main</tt>要素の中をHTMLでマークアップしていきます。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;main&gt;
 &lt;/main&gt;
@@ -45,11 +45,11 @@
 
 <h2><a id="h4-1"></a><span class="secno">4.1　</span>カルーセル部分のマークアップ</h2>
 <p>カルーセル部分のマークアップをしていきます。あらためてカルーセルの説明をすると、<a href="http://www.nike.com/jp/ja_jp/" class="link">Nike</a>などで使われている「注目させたい複数の画像などをつぎつぎと横にスライド表示する」ものです。</p>
-<p>今回カルーセルの実装に使う<a href="http://kenwheeler.github.io/slick/" class="link">slick</a>用に次のHTMLを用意します。とはいっても切り替え表示させる画像を<tt>js_slides ll-slides</tt>というクラスを付けた<tt>div</tt>要素で囲むだけです。</p>
+<p>今回カルーセルの実装に<a href="http://kenwheeler.github.io/slick/" class="link">slick</a>というライブラリを使います。slick用として次のHTMLを用意します。とはいっても切り替え表示させる画像を<tt>js-slides ll-slides</tt>というクラスを付けた<tt>div</tt>要素で囲むだけです。接頭辞に<tt>js-</tt>と付けているクラスはJavaScriptから触る事を明確にするため付けています。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;div class=&quot;js_slides ll-slides&quot;&gt;
-  &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;&quot;&gt;
-  &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;&quot;&gt;
+<pre class="emlist">&lt;div class=&quot;js-slides ll-slides&quot;&gt;
+  &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;ラブライブ! 2nd グランプリ μ's&quot;&gt;
+  &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;ラブライブ! 1st グランプリ A-RISE&quot;&gt;
 &lt;/div&gt;
 </pre>
 </div>
@@ -65,7 +65,7 @@
 <p>アニメではフッター部分に入っているページネーションですが、フッター内にページネーションを含める実装はあまり見ません。そのため<tt>main</tt>要素内へ、ページネーションを含めるようにします。</p>
 <p>ページネーションは表示される順番が決まっているため、意図的に順序づけられた項目リストを示す<tt>ol</tt>要素を使います。ページネーションは後ほどCSSでスタイルを適用したり、JavaScriptでカルーセルと連携させたりします。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;ol class=&quot;js_slides-pagination ll-slides-pagination&quot;&gt;
+<pre class="emlist">&lt;ol class=&quot;js-slides-pagination ll-slides-pagination&quot;&gt;
   &lt;li&gt;●&lt;/li&gt;
   &lt;li&gt;●&lt;/li&gt;
 &lt;/ol&gt;
@@ -119,12 +119,12 @@
 &lt;/header&gt;
 
 &lt;main&gt;
-  &lt;div class=&quot;js_slides ll-slides&quot;&gt;
+  &lt;div class=&quot;js-slides ll-slides&quot;&gt;
     &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;&quot;&gt;
     &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;&quot;&gt;
   &lt;/div&gt;
 
-  &lt;ol class=&quot;js_slides-pagination ll-slides-pagination&quot;&gt;
+  &lt;ol class=&quot;js-slides-pagination ll-slides-pagination&quot;&gt;
     &lt;li&gt;●&lt;/li&gt;
     &lt;li&gt;●&lt;/li&gt;
   &lt;/ol&gt;
@@ -157,8 +157,8 @@
 </pre>
 </div>
 <p>次に、カルーセルと連携させるページネーションの見た目を整えます。ここで適用するCSSは次のとおりになります。</p>
-<p>ページネーションのマークアップに<tt>ol</tt>要素を使っているため、●の左横に数字が表示されています。その左横の数字を消すために<tt>.ll-slides-pagination</tt>に対して<tt>list-style-type: none;</tt>と指定して数字を無くします。</p>
-<p>あとはページネーションを中央寄せかつ横並びに表示したり、前景色の指定をしています。</p>
+<p>ページネーションのマークアップに<tt>ol</tt>要素を使っているため、●の左横に数字が表示されています。左横の数字の表示を消すために<tt>.ll-slides-pagination</tt>に対して<tt>list-style-type: none;</tt>と指定します。</p>
+<p>あとはページネーションを中央寄せかつ横並びに表示したり、前景色の指定をします。</p>
 <div class="emlist-code">
 <pre class="emlist">/* トップページ：カルーセル連携ページネーションの外枠 */
 .ll-slides-pagination {
@@ -220,10 +220,10 @@
 <p>処理の流れを洗い出したところで、上から順に説明します。</p>
 
 <h2><a id="h4-6"></a><span class="secno">4.6　</span>他のJavaScriptと競合しないようにする</h2>
-<p>はじめに定義した変数や関数が他のJavaScriptと競合しないようにするため、JavaScriptのソースコード全体を<tt>(function() { ... });</tt>で囲みます。<tt>(function() { ... })();</tt>を書かなかった場合、他のJavaScriptと競合してしまい正常に動作しなくなる場合があります。</p>
-<p>jQueryを使う場合は<tt>(function() { ... })();</tt>の前に<tt>$</tt>を書きます。つまり<tt>$(function() { ... })();</tt>となります。<tt>$</tt>を書く理由はブラウザーがHTMLを読み込んで解釈した後にJavaScriptを実行させるためです。HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内でHTMLの要素を取得できない可能性があるためです。</p>
-<p>また、<tt>$(function() { ... })();</tt>の中には<tt>&quot;use strict&quot;;</tt>という文字列を書いています。これはJavaScriptでミスしやすい物の一部をエラーとして検出してくれるものです。将来に備えていくつかの単語を使えなくする（たとえば<tt>let</tt>や<tt>yield</tt>など）効果もあるので、<tt>&quot;use strict&quot;;</tt>は書いても損はありません。</p>
-<p>ここまでをまとめると次のソースコードになります。</p>
+<p>はじめに定義した変数や関数が他のJavaScriptと競合しないようにするため、JavaScriptのソースコード全体を無名関数で囲みます。JavaScriptは宣言した変数や関数の有効範囲（スコープ）が関数単位で閉じられるため無名関数を使います。無名関数は<tt>function() {}</tt>と書きます。ここから無名関数の全体を<tt>()</tt>で囲み最後に<tt>()</tt>を付ける事でJavaScriptを即時実行します。つまり<tt>(function() {})();</tt>となります。こうする事により無名関数内で宣言した変数や関数が他のJavaScriptへ干渉する事を防げます。このように無名関数で全体を囲み即時に実行する関数の事を即時関数と呼びます。</p>
+<p>jQueryを使う場合は<tt>(function() { ... })();</tt>の前に<tt>$</tt>を書いて最後の<tt>()</tt>を削除します。つまり<tt>$(function() { ... });</tt>となります。<tt>$</tt>を書く理由はブラウザーがHTMLを読み込んで解釈した後にJavaScriptを実行させるためです。HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内でHTMLの要素を取得できない可能性があります。また最後の<tt>()</tt>を削除した理由は、<tt>$</tt>というのはjQueryの関数だからです。<tt>$</tt>関数の引数として関数を指定するため、最後の<tt>()</tt>がいらなくなります。</p>
+<p>続いて<tt>$(function() { ... })();</tt>の中には<tt>&quot;use strict&quot;;</tt>という文字列を書いています。これはJavaScriptをコーディングする上でミスしやすい物の一部をエラーとして検出してくれるものです。将来に備えていくつかの単語を自由に使えなくする（たとえば<tt>let</tt>や<tt>yield</tt>など）効果があるため、<tt>&quot;use strict&quot;;</tt>は書いても損はありません。</p>
+<p>ここまでをまとめると次のソースコードになります。上に書いた事はなかなか覚えづらいので、JavaScriptを書く時にjQueryを使う場合は図のようにすると覚えておけば大丈夫です。</p>
 <div class="emlist-code">
 <pre class="emlist">$(function() {
   &quot;use strict&quot;;
@@ -237,9 +237,9 @@
 <p>JavaScriptでHTMLの要素を扱えるようにします。これはjQueryの<tt>$</tt>関数を使って、HTMLの要素をJavaScriptから次のとおり取得します。</p>
 <p>準備の節では、ブラウザーがJavaScriptをHTMLの解釈後に実行するため<tt>$</tt>関数を使いました。ここではHTMLの要素をJavaScriptで利用できるようにするため<tt>$</tt>関数を使います。jQueryの<tt>$</tt>関数はこのように万能なものとなります。</p>
 <div class="emlist-code">
-<pre class="emlist">var carouselE = $(&quot;.js_slides&quot;);
-var paginationE = $(&quot;.js_slides-pagination&quot;);
-var paginationItemElms = $(&quot;.js_slides-pagination li&quot;);
+<pre class="emlist">var carouselE = $(&quot;.js-slides&quot;);
+var paginationE = $(&quot;.js-slides-pagination&quot;);
+var paginationItemElms = $(&quot;.js-slides-pagination li&quot;);
 </pre>
 </div>
 
@@ -368,9 +368,9 @@ carouselPagination.activatePage(carousel.currentIndex());
 
   //////////////////////////////////////////////////
 
-  var carouselE = $(&quot;.js_slides&quot;);
-  var paginationE = $(&quot;.js_slides-pagination&quot;);
-  var paginationItemElms = $(&quot;.js_slides-pagination li&quot;);
+  var carouselE = $(&quot;.js-slides&quot;);
+  var paginationE = $(&quot;.js-slides-pagination&quot;);
+  var paginationItemElms = $(&quot;.js-slides-pagination li&quot;);
 
   var carousel = new Carousel(carouselE, {
     autoplay: true,
