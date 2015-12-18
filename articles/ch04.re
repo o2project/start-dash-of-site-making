@@ -2,8 +2,9 @@
 = トップページを作る
 
 
-第3章では共通の構造部分を作っていきました。そこではヘッダーやフッターなどはマークアップしましたが、@<tt>{main}要素の中身は空だったと思います。
-この章では空のままだった@<tt>{main}要素の中をHTMLでマークアップしていきます。
+第3章では共通の構造部分を作っていきました。
+そこではヘッダーやフッターなどはマークアップしましたが、@<tt>{main}要素の中身は空だったと思います。
+この章では、トップページの空のままだった@<tt>{main}要素の中をHTMLでマークアップしていきます。
 
 
 //emlist[][html]{
@@ -19,14 +20,15 @@
 
 
 
-今回カルーセルの実装に使う@<href>{http://kenwheeler.github.io/slick/,slick}用に次のHTMLを用意します。
-とはいっても切り替え表示させる画像を@<tt>{js_slides ll-slides}というクラスを付けた@<tt>{div}要素で囲むだけです。
+今回カルーセルの実装に@<href>{http://kenwheeler.github.io/slick/,slick}というライブラリを使います。slick用として次のHTMLを用意します。
+とはいっても切り替え表示させる画像を@<tt>{js-slides ll-slides}というクラスを付けた@<tt>{div}要素で囲むだけです。
+接頭辞に@<tt>{js-}と付けているクラスはJavaScriptから触る事を明確にするため付けています。
 
 
 //emlist[][html]{
-<div class="js_slides ll-slides">
-  <img src="images/image_01.jpg" alt="">
-  <img src="images/image_02.jpg" alt="">
+<div class="js-slides ll-slides">
+  <img src="images/image_01.jpg" alt="ラブライブ! 2nd グランプリ μ's">
+  <img src="images/image_02.jpg" alt="ラブライブ! 1st グランプリ A-RISE">
 </div>
 //}
 
@@ -54,7 +56,7 @@
 
 
 //emlist[][html]{
-<ol class="js_slides-pagination ll-slides-pagination">
+<ol class="js-slides-pagination ll-slides-pagination">
   <li>●</li>
   <li>●</li>
 </ol>
@@ -112,12 +114,12 @@
 </header>
 
 <main>
-  <div class="js_slides ll-slides">
+  <div class="js-slides ll-slides">
     <img src="images/image_01.jpg" alt="">
     <img src="images/image_02.jpg" alt="">
   </div>
 
-  <ol class="js_slides-pagination ll-slides-pagination">
+  <ol class="js-slides-pagination ll-slides-pagination">
     <li>●</li>
     <li>●</li>
   </ol>
@@ -159,11 +161,11 @@
 
 
 ページネーションのマークアップに@<tt>{ol}要素を使っているため、●の左横に数字が表示されています。
-その左横の数字を消すために@<tt>{.ll-slides-pagination}に対して@<tt>{list-style-type: none;}と指定して数字を無くします。
+左横の数字の表示を消すために@<tt>{.ll-slides-pagination}に対して@<tt>{list-style-type: none;}と指定します。
 
 
 
-あとはページネーションを中央寄せかつ横並びに表示したり、前景色の指定をしています。
+あとはページネーションを中央寄せかつ横並びに表示したり、前景色の指定をします。
 
 
 //emlist[][css]{
@@ -236,25 +238,31 @@ JavaScriptを書き始める前に、処理の流れを洗い出しておきし�
 == 他のJavaScriptと競合しないようにする
 
 
-はじめに定義した変数や関数が他のJavaScriptと競合しないようにするため、JavaScriptのソースコード全体を@<tt>{(function() { ... \});}で囲みます。
-@<tt>{(function() { ... \})();}を書かなかった場合、他のJavaScriptと競合してしまい正常に動作しなくなる場合があります。
+はじめに定義した変数や関数が他のJavaScriptと競合しないようにするため、JavaScriptのソースコード全体を無名関数で囲みます。
+JavaScriptは宣言した変数や関数の有効範囲（スコープ）が関数単位で閉じられるため無名関数を使います。
+無名関数は@<tt>{function() {\}}と書きます。ここから無名関数の全体を@<tt>{()}で囲み最後に@<tt>{()}を付ける事でJavaScriptを即時実行します。
+つまり@<tt>{(function() {\})();}となります。こうする事により無名関数内で宣言した変数や関数が他のJavaScriptへ干渉する事を防げます。
+このように無名関数で全体を囲み即時に実行する関数の事を即時関数と呼びます。
 
 
 
-jQueryを使う場合は@<tt>{(function() { ... \})();}の前に@<tt>{$}を書きます。
-つまり@<tt>{$(function() { ... \})();}となります。
+jQueryを使う場合は@<tt>{(function() { ... \})();}の前に@<tt>{$}を書いて最後の@<tt>{()}を削除します。
+つまり@<tt>{$(function() { ... \});}となります。
 @<tt>{$}を書く理由はブラウザーがHTMLを読み込んで解釈した後にJavaScriptを実行させるためです。
-HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内でHTMLの要素を取得できない可能性があるためです。
+HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内でHTMLの要素を取得できない可能性があります。
+また最後の@<tt>{()}を削除した理由は、@<tt>{$}というのはjQueryの関数だからです。
+@<tt>{$}関数の引数として関数を指定するため、最後の@<tt>{()}がいらなくなります。
 
 
 
-また、@<tt>{$(function() { ... \})();}の中には@<tt>{"use strict";}という文字列を書いています。
-これはJavaScriptでミスしやすい物の一部をエラーとして検出してくれるものです。
-将来に備えていくつかの単語を使えなくする（たとえば@<tt>{let}や@<tt>{yield}など）効果もあるので、@<tt>{"use strict";}は書いても損はありません。
+続いて@<tt>{$(function() { ... \})();}の中には@<tt>{"use strict";}という文字列を書いています。
+これはJavaScriptをコーディングする上でミスしやすい物の一部をエラーとして検出してくれるものです。
+将来に備えていくつかの単語を自由に使えなくする（たとえば@<tt>{let}や@<tt>{yield}など）効果があるため、@<tt>{"use strict";}は書いても損はありません。
 
 
 
 ここまでをまとめると次のソースコードになります。
+上に書いた事はなかなか覚えづらいので、JavaScriptを書く時にjQueryを使う場合は図のようにすると覚えておけば大丈夫です。
 
 
 //emlist[][javascript]{
@@ -279,9 +287,9 @@ jQueryの@<tt>{$}関数はこのように万能なものとなります。
 
 
 //emlist[][javascript]{
-var carouselE = $(".js_slides");
-var paginationE = $(".js_slides-pagination");
-var paginationItemElms = $(".js_slides-pagination li");
+var carouselE = $(".js-slides");
+var paginationE = $(".js-slides-pagination");
+var paginationItemElms = $(".js-slides-pagination li");
 //}
 
 == カルーセルの実装をする
@@ -450,9 +458,9 @@ $(function() {
 
   //////////////////////////////////////////////////
 
-  var carouselE = $(".js_slides");
-  var paginationE = $(".js_slides-pagination");
-  var paginationItemElms = $(".js_slides-pagination li");
+  var carouselE = $(".js-slides");
+  var paginationE = $(".js-slides-pagination");
+  var paginationItemElms = $(".js-slides-pagination li");
 
   var carousel = new Carousel(carouselE, {
     autoplay: true,
