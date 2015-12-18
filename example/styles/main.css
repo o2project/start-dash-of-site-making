@@ -143,9 +143,7 @@
 /* ライブステージページ：動画部分をレスポンシブにする */
 .ll-live-video-wrapper {
     position: relative;
-    height: 0;
     padding-bottom: 56.25%;
-    padding-top: 25px;
 }
 
 .ll-live-video-wrapper iframe {
@@ -194,18 +192,11 @@
 @media (min-width: 768px) {
   .ll-video-tabs > li > a {
     padding: 5px 0;
-    border-bottom: 0;
     border-right: 1px solid #fff;
   }
 
   .ll-video-tabs > li:last-child > a {
     border-right: 0;
-  }
-
-  .ll-video-tabs > li > a:focus,
-  .ll-video-tabs > li > a:hover {
-    background-color: #ff92cb;
-    color: #fff;
   }
 
   .ll-video-tabs > li.active > a {
