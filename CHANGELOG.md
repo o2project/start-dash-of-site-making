@@ -34,11 +34,10 @@
 * **example:** サンプルサイトでいらないスタイルを削除した ([3d55374e](https://github.com/o2project/start-dash-of-site-making#readme/commit/3d55374ecee06b1b38be21a16eb386fc81840229))
 
 
-<a name="0.5.0"></a>
-# [0.5.0](https://github.com/o2project/start-dash-of-site-making/compare/0.4.1...v0.5.0) (2015-12-17)
+## 0.5.0 (2015-12-17)
 
 
-### Bug Fixes
+#### Bug Fixes
 
 * **ch0*:** 1つ2つを、ひとつふたつと開くようにした ([a7df08d](https://github.com/o2project/start-dash-of-site-making/commit/a7df08d))
 * **ch0*:** nつ目 => nつめ ([640e417](https://github.com/o2project/start-dash-of-site-making/commit/640e417))
@@ -73,9 +72,6 @@
 * **Rakefile:** PDF出力用のディレクトリが存在する事でPDF変換に失敗していたのを修正 ([1255237](https://github.com/o2project/start-dash-of-site-making/commit/1255237))
 * **Rakefile:** コピー元のディレクトリが間違っていたせいでgh-pagesにpushされなくなっていたのを修正 ([891a6c1](https://github.com/o2project/start-dash-of-site-making/commit/891a6c1))
 
-### Features
+#### Features
 
 * **pdf:** PDF出力用にTeX用のレイアウトファイルやスタイルファイルを追加 ([f5067ba](https://github.com/o2project/start-dash-of-site-making/commit/f5067ba))
-
-
-
