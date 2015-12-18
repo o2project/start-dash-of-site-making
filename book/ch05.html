@@ -34,17 +34,25 @@
             </ul>
 
             <h1><a id="h5"></a><span class="secno">第5章　</span>ライブステージページを作る</h1>
-<p>第3章で作ったHTMLを元に、この章ではライブステージページを作っていきます。第4章と同じく<tt>main</tt>要素の中身をマークアップしていきます。</p>
+<p>共通の構造部分とトップページをここまで作っていきました。この章ではライブステージページを作っていきます。ライブステージページもトップページと同じく<tt>main</tt>要素の中をHTMLでマークアップしていきます。</p>
 
 <h2><a id="h5-1"></a><span class="secno">5.1　</span>動画部分のマークアップ</h2>
-<p>はじめに動画部分のマークアップをしていきます。アーティスト名と曲名部分へスタイルを適用させるため、それぞれ<tt>span</tt>要素で括ります。</p>
-<p>YouTubeの動画をページ内に埋め込みます。ウィンドウ幅や高さを変えたとき、YouTubeの動画が表示領域からはみ出すのを防ぐため、<tt>iframe</tt>要素を<tt>div</tt>要素で囲います。この<tt>div</tt>要素にはのちほどスタイルを適用します。</p>
+<p>動画部分のマークアップをしていきます。アーティスト名と曲名部分にCSSを適用させるため、それぞれ<tt>span</tt>要素で括ります。</p>
+<p>今回動画はYouTubeにある物を使います。YouTubeの動画をページ内へ埋め込む方法は図のようにYouTubeの「共有」内の「埋め込みコード」をコピーしてHTML内に貼り付けます。</p>
+<div id="video-share" class="image">
+<img src="images/ch05/video-share.jpg" alt="YouTubeの埋め込みコードをHTML内にコピー&amp;amp;ペーストする" />
+<p class="caption">
+図5.1: YouTubeの埋め込みコードをHTML内にコピー&amp;ペーストする
+</p>
+</div>
+<p>ウィンドウ幅を狭めた場合に動画が収まりきらない状態で表示されるのを防ぐため埋め込みコード（<tt>iframe</tt>要素）を<tt>div</tt>要素で囲います。この埋め込みコードを囲った<tt>div</tt>要素にはのちほど動画がウィンドウ幅内へ収まるようにするスタイルを適用します。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;div class=&quot;col-md-6&quot;&gt;
   &lt;h2 class=&quot;ll-video-title-and-artist&quot;&gt;
     &lt;span class=&quot;ll-video-artist&quot;&gt;μ's&lt;/span&gt;&lt;span class=&quot;ll-video-title&quot;&gt;Angelic Angel&lt;/span&gt;
   &lt;/h2&gt;
-  &lt;div class=&quot;ll-live-video-wrapper&quot;&gt;
+
+  &lt;div class=&quot;ll-live-video&quot;&gt;
     &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/oWIE7GwJu3c&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -52,13 +60,13 @@
 </div>
 
 <h2><a id="h5-2"></a><span class="secno">5.2　</span>動画情報部分のマークアップ</h2>
-<p>次に動画情報部分のマークアップをしていきます。今回はコメント部分のみを実装します。実装方法としてはTwitterのハッシュタグ検索ウィジェットを使っていきます。</p>
+<p>動画情報部分は今回コメント部分のみを実装します。コメントの実装はTwitterのハッシュタグ検索ウィジェットを使って、擬似的にコメントを再現します。動画情報のCommentタブを目立たせるために、グローバルナビゲーションと同じく<tt>ll-active</tt>というクラス名を付けます。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;div class=&quot;col-md-3 col-sm-6 ll-video-detail&quot;&gt;
   &lt;ul class=&quot;nav nav-tabs nav-justified ll-video-tabs&quot;&gt;
     &lt;li&gt;&lt;a href=&quot;&quot;&gt;Status&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;&quot;&gt;Like&lt;/a&gt;&lt;/li&gt;
-    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Comment&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;active ll-active&quot;&gt;&lt;a href=&quot;&quot;&gt;Comment&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 
@@ -68,7 +76,7 @@
 </div>
 
 <h2><a id="h5-3"></a><span class="secno">5.3　</span>広告部分のマークアップ</h2>
-<p>次に広告部分のマークアップをしていきます。基本はBootstrapで定義されているクラス名をHTMLに書いていくのみとなります。</p>
+<p>続いて広告部分のマークアップをしていきます。基本はBootstrapで定義されているクラス名をHTMLに書いていくのみとなります。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;div class=&quot;col-md-3 col-sm-6 ll-livestage-ad&quot;&gt;
   &lt;h2 class=&quot;ll-ad-title&quot;&gt;
@@ -99,7 +107,7 @@
 &lt;/div&gt;
 </pre>
 </div>
-<p>最後にライブステージページで書いたHTMLを、次のHTMLで全体を囲ったら完成です。</p>
+<p>最後にライブステージページで書いたHTMLを次のHTMLで全体を囲ったら完成です。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;div class=&quot;container-fluid&quot;&gt;
   &lt;div class=&quot;row&quot;&gt;
@@ -109,7 +117,7 @@
 </div>
 
 <h2><a id="h5-4"></a><span class="secno">5.4　</span>HTMLのまとめ</h2>
-<p>ライブステージページのHTMLをまとめると次のとおりになります。</p>
+<p>ここまでをまとめると、次のHTMLになります。</p>
 <div class="emlist-code">
 <pre class="emlist">&lt;div class=&quot;container-fluid&quot;&gt;
   &lt;div class=&quot;row&quot;&gt;
@@ -117,7 +125,7 @@
       &lt;h2 class=&quot;ll-video-title-and-artist&quot;&gt;
         &lt;span class=&quot;ll-video-artist&quot;&gt;μ's&lt;/span&gt;&lt;span class=&quot;ll-video-title&quot;&gt;Angelic Angel&lt;/span&gt;
       &lt;/h2&gt;
-      &lt;div class=&quot;ll-live-video-wrapper&quot;&gt;
+      &lt;div class=&quot;ll-live-video&quot;&gt;
         &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/oWIE7GwJu3c&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -126,7 +134,7 @@
       &lt;ul class=&quot;nav nav-tabs nav-justified ll-video-tabs&quot;&gt;
         &lt;li&gt;&lt;a href=&quot;&quot;&gt;Status&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;&quot;&gt;Like&lt;/a&gt;&lt;/li&gt;
-        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;&quot;&gt;Comment&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;active ll-active&quot;&gt;&lt;a href=&quot;&quot;&gt;Comment&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
 
@@ -166,8 +174,8 @@
 </div>
 
 <h2><a id="h5-5"></a><span class="secno">5.5　</span>ライブステージページ全体の見た目を整える</h2>
-<p>HTMLのマークアップが終わったので、スタイルの適用をしていきます。はじめにライブステージページ全体へ関わるスタイルを適用します。</p>
-<p>ライブステージページの<tt>main</tt>要素に対し、<tt>padding</tt>や<tt>background-color</tt>を指定することでライブステージページの見た目に近づけていきます。また見出しにもスタイルを適用することで、より元の見た目に近づけていきます。</p>
+<p>はじめにライブステージページ全体へ関わるスタイルを適用します。</p>
+<p>ライブステージページの<tt>main</tt>要素に対し、要素の内側の余白を指定する<tt>padding</tt>や背景色を指定する<tt>background-color</tt>を指定する事でライブステージページの見た目に近づけていきます。さらに見出しにもスタイルを適用する事でサイトの見た目をアニメ版に近づけていきます。</p>
 <div class="emlist-code">
 <pre class="emlist">/* ライブステージページ：コンテンツ */
 #ll-livestage-page main {
@@ -185,8 +193,8 @@
 </div>
 
 <h2><a id="h5-6"></a><span class="secno">5.6　</span>アーティスト名と曲名部分の見た目を整える</h2>
-<p>次にアーティスト名と曲名部分の見た目を整えていきます。アーティスト名部分は背景が白で上下に黄色い線が引かれているという見た目です。こちらは再現が容易です。</p>
-<p>また曲名の左右にある括弧は特にHTML内へ書いておく必要がないため、<tt>::before</tt>と<tt>::after</tt>という擬似要素を使ってCSS側で追加します。</p>
+<p>アーティスト名と曲名部分にスタイルを適用していきます。アーティスト名部分は背景が白で上下に黄色い線が引かれているという見た目です。こちらは背景色として白色を示す<tt>#ffffff</tt>を指定します。黄色い線に関しては上下に<tt>border</tt>プロパティでスタイルを定義する事により再現可能です。</p>
+<p>曲名の左右にある括弧は、特にHTML内へ書いておく必要がないため<tt>::before</tt>と<tt>::after</tt>という擬似要素を使ってCSS側で追加します。</p>
 <div class="emlist-code">
 <pre class="emlist">/* ライブステージページ：アーティスト名 */
 .ll-video-artist {
@@ -208,30 +216,31 @@
 </div>
 
 <h2><a id="h5-7"></a><span class="secno">5.7　</span>動画部分の見た目を整える</h2>
-<p>次に動画部分の見た目を整えます。動画部分はブラウザーの描画領域を狭めたときに潰れて表示されないようします。</p>
+<p>動画部分にスタイルを適用していきます。YouTubeの動画をページ内へ埋め込んでいますが、初期状態だとウィンドウ幅を狭めた場合に動画が収まりきらない状態で表示されてしまいます。そのためCSSで動画をウィンドウ幅内へ収まるように調整します。</p>
+<p>ライブステージページへYouTubeの動画を埋め込んだ時に動画を<tt>div</tt>要素で囲みました。その<tt>div</tt>要素に指定している<tt>ll-live-video</tt>というクラスにCSSでアスペクト比を設定します。動画部分の<tt>iframe</tt>要素に対し絶対配置にする<tt>position: absolute;</tt>を指定した上で幅と高さを100％にする事により、動画が収まって表示されます。</p>
 <div class="emlist-code">
 <pre class="emlist">/* ライブステージページ：動画部分をレスポンシブにする */
-.ll-live-video-wrapper {
-    position: relative;
-    height: 0;
-    padding-bottom: 56.25%;
-    padding-top: 25px;
+.ll-live-video {
+  position: relative;
+  height: 0;
+  /* 16:9のアスペクト比で動画を表示する */
+  padding-bottom: 56.25%;
 }
 
-.ll-live-video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.ll-live-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 </pre>
 </div>
 
-<h2><a id="h5-8"></a><span class="secno">5.8　</span>動画詳細部分の見た目を整える</h2>
-<p>次に動画詳細部分の見た目を整えます。動画詳細部分はグローバルナビゲーションとほぼ同じ見た目になっています。</p>
+<h2><a id="h5-8"></a><span class="secno">5.8　</span>動画の情報を表示している要素の見た目を整える</h2>
+<p>動画の情報を表示している要素に対しスタイルを適用していきます。はじめにウィンドウ幅を狭くした時、余白が上下に空くよう<tt>margin</tt>を定義します。</p>
 <div class="emlist-code">
-<pre class="emlist">/* ライブステージページ：動画の詳細 */
+<pre class="emlist">/* ライブステージページ：動画の情報 */
 .ll-video-detail {
   margin: 1em 0;
 }
@@ -240,8 +249,11 @@
     margin: 0;
   }
 }
-
-/* ライブステージページ：動画の詳細タブ */
+</pre>
+</div>
+<p>次に動画の情報表示を切り替えるタブをグローバルナビゲーションと同じような見た目にしていきます。とはいえBootstrap内でグローバルナビゲーションとタブ部分に対し同じスタイルが適用されているわけではありません。そのためスタイル定義が少し違う物になります。</p>
+<div class="emlist-code">
+<pre class="emlist">/* ライブステージページ：動画の情報タブ */
 .ll-video-tabs {
   background-color: #ff50ac;
 }
@@ -261,31 +273,25 @@
   color: #ff188b;
 }
 
-.ll-video-tabs &gt; li.active &gt; a {
+.ll-video-tabs &gt; .ll-active &gt; a {
   color: #555;
 }
 </pre>
 </div>
 
-<h2><a id="h5-9"></a><span class="secno">5.9　</span>動画詳細部分の見た目を各描画領域ごとに整える</h2>
-<p>次に動画詳細部分の見た目を各描画領域ごとに整えます。特にタブ内の文字は描画領域を小さくしていくとタブからはみ出すため、細かく調整していきます。</p>
+<h2><a id="h5-9"></a><span class="secno">5.9　</span>動画の情報部分の見た目をウィンドウ幅ごとに整える</h2>
+<p>動画の情報部分の見た目を整えたら、今度はウィンドウ幅ごとに整えていきます。特にタブ内の文字はウィンドウ幅を小さくしていくとタブからはみ出して表示されます。文字がはみ出すのを防ぐため細かく文字サイズを調整しています。</p>
+<p>他のスタイルは主にタブレットやPCで見た時、グローバルナビゲーションと同じような見た目になるようスタイル定義しています。</p>
 <div class="emlist-code">
-<pre class="emlist">/* ライブステージページ：動画の情報タブの各描画領域ごとのスタイル定義 */
+<pre class="emlist">/* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
   .ll-video-tabs &gt; li &gt; a {
     padding: 5px 0;
-    border-bottom: 0;
     border-right: 1px solid #fff;
   }
 
   .ll-video-tabs &gt; li:last-child &gt; a {
     border-right: 0;
-  }
-
-  .ll-video-tabs &gt; li &gt; a:focus,
-  .ll-video-tabs &gt; li &gt; a:hover {
-    background-color: #ff92cb;
-    color: #fff;
   }
 
   .ll-video-tabs &gt; li.active &gt; a {
@@ -318,7 +324,7 @@
 </div>
 
 <h2><a id="h5-10"></a><span class="secno">5.10　</span>広告部分の見た目を整える</h2>
-<p>最後に広告部分の見た目を整えます。ここはある程度Bootstrapによって整えられているので、最低限のスタイルを適用するだけです。</p>
+<p>最後に広告部分の見た目を整えます。ここはある程度Bootstrapによって整えられているため、最低限のスタイルを適用するだけです。</p>
 <div class="emlist-code">
 <pre class="emlist">/* ライブステージページ：広告 */
 .ll-livestage-ad {
@@ -333,7 +339,7 @@
 </div>
 
 <h2><a id="h5-11"></a><span class="secno">5.11　</span>CSSのまとめ</h2>
-<p>ライブステージページのCSSをまとめると次のとおりになります。</p>
+<p>ここまでをまとめると、次のCSSになります。</p>
 <div class="emlist-code">
 <pre class="emlist">/* ライブステージページ：コンテンツ */
 #ll-livestage-page main {
@@ -347,7 +353,143 @@
   margin-top: 0;
   margin-bottom: 16px;
 }
+
+/* ライブステージページ：アーティスト名 */
+.ll-video-artist {
+  padding: 3px 0.5em;
+  border-top: 2px solid #ffdc00;
+  border-bottom: 2px solid #ffdc00;
+  background-color: #fff;
+}
+
+/* ライブステージページ：曲名 */
+.ll-video-title::before {
+  content: &quot;【&quot;;
+}
+
+.ll-video-title::after {
+  content: &quot;】&quot;;
+}
+
+/* ライブステージページ：動画部分をレスポンシブにする */
+.ll-live-video {
+  position: relative;
+  height: 0;
+  /* 16:9の比率で動画を表示する */
+  padding-bottom: 56.25%;
+}
+
+.ll-live-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ライブステージページ：動画の情報 */
+.ll-video-detail {
+  margin: 1em 0;
+}
+@media (min-width: 992px) {
+  .ll-video-detail {
+    margin: 0;
+  }
+}
+
+/* ライブステージページ：動画の情報タブ */
+.ll-video-tabs {
+  background-color: #ff50ac;
+}
+
+.ll-video-tabs &gt; li &gt; a {
+  margin-bottom: 0 !important;
+  text-transform: uppercase;
+}
+
+.ll-video-tabs &gt; li &gt; a:link,
+.ll-video-tabs &gt; li &gt; a:visited {
+  color: #fff;
+}
+
+.ll-video-tabs &gt; li &gt; a:hover,
+.ll-video-tabs &gt; li &gt; a:focus {
+  color: #ff188b;
+}
+
+.ll-video-tabs &gt; .ll-active &gt; a {
+  color: #555;
+}
+/* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
+@media (min-width: 768px) {
+  .ll-video-tabs &gt; li &gt; a {
+    padding: 5px 0;
+    border-bottom: 0;
+    border-right: 1px solid #fff;
+  }
+
+  .ll-video-tabs &gt; li:last-child &gt; a {
+    border-right: 0;
+  }
+
+  .ll-video-tabs &gt; li &gt; a:focus,
+  .ll-video-tabs &gt; li &gt; a:hover {
+    background-color: #ff92cb;
+    color: #fff;
+  }
+
+  .ll-video-tabs &gt; .ll-active &gt; a {
+    border-bottom: 0;
+    background-color: #ff50ac;
+    color: #fff;
+  }
+
+  .ll-video-tabs &gt; .ll-active &gt; a::after {
+    content: &quot;&quot;;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 3px solid #ffdc00;
+  }
+}
+@media (min-width: 992px) {
+  .ll-video-tabs &gt; li &gt; a {
+    font-size: 0.8125em;
+  }
+}
+@media (min-width: 1000px) {
+  .ll-video-tabs &gt; li &gt; a {
+    font-size: 0.875em;
+  }
+}
+
+/* ライブステージページ：広告 */
+.ll-livestage-ad {
+  margin: 1em 0;
+}
+@media (min-width: 992px) {
+  .ll-livestage-ad {
+    margin: 0;
+  }
+}
 </pre>
+</div>
+<p>スクリーンショットは次のとおりになります。</p>
+<p>図のようにPCで見た時は横に並んで各要素が表示されています。</p>
+<div id="livestage-pc" class="image">
+<img src="images/ch05/livestage-pc.jpg" alt="PCで見た時のラブライブ!参加者募集サイト" />
+<p class="caption">
+図5.3: PCで見た時のラブライブ!参加者募集サイト
+</p>
+</div>
+<p>また図のようにタブレットで見た時は動画が1番目立つ位置にあります。</p>
+<div id="livestage-pc" class="image">
+<img src="images/ch05/livestage-pc.jpg" alt="タブレットで見た時のラブライブ!参加者募集サイト" />
+<p class="caption">
+図5.3: タブレットで見た時のラブライブ!参加者募集サイト
+</p>
 </div>
 
 
