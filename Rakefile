@@ -22,7 +22,7 @@ end
 desc 'Create HTML'
 task :html do
   Dir.chdir ARTICLES_DIR do
-    sh "bundle exec review-compile --all --chapterlink --footnotetext --target=html --stylesheet=#{BOOK_DIR}/styles/main.css"
+    sh "bundle exec review-compile --all --chapterlink --footnotetext --target=html --stylesheet=styles/main.css"
   end
 end
 
