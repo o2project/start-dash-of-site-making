@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/o2project/start-dash-of-site-making/issues"
   },
-  "homepage": "https://github.com/o2project/start-dash-of-site-making#readme",
+  "homepage": "https://github.com/o2project/start-dash-of-site-making",
   "devDependencies": {
     "babel-core": "^5.8.29",
     "del": "^2.0.2",

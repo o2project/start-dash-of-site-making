@@ -3,35 +3,35 @@
 
 #### Bug Fixes
 
-* **Rakefile:** プレビューサイトでCSSが読み込まれなくなっていたのを修正 ([94d6f244](https://github.com/o2project/start-dash-of-site-making#readme/commit/94d6f2446241c043602aacada849a14107e97984))
-* **ch01:** 要件定義の自問自答部分を口語体にした ([eb7fda20](https://github.com/o2project/start-dash-of-site-making#readme/commit/eb7fda203656b892f6ace585dbc030ae6aed85ef))
+* **Rakefile:** プレビューサイトでCSSが読み込まれなくなっていたのを修正 ([94d6f244](https://github.com/o2project/start-dash-of-site-making/commit/94d6f2446241c043602aacada849a14107e97984))
+* **ch01:** 要件定義の自問自答部分を口語体にした ([eb7fda20](https://github.com/o2project/start-dash-of-site-making/commit/eb7fda203656b892f6ace585dbc030ae6aed85ef))
 * **ch04:**
-  * サンプルコードで無名関数を実行できてなかったのを修正 ([8e076146](https://github.com/o2project/start-dash-of-site-making#readme/commit/8e07614632015fe064ca41245ddf2574872d12cb))
-  * JavaScriptからいじる事を示すクラス名の接頭辞を`js_`としていたのを`js-`とした ([543d9e81](https://github.com/o2project/start-dash-of-site-making#readme/commit/543d9e815f87a32554b750620b6fdd53e516df5c))
-  * JavaScriptのコーディング時にミスしやすい旨を明確にした ([e71d1cb0](https://github.com/o2project/start-dash-of-site-making#readme/commit/e71d1cb0a11482260f81d10ec069e3873f998a4d))
-  * 「〜るためです」が連続していたので文章修正 ([7c3281c9](https://github.com/o2project/start-dash-of-site-making#readme/commit/7c3281c9e4526e23a0136e6f18333f08db42cb4b))
-  * 過去形を現在形に変更 ([ea73ed79](https://github.com/o2project/start-dash-of-site-making#readme/commit/ea73ed796207bef06188c45f7fe07a4b52a810ea))
-  * 数字の「表示」の表現を統一した ([d1eceef4](https://github.com/o2project/start-dash-of-site-making#readme/commit/d1eceef4318746e28c6b0321947bda6a863215f0))
+  * サンプルコードで無名関数を実行できてなかったのを修正 ([8e076146](https://github.com/o2project/start-dash-of-site-making/commit/8e07614632015fe064ca41245ddf2574872d12cb))
+  * JavaScriptからいじる事を示すクラス名の接頭辞を`js_`としていたのを`js-`とした ([543d9e81](https://github.com/o2project/start-dash-of-site-making/commit/543d9e815f87a32554b750620b6fdd53e516df5c))
+  * JavaScriptのコーディング時にミスしやすい旨を明確にした ([e71d1cb0](https://github.com/o2project/start-dash-of-site-making/commit/e71d1cb0a11482260f81d10ec069e3873f998a4d))
+  * 「〜るためです」が連続していたので文章修正 ([7c3281c9](https://github.com/o2project/start-dash-of-site-making/commit/7c3281c9e4526e23a0136e6f18333f08db42cb4b))
+  * 過去形を現在形に変更 ([ea73ed79](https://github.com/o2project/start-dash-of-site-making/commit/ea73ed796207bef06188c45f7fe07a4b52a810ea))
+  * 数字の「表示」の表現を統一した ([d1eceef4](https://github.com/o2project/start-dash-of-site-making/commit/d1eceef4318746e28c6b0321947bda6a863215f0))
 
 
 #### New and Edit
 
 * **ch01:**
-  * 箇条書きした部分と文章を関連付けるようにした ([972b0193](https://github.com/o2project/start-dash-of-site-making#readme/commit/972b0193e0e7bbaef9deead66cc3d251bc4efd6f))
-  * 要件定義の時は => 要件定義する時は ([9b338270](https://github.com/o2project/start-dash-of-site-making#readme/commit/9b3382706676cce7215f1ef1fbb7d61e49c7ed7b))
-  * 要件定義について詳細な説明を追記 ([4690d747](https://github.com/o2project/start-dash-of-site-making#readme/commit/4690d7472cd7d39b0b346c7be06a4f217bdc0435))
+  * 箇条書きした部分と文章を関連付けるようにした ([972b0193](https://github.com/o2project/start-dash-of-site-making/commit/972b0193e0e7bbaef9deead66cc3d251bc4efd6f))
+  * 要件定義の時は => 要件定義する時は ([9b338270](https://github.com/o2project/start-dash-of-site-making/commit/9b3382706676cce7215f1ef1fbb7d61e49c7ed7b))
+  * 要件定義について詳細な説明を追記 ([4690d747](https://github.com/o2project/start-dash-of-site-making/commit/4690d7472cd7d39b0b346c7be06a4f217bdc0435))
 * **ch04:**
-  * 無名関数とスコープ、即時関数の説明を充実させた ([55696c05](https://github.com/o2project/start-dash-of-site-making#readme/commit/55696c0567a69428acab503416b81632ce7d1e92))
-  * 画像のalt属性に値を追加 ([5f59953a](https://github.com/o2project/start-dash-of-site-making#readme/commit/5f59953a077d0a0345f6cd5c5a912740df02dae3))
-  * slickはライブラリという説明を追加 ([4919334d](https://github.com/o2project/start-dash-of-site-making#readme/commit/4919334d6af62cfbbf2a1a5b4adc071cb5dcd876))
-  * なぜ接頭辞に`js-`と付けるのか理由を書いた ([48dea75a](https://github.com/o2project/start-dash-of-site-making#readme/commit/48dea75a8cb02a5281f1a80120eab8054c2e2a3e))
-  * トップページのマークアップをするという事を明確にした ([6ee042f9](https://github.com/o2project/start-dash-of-site-making#readme/commit/6ee042f9baafc91c21ee5fff63910e17b463011d))
-* **ch05:** 第5章 2校 ([332b8b0e](https://github.com/o2project/start-dash-of-site-making#readme/commit/332b8b0e5eb39d2f0284c85f37a58216084813a8))
+  * 無名関数とスコープ、即時関数の説明を充実させた ([55696c05](https://github.com/o2project/start-dash-of-site-making/commit/55696c0567a69428acab503416b81632ce7d1e92))
+  * 画像のalt属性に値を追加 ([5f59953a](https://github.com/o2project/start-dash-of-site-making/commit/5f59953a077d0a0345f6cd5c5a912740df02dae3))
+  * slickはライブラリという説明を追加 ([4919334d](https://github.com/o2project/start-dash-of-site-making/commit/4919334d6af62cfbbf2a1a5b4adc071cb5dcd876))
+  * なぜ接頭辞に`js-`と付けるのか理由を書いた ([48dea75a](https://github.com/o2project/start-dash-of-site-making/commit/48dea75a8cb02a5281f1a80120eab8054c2e2a3e))
+  * トップページのマークアップをするという事を明確にした ([6ee042f9](https://github.com/o2project/start-dash-of-site-making/commit/6ee042f9baafc91c21ee5fff63910e17b463011d))
+* **ch05:** 第5章 2校 ([332b8b0e](https://github.com/o2project/start-dash-of-site-making/commit/332b8b0e5eb39d2f0284c85f37a58216084813a8))
 
 
 #### Features
 
-* **example:** サンプルサイトでいらないスタイルを削除した ([3d55374e](https://github.com/o2project/start-dash-of-site-making#readme/commit/3d55374ecee06b1b38be21a16eb386fc81840229))
+* **example:** サンプルサイトでいらないスタイルを削除した ([3d55374e](https://github.com/o2project/start-dash-of-site-making/commit/3d55374ecee06b1b38be21a16eb386fc81840229))
 
 
 ## 0.5.0 (2015-12-17)
