@@ -312,8 +312,8 @@ HTMLの要素を取得したらカルーセルの実装をしていきます。
 
 
 
-次に@<tt>{currentIndex}を説明します。これはページネーションで使う関数となります。
-@<tt>{currentIndex}はカルーセルでいま表示しているページがどこか示す数字を返す関数です。
+次に@<tt>{getCurrentIndex}を説明します。これはページネーションで使う関数となります。
+@<tt>{getCurrentIndex}はカルーセルでいま表示しているページがどこか示す数字を返す関数です。
 この実装にはslickで定義されている@<tt>{slickCurrentSlide}という関数を使います。
 
 
@@ -323,7 +323,7 @@ function Carousel(carouselElement, config) {
   carouselElement.slick(config);
 }
 
-Carousel.prototype.currentIndex = function() {
+Carousel.prototype.getCurrentIndex = function() {
   return this.carouselElement.slick("slickCurrentSlide");
 };
 //}
@@ -398,7 +398,7 @@ var carousel = new Carousel(carouselElement, {
 
 //emlist[][javascript]{
 var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-slides-pagination__active");
-carouselPagination.activatePage(carousel.currentIndex());
+carouselPagination.activatePage(carousel.getCurrentIndex());
 //}
 
 == カルーセル表示が切り替わったときの処理を設定する
@@ -411,7 +411,7 @@ carouselPagination.activatePage(carousel.currentIndex());
 //emlist[][javascript]{
 carouselElement.on("afterChange", function() {
   carouselPagination.deactivatePage();
-  carouselPagination.activatePage(carousel.currentIndex());
+  carouselPagination.activatePage(carousel.getCurrentIndex());
 });
 //}
 
@@ -432,7 +432,7 @@ $(function() {
     carouselElement.slick(config);
   }
 
-  Carousel.prototype.currentIndex = function() {
+  Carousel.prototype.getCurrentIndex = function() {
     return this.carouselElement.slick("slickCurrentSlide");
   };
 
@@ -469,11 +469,11 @@ $(function() {
   });
 
   var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-slides-pagination__active");
-  carouselPagination.activatePage(carousel.currentIndex());
+  carouselPagination.activatePage(carousel.getCurrentIndex());
 
   carouselElement.on("afterChange", function() {
     carouselPagination.deactivatePage();
-    carouselPagination.activatePage(carousel.currentIndex());
+    carouselPagination.activatePage(carousel.getCurrentIndex());
   });
 });
 //}
