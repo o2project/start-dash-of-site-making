@@ -4,11 +4,17 @@
 
 第3章では共通の構造部分を作っていきました。
 そこではヘッダーやフッターなどはマークアップしましたが、@<tt>{main}要素の中身は空だったと思います。
-この章では、トップページの空のままだった@<tt>{main}要素の中をHTMLでマークアップしていきます。
+この章では@<tt>{index.html}の空のままだった@<tt>{main}要素内をHTMLでマークアップしていきます。
+
+
+== main要素にトップページと分かるようなIDを付ける
+
+
+はじめにトップページの@<tt>{main}要素にトップページと分かるようなIDを次のように付けます。
 
 
 //emlist[][html]{
-<main>
+<main id="ll-top-page-contents">
 </main>
 //}
 
@@ -70,81 +76,35 @@
 
 
 //emlist[][html]{
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>LoveLive! 2nd トーナメント</title>
-  <meta name="description" content="ラブライブ！の参加者募集サイトです">
-  <meta name="keywords" content="ラブライブ,特設サイト">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <script src="external/slick/slick.min.js" defer></script>
-</head>
+<div class="js-slides ll-slides">
+  <img src="images/image_01.jpg" alt="ラブライブ！ 2nd グランプリ μ's">
+  <img src="images/image_02.jpg" alt="ラブライブ！ 1st グランプリ A-RISE">
+</div>
 
-<body>
-<header id="ll-header" class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <h1 class="navbar-brand ll-logo">LoveLive!</h1>
-    </div>
+<ol class="js-slides-pagination ll-slides-pagination">
+  <li>●</li>
+  <li>●</li>
+</ol>
+//}
 
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="mail-magazine.html">Mail magazine</a></li>
-      <li><a href="#">SNS</a></li>
-      <li><a href="#">Share</a></li>
-      <li><a href="#">Help</a></li>
-    </ul>
-  </div>
+== main要素の見た目を整える
 
-  <nav id="ll-nav" class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Top</a></li>
-        <li><a href="livestage.html">Live stage</a></li>
-        <li><a href="#">Outline</a></li>
-        <li><a href="#">Schedule</a></li>
-        <li><a href="#">Special</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Faq</a></li>
-      </ul>
-    </div>
-  </nav>
-</header>
 
-<main>
-  <div class="js-slides ll-slides">
-    <img src="images/image_01.jpg" alt="">
-    <img src="images/image_02.jpg" alt="">
-  </div>
+トップページの@<tt>{main}要素に対し元の見た目へ近づかせるため、次のように背景色を適用します。
 
-  <ol class="js-slides-pagination ll-slides-pagination">
-    <li>●</li>
-    <li>●</li>
-  </ol>
-</main>
 
-<footer id="ll-footer" class="navbar navbar-default">
-  <div class="container-fluid">
-    <p class="nav navbar-text navbar-left">
-      このサイトは<a href="http://startdash.o2p.jp/">サイト制作のSTART:DASH!!</a>用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
-    </p>
-
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Privacy policy</a></li>
-      <li><a href="#">Sitemap</a></li>
-    </ul>
-  </div>
-</footer>
-</body>
-</html>
+//emlist[][css]{
+/* トップページ：コンテンツ */
+#ll-top-page-contents {
+  background-color: #dcdcdc;
+}
 //}
 
 == カルーセルの見た目を整える
 
 
-カルーセルに使う要素の見た目を整えます。スタイル定義は簡単でウィンドウの描画領域が狭いときに画像をはみ出させないよう、@<tt>{max-width}というプロパティで要素幅の最大値を指定します。
+カルーセルに使う要素の見た目を整えます。
+スタイル定義は簡単でウィンドウの描画領域が狭いときに画像をはみ出させないよう、@<tt>{max-width}というプロパティで要素幅の最大値を指定します。
 
 
 //emlist[][css]{
@@ -171,6 +131,7 @@
 //emlist[][css]{
 /* トップページ：カルーセル連携ページネーションの外枠 */
 .ll-slides-pagination {
+  margin: 0;
   list-style-type: none;
   text-align: center;
 }
@@ -182,14 +143,23 @@
 }
 
 /* トップページ：カルーセル連携ページネーションの現在のページを示す要素 */
-.ll-slides-pagination .ll-slides-pagination__active {
+.ll-slides-pagination .ll-active {
   color: #fff;
 }
 //}
 
 === トップページのCSS
 
+
+ここまでをまとめると、次のCSSになります。
+
+
 //emlist[][css]{
+/* トップページ：コンテンツ */
+#ll-top-page-contents {
+  background-color: #dcdcdc;
+}
+
 /* トップページ：カルーセル内の画像 */
 .ll-slides img {
   max-width: 100%;
@@ -197,6 +167,7 @@
 
 /* トップページ：カルーセル連携ページネーションの外枠 */
 .ll-slides-pagination {
+  margin: 0;
   list-style-type: none;
   text-align: center;
 }
@@ -208,7 +179,7 @@
 }
 
 /* トップページ：カルーセル連携ページネーションの現在のページを示す要素 */
-.ll-slides-pagination .ll-slides-pagination__active {
+.ll-slides-pagination .ll-active {
   color: #fff;
 }
 //}
@@ -217,6 +188,7 @@
 
 
 トップページのHTMLマークアップやCSSによるスタイル適用が終わったので、JavaScriptを使ってカルーセルの実装をします。
+@<tt>{index.html}が置いてあるディレクトリーと同じ場所に@<tt>{scripts}ディレクトリーを作り、JavaScriptファイルを@<tt>{main.js}という名前で作ります。
 
 
 
@@ -397,7 +369,7 @@ var carousel = new Carousel(carouselElement, {
 
 
 //emlist[][javascript]{
-var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-slides-pagination__active");
+var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-active");
 carouselPagination.activatePage(carousel.getCurrentIndex());
 //}
 
@@ -419,6 +391,8 @@ carouselElement.on("afterChange", function() {
 
 
 これまでのJavaScriptをまとめると次のとおりになります。
+次のコードでは関数などの書き順が説明した順番と違います。
+しかしこの書き順で書いたほうが自分は見やすいと感じるため、あえて書き順を変えています。
 
 
 //emlist[][javascript]{
@@ -468,7 +442,7 @@ $(function() {
     arrows: false
   });
 
-  var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-slides-pagination__active");
+  var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-active");
   carouselPagination.activatePage(carousel.getCurrentIndex());
 
   carouselElement.on("afterChange", function() {

@@ -86,3 +86,31 @@
 #ll-footer {
   margin-bottom: 0;
 }
+
+/* トップページ：コンテンツ */
+#ll-top-page-contents {
+  background-color: #dcdcdc;
+}
+
+/* トップページ：カルーセル内の画像 */
+.ll-slides img {
+  max-width: 100%;
+}
+
+/* トップページ：カルーセル連携ページネーションの外枠 */
+.ll-slides-pagination {
+  margin: 0;
+  list-style-type: none;
+  text-align: center;
+}
+
+/* トップページ：カルーセル連携ページネーションの各要素 */
+.ll-slides-pagination li {
+  display: inline-block;
+  color: #ff64b1;
+}
+
+/* トップページ：カルーセル連携ページネーションの現在のページを示す要素 */
+.ll-slides-pagination .ll-active {
+  color: #fff;
+}
