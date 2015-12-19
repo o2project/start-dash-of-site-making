@@ -88,31 +88,67 @@
 <p>聞く前にまずは検索したり問題の概要をまとめます。これにより聞く側にとらせる時間が少なくなります。聞き方としてはおそらく解答にかかるであろう時間を予測して、「『○○』について聞きたいのですが、×分ほど時間はありますか」と聞くのがいいです。この「○○」に入る言葉は、たとえば「ある機能の実装方法」ということが入ると思います。</p>
 <p>また聞く相手を間違えないようにします。たとえばプログラムのことをエンジニア以外に聞いても、ほとんどの場合は求める回答が返ってこないと思います。</p>
 
-<h2><a id="h2-3"></a><span class="secno">2.3　</span>ライブラリ選定</h2>
-<p>ここまで開発に必要なツールや開発の際に分からないことがあったときの対処法を書きました。ここからは今回のサイトを実装するにあたり必要な、CSSやJavaScriptのライブラリ選定をおこなっていきます。</p>
+<h2><a id="h2-3"></a><span class="secno">2.3　</span>ファイル構成</h2>
+<p>それではいよいよサイト作成に入っていきます。はじめにファイル構成を考えます。今回作成するサイトのファイル構成を考えると図のようになります。<tt>index.html</tt>はトップページ、<tt>livestage.html</tt>はライブステージページ用のHTMLとなります。ディレクトリーとしては<tt>external</tt>・<tt>styles</tt>・<tt>scripts</tt>・<tt>images</tt>の4つがあり、その中に各ファイルを置く想定です。</p>
+<div class="emlist-code">
+<pre class="emlist">/
+├- index.html
+├- livestage.html
+├- external
+├- styles
+│  └ main.css
+├- scripts
+│  └ index.js
+└- images
+   ├- image_01.jpg
+   └- ...
+</pre>
+</div>
+<p>各ディレクトリーには、次の規則に則ってファイルを置きます。</p>
+<ul>
+<li>external<ul>
+<li>CSS・JavaScript問わず、ライブラリを置くディレクトリー</li>
+</ul>
+</li>
+<li>styles<ul>
+<li>CSSファイルを置くディレクトリー</li>
+</ul>
+</li>
+<li>scripts<ul>
+<li>JavaScriptファイルを置くディレクトリー</li>
+</ul>
+</li>
+<li>images<ul>
+<li>画像ファイルを置くディレクトリー</li>
+</ul>
+</li>
+</ul>
 
-<h3><a id="h2-3-1"></a>ライブラリとは</h3>
+<h2><a id="h2-4"></a><span class="secno">2.4　</span>ライブラリ選定</h2>
+<p>ファイル構成を決めたところで、今回のサイトを実装するにあたって必要なCSSやJavaScriptのライブラリ選定をおこないます。</p>
+
+<h3><a id="h2-4-1"></a>ライブラリとは</h3>
 <p>ライブラリという聞き慣れない単語が出て「??」となった人もいるかもしれません。選定の前にライブラリについて説明します。</p>
 <p>ライブラリは、汎用性が高いプログラムを他のプログラムからも使えるようにひとまとまりとしたものです。たとえばCSSであればBootstrapやFoundation、JavaScriptでいえばjQueryなどがライブラリです。いまあなたが見ているこの文章も、自動的に日本語の文章をチェックする<a href="https://github.com/textlint/textlint" class="link">textlint</a>というライブラリを使い、自動校正しながら書いています。</p>
 
-<h3><a id="h2-3-2"></a>ライブラリを選ぶ基準</h3>
+<h3><a id="h2-4-2"></a>ライブラリを選ぶ基準</h3>
 <p>ライブラリについて説明したところで、自分がライブラリを選ぶときの基準について、いくつか書きます。</p>
 
-<h4><a id="h2-3-2-1"></a>利用実績</h4>
+<h4><a id="h2-4-2-1"></a>利用実績</h4>
 <p>はじめに、そのライブラリが広く使われているかを見ます。広く使われていれば、ライブラリを使う上で何か困って検索をしたときに情報が出てきやすいためです。</p>
 <p>たとえばCSSのライブラリである<a href="http://getbootstrap.com/" class="link">Bootstrap</a>だとページ下部にBootstrapを使ったサイト一覧が掲載されています。JavaScriptのライブラリである<a href="http://jquery.com/" class="link">jQuery</a>は<a href="http://www.amazon.co.jp/s/field-keywords=jquery" class="link">Amazon上でjQueryで検索</a>するとjQuery関連の本が大量に表示されます。</p>
 <p>このように、利用実績やライブラリについて本が書かれているかということをまず見ます。</p>
 
-<h4><a id="h2-3-2-2"></a>IssueやPull Request、最新コミット日時</h4>
+<h4><a id="h2-4-2-2"></a>IssueやPull Request、最新コミット日時</h4>
 <p>次に、GitHub上にあるIssueやPull Requestの件数と最新コミット日時です。利用実績で見るのは公開されてからある程度時間が経過し、広く使われるようになったライブラリのみ使える判断材料です。つまり定番と言われるライブラリに対してのみ判断材料として使えます。</p>
 <p>そこでIssueやPull Requestの件数と最新コミット日時を見ます。たとえば最新コミット日が6か月前だった場合、IssueやPull Requestの多さは「放置されているから」ということになります。放置されたライブラリを使う場合、自分達でなんとかしないといけなくなる場面が増えてしまいます。</p>
 <p>自分達でなんとかするのであればいいですが、そうでない場合は活発なライブラリを選ぶのがいいです。</p>
 
-<h4><a id="h2-3-2-3"></a>ソースコードの流れを把握しやすい</h4>
+<h4><a id="h2-4-2-3"></a>ソースコードの流れを把握しやすい</h4>
 <p>次に、ソースコードの流れを把握しやすいか見ます。何か困ったときにドキュメントを見ますが、それでも解決できない場合はソースコードを読む必要があるためです。そのときにソースコードの流れを把握できなかった場合、解決方法が見つからずつらくなります。</p>
 <p>全体把握しやすいライブラリとしてたとえば<a href="http://backbonejs.org/" class="link">Backbone.js</a>が挙げられます。<a href="https://github.com/jashkenas/backbone/blob/master/backbone.js" class="link">ソースコード</a>はまとまりの単位が小さいため流れを追いやすいです。ソースコードの行数も1,877行（2015/7/10現在）なので全体を読もうと思えば読めます。</p>
 
-<h4><a id="h2-3-2-4"></a>ドキュメントがそろっている</h4>
+<h4><a id="h2-4-2-4"></a>ドキュメントがそろっている</h4>
 <p>最後に、ドキュメントがあり、かつ読みやすいかを見ます。もちろん両方そろっているのが好ましいです。両方そろっている例としては<a href="http://hokaccha.github.io/js-flipsnap/" class="link">flipsnap.js</a>が挙げられます。</p>
 <p>flipsnap.jsはドキュメントに次の項目がよくまとまっています。そのため使い方に困らないライブラリとなっています。</p>
 <ul>
@@ -121,17 +157,45 @@
 <li>使い方の例</li>
 </ul>
 
-<h2><a id="h2-4"></a><span class="secno">2.4　</span>ライブラリの選定CSS編</h2>
+<h2><a id="h2-5"></a><span class="secno">2.5　</span>ライブラリの選定CSS編</h2>
 <p>ここまでライブラリ選定時の基準について書いてきました。ここからは実際にライブラリ選定をしていきます。はじめにCSSのライブラリから選定していきます。</p>
 <p>今回CSSのライブラリは<a href="https://github.com/twbs/bootstrap" class="link">Bootstrap</a>のテーマである<a href="http://kubosho.github.io/Nico/" class="link">Nico</a>を使います。</p>
 <p>選定した理由としては、今回デザイナーがいない中ラブライブ！参加者募集サイトの見た目をアニメに近づけたいという思いがありました。ラブライブ！参加者募集サイトは、Bootstrapを使って作られたサイトの見た目に似ているためBootstrapを使うことにしました。</p>
 <p>ラブライブ！参加者募集サイトはピンク系の配色なのですが、Bootstrap本体はピンク系の配色ではありません。なので今回のために<a href="http://honokak.osaka/" class="link">Honoka - 日本語も美しく表示できるBootstrapテーマ</a>を元にNicoというBootstrapのテーマを作りました。</p>
+<p>NicoはGitHubからダウンロードします。<a href="https://github.com/kubosho/Nico/releases/latest" class="link">https://github.com/kubosho/Nico/releases/latest</a>にアクセスするとNicoの最新バージョンが表示されます。Downloadsを見ると図のようにzipファイルがあるのでクリックしてダウンロードします。ダウンロードが終わったらzipを展開して、中のファイルを<tt>external</tt>ディレクトリー内に入れておきます。</p>
+<div id="nico" class="image">
+<img src="images/ch02/nico.jpg" alt="Nicoのダウンロード" />
+<p class="caption">
+図2.1: Nicoのダウンロード
+</p>
+</div>
 
-<h2><a id="h2-5"></a><span class="secno">2.5　</span>ライブラリの選定JavaScript編</h2>
+<h2><a id="h2-6"></a><span class="secno">2.6　</span>ライブラリの選定JavaScript編</h2>
 <p>次にJavaScriptのライブラリを選定していきます。今回JavaScript側で実装する機能として、カルーセルがあります。</p>
 <p>カルーセルは<a href="http://www.nike.com/jp/ja_jp/" class="link">Nike</a> などで使われている「注目させたい複数の画像などをつぎつぎと横にスライド表示する」ものです。このカルーセルを実現するためのライブラリは<a href="http://kenwheeler.github.io/slick/" class="link">slick</a>にします。slickを使うために<a href="http://jquery.com/" class="link">jQuery</a>も使います。</p>
 <p>選定した理由は2つあります。ひとつめとして、ドキュメントがそろっておりカルーセルを実装するときに困らないためです。これによりやりたいことがすぐ実現できます。ふたつめとして、slickは開発が活発なことです。ただ互換性がない更新も起こるので最新版に更新する際は注意が必要です。</p>
 <p>なお、カルーセルでの表示に無限ループがいらなければ<a href="http://hokaccha.github.io/js-flipsnap/" class="link">flipsnap.js</a>もおすすめです。jQueryに依存するライブラリでは他に<a href="http://owlgraphic.com/owlcarousel/" class="link">Owl Carousel</a>がよく使われます。</p>
+<p>それではslickをダウンロードします。<a href="http://kenwheeler.github.io/slick/" class="link">http://kenwheeler.github.io/slick/</a>にアクセスしたらページ上部の「get it now」をクリックします。すると「Download Now」というボタンが表示されるのでボタンをクリックします。するとzipファイルがダウンロードされます。ダウンロードが終わったらzipを展開して、中のファイルを<tt>external</tt>ディレクトリー内に入れておきます。</p>
+<div id="slick" class="image">
+<img src="images/ch02/slick.jpg" alt="slickのダウンロード" />
+<p class="caption">
+図2.2: slickのダウンロード
+</p>
+</div>
+<p>続いてjQueryもダウンロードします。<a href="https://jquery.com/" class="link">https://jquery.com/</a>にアクセスしたら「Download jQuery」と書かれたボタンをクリックします。</p>
+<div id="jquery-01" class="image">
+<img src="images/ch02/jquery-01.jpg" alt="Download jQuery" />
+<p class="caption">
+図2.3: Download jQuery
+</p>
+</div>
+<p>ボタンを押すと各種jQueryがダウンロードできるページに遷移します。何種類かリンクがあるうち「Download the compressed, production jQuery」というリンクを右クリックして「リンク先を保存」をクリックします。保存先は<tt>external</tt>ディレクトリー内に保存します。</p>
+<div id="jquery-02" class="image">
+<img src="images/ch02/jquery-02.jpg" alt="production jQueryのリンク" />
+<p class="caption">
+図2.4: production jQueryのリンク
+</p>
+</div>
 <p>これでライブラリの選定が終わりました。次章からはサイトの実装をしていきます。</p>
 
 

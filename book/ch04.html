@@ -36,14 +36,17 @@
             </ul>
 
             <h1><a id="h4"></a><span class="secno">第4章　</span>トップページを作る</h1>
-<p>第3章では共通の構造部分を作っていきました。そこではヘッダーやフッターなどはマークアップしましたが、<tt>main</tt>要素の中身は空だったと思います。この章では、トップページの空のままだった<tt>main</tt>要素の中をHTMLでマークアップしていきます。</p>
+<p>第3章では共通の構造部分を作っていきました。そこではヘッダーやフッターなどはマークアップしましたが、<tt>main</tt>要素の中身は空だったと思います。この章では<tt>index.html</tt>の空のままだった<tt>main</tt>要素内をHTMLでマークアップしていきます。</p>
+
+<h2><a id="h4-1"></a><span class="secno">4.1　</span>main要素にトップページと分かるようなIDを付ける</h2>
+<p>はじめに<tt>main</tt>要素へトップページと分かるようなIDを次のように付けます。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;main&gt;
+<pre class="emlist">&lt;main id=&quot;ll-top-page-contents&quot;&gt;
 &lt;/main&gt;
 </pre>
 </div>
 
-<h2><a id="h4-1"></a><span class="secno">4.1　</span>カルーセル部分のマークアップ</h2>
+<h2><a id="h4-2"></a><span class="secno">4.2　</span>カルーセル部分のマークアップ</h2>
 <p>カルーセル部分のマークアップをしていきます。あらためてカルーセルの説明をすると、<a href="http://www.nike.com/jp/ja_jp/" class="link">Nike</a>などで使われている「注目させたい複数の画像などをつぎつぎと横にスライド表示する」ものです。</p>
 <p>今回カルーセルの実装に<a href="http://kenwheeler.github.io/slick/" class="link">slick</a>というライブラリを使います。slick用として次のHTMLを用意します。とはいっても切り替え表示させる画像を<tt>js-slides ll-slides</tt>というクラスを付けた<tt>div</tt>要素で囲むだけです。接頭辞に<tt>js-</tt>と付けているクラスはJavaScriptから触ることを明確にするため付けています。</p>
 <div class="emlist-code">
@@ -54,7 +57,7 @@
 </pre>
 </div>
 
-<h2><a id="h4-2"></a><span class="secno">4.2　</span>ページネーション部分のマークアップ</h2>
+<h2><a id="h4-3"></a><span class="secno">4.3　</span>ページネーション部分のマークアップ</h2>
 <p>カルーセルと連携したページネーション部分のマークアップをしていきます。ページネーションを画像で示すと、図の赤丸部分になります。</p>
 <div id="pagination" class="image">
 <img src="images/ch04/pagination.jpg" alt="ページネーション（ラブライブ！第2期 1話より）© プロジェクトラブライブ！" />
@@ -72,56 +75,13 @@
 </pre>
 </div>
 
-<h2><a id="h4-3"></a><span class="secno">4.3　</span>ここまでのHTMLまとめ</h2>
+<h2><a id="h4-4"></a><span class="secno">4.4　</span>ここまでのHTMLまとめ</h2>
 <p>トップページのHTMLについてはこれで完成です。ここまでのHTMLをまとめると次のとおりになります。</p>
 <div class="emlist-code">
-<pre class="emlist">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;title&gt;LoveLive! 2nd トーナメント&lt;/title&gt;
-  &lt;meta name=&quot;description&quot; content=&quot;ラブライブ！の参加者募集サイトです&quot;&gt;
-  &lt;meta name=&quot;keywords&quot; content=&quot;ラブライブ,特設サイト&quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;external/Nico/bootstrap.min.css&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
-  &lt;script src=&quot;external/lory/lory.min.js&quot; defer&gt;&lt;/script&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-&lt;header id=&quot;ll-header&quot; class=&quot;navbar navbar-default&quot;&gt;
-  &lt;div class=&quot;container-fluid&quot;&gt;
-    &lt;div class=&quot;navbar-header&quot;&gt;
-      &lt;h1 class=&quot;navbar-brand ll-logo&quot;&gt;LoveLive!&lt;/h1&gt;
-    &lt;/div&gt;
-
-    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
-      &lt;li&gt;&lt;a href=&quot;mail-magazine.html&quot;&gt;Mail magazine&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;SNS&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Share&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-
-  &lt;nav id=&quot;ll-nav&quot; class=&quot;navbar navbar-inverse&quot;&gt;
-    &lt;div class=&quot;container-fluid&quot;&gt;
-      &lt;ul class=&quot;nav navbar-nav&quot;&gt;
-        &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;/&quot;&gt;Top&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;livestage.html&quot;&gt;Live stage&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Outline&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Schedule&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Special&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Faq&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/nav&gt;
-&lt;/header&gt;
-
-&lt;main&gt;
+<pre class="emlist">&lt;main id=&quot;ll-top-page-contents&quot;&gt;
   &lt;div class=&quot;js-slides ll-slides&quot;&gt;
-    &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;&quot;&gt;
-    &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;&quot;&gt;
+    &lt;img src=&quot;images/image_01.jpg&quot; alt=&quot;ラブライブ！ 2nd グランプリ μ's&quot;&gt;
+    &lt;img src=&quot;images/image_02.jpg&quot; alt=&quot;ラブライブ！ 1st グランプリ A-RISE&quot;&gt;
   &lt;/div&gt;
 
   &lt;ol class=&quot;js-slides-pagination ll-slides-pagination&quot;&gt;
@@ -129,25 +89,20 @@
     &lt;li&gt;●&lt;/li&gt;
   &lt;/ol&gt;
 &lt;/main&gt;
-
-&lt;footer id=&quot;ll-footer&quot; class=&quot;navbar navbar-default&quot;&gt;
-  &lt;div class=&quot;container-fluid&quot;&gt;
-    &lt;p class=&quot;nav navbar-text navbar-left&quot;&gt;
-      このサイトは&lt;a href=&quot;http://startdash.o2p.jp/&quot;&gt;サイト制作のSTART:DASH!!&lt;/a&gt;用に作られたものであり、プロジェクトラブライブ！とは関係ありません。
-    &lt;/p&gt;
-
-    &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sitemap&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;
 </pre>
 </div>
 
-<h2><a id="h4-4"></a><span class="secno">4.4　</span>カルーセルの見た目を整える</h2>
+<h2><a id="h4-5"></a><span class="secno">4.5　</span>main要素の見た目を整える</h2>
+<p>HTMLによるマークアップが終わったらCSSで見た目を整えていきます。まずトップページの<tt>main</tt>要素に対し元の見た目へ近づかせるため、次のように背景色を適用します。</p>
+<div class="emlist-code">
+<pre class="emlist">/* トップページ：コンテンツ */
+#ll-top-page-contents {
+  background-color: #dcdcdc;
+}
+</pre>
+</div>
+
+<h2><a id="h4-6"></a><span class="secno">4.6　</span>カルーセルの見た目を整える</h2>
 <p>カルーセルに使う要素の見た目を整えます。スタイル定義は簡単でウィンドウの描画領域が狭いときに画像をはみ出させないよう、<tt>max-width</tt>というプロパティで要素幅の最大値を指定します。</p>
 <div class="emlist-code">
 <pre class="emlist">/* トップページ：カルーセル内の画像 */
@@ -162,6 +117,7 @@
 <div class="emlist-code">
 <pre class="emlist">/* トップページ：カルーセル連携ページネーションの外枠 */
 .ll-slides-pagination {
+  margin: 0;
   list-style-type: none;
   text-align: center;
 }
@@ -173,21 +129,28 @@
 }
 
 /* トップページ：カルーセル連携ページネーションの現在のページを示す要素 */
-.ll-slides-pagination .ll-slides-pagination__active {
+.ll-slides-pagination .ll-active {
   color: #fff;
 }
 </pre>
 </div>
 
-<h3><a id="h4-4-1"></a>トップページのCSS</h3>
+<h3><a id="h4-6-1"></a>トップページのCSS</h3>
+<p>ここまでをまとめると、次のCSSになります。</p>
 <div class="emlist-code">
-<pre class="emlist">/* トップページ：カルーセル内の画像 */
+<pre class="emlist">/* トップページ：コンテンツ */
+#ll-top-page-contents {
+  background-color: #dcdcdc;
+}
+
+/* トップページ：カルーセル内の画像 */
 .ll-slides img {
   max-width: 100%;
 }
 
 /* トップページ：カルーセル連携ページネーションの外枠 */
 .ll-slides-pagination {
+  margin: 0;
   list-style-type: none;
   text-align: center;
 }
@@ -199,14 +162,14 @@
 }
 
 /* トップページ：カルーセル連携ページネーションの現在のページを示す要素 */
-.ll-slides-pagination .ll-slides-pagination__active {
+.ll-slides-pagination .ll-active {
   color: #fff;
 }
 </pre>
 </div>
 
-<h2><a id="h4-5"></a><span class="secno">4.5　</span>JavaScriptを使ってカルーセルの実装をする</h2>
-<p>トップページのHTMLマークアップやCSSによるスタイル適用が終わったので、JavaScriptを使ってカルーセルの実装をします。</p>
+<h2><a id="h4-7"></a><span class="secno">4.7　</span>JavaScriptを使ってカルーセルの実装をする</h2>
+<p>トップページのHTMLマークアップやCSSによるスタイル適用が終わったので、JavaScriptを使ってカルーセルの実装をします。<tt>index.html</tt>が置いてあるディレクトリーと同じ場所に<tt>scripts</tt>ディレクトリーを作り、JavaScriptファイルを<tt>main.js</tt>という名前で作ります。</p>
 <p>JavaScriptを書き始める前に、処理の流れを洗い出しておきしょう。今回は次の流れでカルーセルやカルーセルと連携したページネーション（以下ページネーション）を実装していきます。</p>
 <ol>
 <li>他のJavaScriptと競合しないようにする</li>
@@ -219,7 +182,7 @@
 </ol>
 <p>処理の流れを洗い出したところで、上から順に説明します。</p>
 
-<h2><a id="h4-6"></a><span class="secno">4.6　</span>他のJavaScriptと競合しないようにする</h2>
+<h2><a id="h4-8"></a><span class="secno">4.8　</span>他のJavaScriptと競合しないようにする</h2>
 <p>はじめに定義した変数や関数が他のJavaScriptに干渉しないよう、JavaScriptのソースコード全体を無名関数で囲みます。JavaScriptは宣言した変数や関数の有効範囲（スコープ）が関数単位で閉じられるため無名関数を使います。無名関数は<tt>function() {}</tt>と書きます。ここから無名関数の全体を<tt>()</tt>で囲み最後に<tt>()</tt>を付けることでJavaScriptを即時実行します。つまり<tt>(function() {})();</tt>となります。こうすることにより無名関数内で宣言した変数や関数が他のJavaScriptへ干渉することを防げます。このように無名関数で全体を囲み即時に実行する関数のことを即時関数と呼びます。</p>
 <p>jQueryを使う場合は<tt>(function() { ... })();</tt>の前に<tt>$</tt>を書いて最後の<tt>()</tt>を削除します。つまり<tt>$(function() { ... });</tt>となります。<tt>$</tt>を書く理由はブラウザーがHTMLを読み込んで解釈した後にJavaScriptを実行させるためです。HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内でHTMLの要素を取得できない可能性があります。また最後の<tt>()</tt>を削除した理由は、<tt>$</tt>というのはjQueryの関数だからです。<tt>$</tt>関数の引数として関数を指定するため、最後の<tt>()</tt>がいらなくなります。</p>
 <p>続いて<tt>$(function() { ... });</tt>の中には<tt>&quot;use strict&quot;;</tt>という文字列を書いています。これはJavaScriptをコーディングする上でミスしやすい部分をエラーとして検出してくれるものです。将来に備えていくつかの単語を自由に使えなくする（たとえば<tt>let</tt>や<tt>yield</tt>など）効果があるため、<tt>&quot;use strict&quot;;</tt>は書いても損はありません。</p>
@@ -233,7 +196,7 @@
 </pre>
 </div>
 
-<h2><a id="h4-7"></a><span class="secno">4.7　</span>カルーセルのためにHTMLの要素を取得する</h2>
+<h2><a id="h4-9"></a><span class="secno">4.9　</span>カルーセルのためにHTMLの要素を取得する</h2>
 <p>JavaScriptでHTMLの要素を扱えるようにします。これはjQueryの<tt>$</tt>関数を使って、HTMLの要素をJavaScriptから次のとおり取得します。</p>
 <p>準備の節では、ブラウザーがJavaScriptをHTMLの解釈後に実行するため<tt>$</tt>関数を使いました。ここではHTMLの要素をJavaScriptで利用できるようにするため<tt>$</tt>関数を使います。jQueryの<tt>$</tt>関数はこのように万能なものとなります。</p>
 <div class="emlist-code">
@@ -243,7 +206,7 @@ var paginationItemElements = $(&quot;.js-slides-pagination li&quot;);
 </pre>
 </div>
 
-<h2><a id="h4-8"></a><span class="secno">4.8　</span>カルーセルの実装をする</h2>
+<h2><a id="h4-10"></a><span class="secno">4.10　</span>カルーセルの実装をする</h2>
 <p>HTMLの要素を取得したらカルーセルの実装をしていきます。今回カルーセルの実装をする上でslickというライブラリを使っていきます。このslickを使えるよう初期化する関数と、いま表示しているページがどこか示すための関数を実装していきます。</p>
 <p>まずカルーセルの元になる<tt>Carousel</tt>関数から説明します。<tt>Carousel</tt>関数はパラメーターとして、次のふたつがあります</p>
 <ul>
@@ -265,7 +228,7 @@ Carousel.prototype.getCurrentIndex = function() {
 </div>
 <p>カルーセルの実装が終わったところで、現在どのページを表示しているのか視覚的に分かりやすくするページネーションの実装をしていきます。</p>
 
-<h2><a id="h4-9"></a><span class="secno">4.9　</span>ページネーションの実装をする</h2>
+<h2><a id="h4-11"></a><span class="secno">4.11　</span>ページネーションの実装をする</h2>
 <p>ページネーションの元になる<tt>CarouselPagination</tt>関数を説明します。<tt>CarouselPagination</tt>関数ではパラメーターとして、次の3つがあります。</p>
 <ul>
 <li>ページネーションの要素を示す<tt>paginationElement</tt></li>
@@ -295,7 +258,7 @@ CarouselPagination.prototype.deactivatePage = function() {
 </div>
 <p>いよいよカルーセルやページネーションが動作するようにします。</p>
 
-<h2><a id="h4-10"></a><span class="secno">4.10　</span>カルーセルが動くようにする</h2>
+<h2><a id="h4-12"></a><span class="secno">4.12　</span>カルーセルが動くようにする</h2>
 <p>先ほど実装したカルーセルを次のとおり呼び出して動くようにします。カルーセルの設定として3項目設定します。</p>
 <ul>
 <li>autoplay：カルーセルを自動的にページ送りするか</li>
@@ -311,15 +274,15 @@ CarouselPagination.prototype.deactivatePage = function() {
 </pre>
 </div>
 
-<h2><a id="h4-11"></a><span class="secno">4.11　</span>ページネーションが動くようにする</h2>
+<h2><a id="h4-13"></a><span class="secno">4.13　</span>ページネーションが動くようにする</h2>
 <p>カルーセルと同じように、実装したページネーションを次のとおり呼び出してページネーションを動かします。ページネーションの初期設定として、ページネーション内はじめの<tt>li</tt>要素に現在アクティブであることを示すクラス名が付くようにします。</p>
 <div class="emlist-code">
-<pre class="emlist">var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, &quot;ll-slides-pagination__active&quot;);
+<pre class="emlist">var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, &quot;ll-active&quot;);
 carouselPagination.activatePage(carousel.getCurrentIndex());
 </pre>
 </div>
 
-<h2><a id="h4-12"></a><span class="secno">4.12　</span>カルーセル表示が切り替わったときの処理を設定する</h2>
+<h2><a id="h4-14"></a><span class="secno">4.14　</span>カルーセル表示が切り替わったときの処理を設定する</h2>
 <p>カルーセル表示が切り替わったときに、連動してページネーションの表示を切り替えるようにします。この実装にはslickで定義されている<tt>afterChange</tt>というイベントをjQueryの<tt>on</tt>関数を使って拾えるようにします。</p>
 <div class="emlist-code">
 <pre class="emlist">carouselElement.on(&quot;afterChange&quot;, function() {
@@ -329,8 +292,8 @@ carouselPagination.activatePage(carousel.getCurrentIndex());
 </pre>
 </div>
 
-<h2><a id="h4-13"></a><span class="secno">4.13　</span>トップページのJavaScriptまとめ</h2>
-<p>これまでのJavaScriptをまとめると次のとおりになります。</p>
+<h2><a id="h4-15"></a><span class="secno">4.15　</span>トップページのJavaScriptまとめ</h2>
+<p>これまでのJavaScriptをまとめると次のとおりになります。次のコードでは関数などの書き順が説明した順番と違います。しかしこの書き順で書いたほうが自分は見やすいと感じるため、あえて書き順を変えています。</p>
 <div class="emlist-code">
 <pre class="emlist">$(function() {
   &quot;use strict&quot;;
@@ -378,7 +341,7 @@ carouselPagination.activatePage(carousel.getCurrentIndex());
     arrows: false
   });
 
-  var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, &quot;ll-slides-pagination__active&quot;);
+  var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, &quot;ll-active&quot;);
   carouselPagination.activatePage(carousel.getCurrentIndex());
 
   carouselElement.on(&quot;afterChange&quot;, function() {
@@ -388,7 +351,7 @@ carouselPagination.activatePage(carousel.getCurrentIndex());
 });
 </pre>
 </div>
-<p>スクリーンショットは次のとおりになります。</p>
+<p>トップページのスクリーンショットは次のとおりになります。</p>
 <div id="top" class="image">
 <img src="images/ch04/top.jpg" alt="完成したトップページ" />
 <p class="caption">

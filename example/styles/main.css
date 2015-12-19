@@ -30,7 +30,7 @@
   color: #fff;
   text-transform: uppercase;
 }
-/* グローバルナビゲーションの各描画領域ごとのスタイル定義 */
+/* グローバルナビゲーションの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
   #ll-nav li > a {
     padding: 0.75em 1.5em;
@@ -62,17 +62,17 @@
   }
 }
 
-/* グローバルナビゲーションの現在位置を示すスタイル */
-#ll-nav .active > a {
+/* グローバルナビゲーションの現在位置のスタイルを改善する */
+#ll-nav .ll-active > a {
   position: relative;
-  pointer: default;
+  cursor: default;
   pointer-events: none;
   background-color: #ff50ac;
   color: #fff;
 }
 
 /* グローバルナビゲーションの現在位置を示すスタイル */
-#ll-nav .active > a::after {
+#ll-nav .ll-active > a::after {
   content: "";
   display: block;
   position: absolute;
@@ -82,8 +82,13 @@
   border-bottom: 5px solid #ffdc00;
 }
 
+/* サイトのフッター */
+#ll-footer {
+  margin-bottom: 0;
+}
+
 /* トップページ：コンテンツ */
-#ll-top-page main {
+#ll-top-page-contents {
   background-color: #dcdcdc;
 }
 
@@ -92,26 +97,26 @@
   max-width: 100%;
 }
 
-/* トップページ：ページネーションの外枠 */
+/* トップページ：カルーセル連携ページネーションの外枠 */
 .ll-slides-pagination {
-  list-style-type: none;
   margin: 0;
+  list-style-type: none;
   text-align: center;
 }
 
-/* トップページ：ページネーションの各要素 */
+/* トップページ：カルーセル連携ページネーションの各要素 */
 .ll-slides-pagination li {
   display: inline-block;
   color: #ff64b1;
 }
 
-/* トップページ：ページネーションの現在のページを示す要素 */
-.ll-slides-pagination .ll-slides-pagination__active {
+/* トップページ：カルーセル連携ページネーションの現在のページを示す要素 */
+.ll-slides-pagination .ll-active {
   color: #fff;
 }
 
-/* ライブステージ：コンテンツ */
-#ll-livestage-page main {
+/* ライブステージページ：コンテンツ */
+#ll-livestage-page-contents {
   padding: 1em 0;
   background-color: #dcdcdc;
 }
@@ -141,20 +146,22 @@
 }
 
 /* ライブステージページ：動画部分をレスポンシブにする */
-.ll-live-video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
+.ll-live-video {
+  position: relative;
+  height: 0;
+  /* 16:9のアスペクト比で動画を表示する */
+  padding-bottom: 56.25%;
 }
 
-.ll-live-video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.ll-live-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-/* ライブステージページ：動画の詳細 */
+/* ライブステージページ：動画の情報 */
 .ll-video-detail {
   margin: 1em 0;
 }
@@ -184,11 +191,11 @@
   color: #ff188b;
 }
 
-.ll-video-tabs > li.active > a {
+.ll-video-tabs > .ll-active > a:link,
+.ll-video-tabs > .ll-active > a:visited {
   color: #555;
 }
-
-/* ライブステージページ：動画の情報タブの各描画領域ごとのスタイル定義 */
+/* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
   .ll-video-detail .ll-video-tabs > li > a {
     padding: 5px 0;
@@ -199,14 +206,13 @@
     border-right: 0;
   }
 
-  .ll-video-detail .ll-video-tabs > li.active > a {
-    border-top: 0;
-    border-bottom: 0;
+  .ll-video-detail .ll-video-tabs > .ll-active > a {
+    border-width: 0 1px 0 0;
     background-color: #ff50ac;
     color: #fff;
   }
 
-  .ll-video-detail .ll-video-tabs > li.active::after {
+  .ll-video-detail .ll-video-tabs > .ll-active::after {
     content: "";
     display: block;
     position: absolute;
