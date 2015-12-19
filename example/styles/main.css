@@ -114,3 +114,131 @@
 .ll-slides-pagination .ll-active {
   color: #fff;
 }
+
+/* ライブステージページ：コンテンツ */
+#ll-livestage-page-contents {
+  padding: 1em 0;
+  background-color: #dcdcdc;
+}
+
+/* ライブステージページ：見出し */
+.ll-video-title-and-artist,
+.ll-ad-title {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* ライブステージページ：アーティスト名 */
+.ll-video-artist {
+  padding: 3px 0.5em;
+  border-top: 2px solid #ffdc00;
+  border-bottom: 2px solid #ffdc00;
+  background-color: #fff;
+}
+
+/* ライブステージページ：曲名 */
+.ll-video-title::before {
+  content: "【";
+}
+
+.ll-video-title::after {
+  content: "】";
+}
+
+/* ライブステージページ：動画部分をレスポンシブにする */
+.ll-live-video {
+  position: relative;
+  height: 0;
+  /* 16:9のアスペクト比で動画を表示する */
+  padding-bottom: 56.25%;
+}
+
+.ll-live-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ライブステージページ：動画の情報 */
+.ll-video-detail {
+  margin: 1em 0;
+}
+@media (min-width: 992px) {
+  .ll-video-detail {
+    margin: 0;
+  }
+}
+
+/* ライブステージページ：動画の情報タブ */
+.ll-video-tabs {
+  background-color: #ff50ac;
+}
+
+.ll-video-tabs > li > a {
+  margin-bottom: 0 !important;
+  text-transform: uppercase;
+}
+
+.ll-video-tabs > li > a:link,
+.ll-video-tabs > li > a:visited {
+  color: #fff;
+}
+
+.ll-video-tabs > li > a:hover,
+.ll-video-tabs > li > a:focus {
+  color: #ff188b;
+}
+
+.ll-video-tabs > .ll-active > a:link,
+.ll-video-tabs > .ll-active > a:visited {
+  color: #555;
+}
+/* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
+@media (min-width: 768px) {
+  .ll-video-detail .ll-video-tabs > li > a {
+    padding: 5px 0;
+    border-right: 1px solid #fff;
+  }
+
+  .ll-video-detail .ll-video-tabs > li:last-child > a {
+    border-right: 0;
+  }
+
+  .ll-video-detail .ll-video-tabs > .ll-active > a {
+    border-width: 0 1px 0 0;
+    background-color: #ff50ac;
+    color: #fff;
+  }
+
+  .ll-video-detail .ll-video-tabs > .ll-active::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 3px solid #ffdc00;
+  }
+}
+@media (min-width: 992px) {
+  .ll-video-detail .ll-video-tabs > li > a {
+    font-size: 0.8125em;
+  }
+}
+@media (min-width: 1000px) {
+  .ll-video-detail .ll-video-tabs > li > a {
+    font-size: 0.875em;
+  }
+}
+
+/* ライブステージページ：広告 */
+.ll-livestage-ad {
+  margin: 1em 0;
+}
+@media (min-width: 992px) {
+  .ll-livestage-ad {
+    margin: 0;
+  }
+}
