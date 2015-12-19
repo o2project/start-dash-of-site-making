@@ -20,6 +20,12 @@ group :build do
   end
 end
 
+group :md2review do
+  guard 'rake', :task => 'md2review' do
+    watch(%r{^articles/draft/.+\.md$})
+  end
+end
+
 group :redpen do
   guard 'rake', :task => 'redpen' do
     watch(%r{^articles/draft/.+\.md$})
