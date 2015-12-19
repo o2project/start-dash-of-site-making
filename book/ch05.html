@@ -31,6 +31,8 @@
                 <li><a class="prev" href="ch04.html">前の章へ</a></li>
                 
                 
+                <li><a class="next" href="postdef.html">次の章へ</a></li>
+                
             </ul>
 
             <h1><a id="h5"></a><span class="secno">第5章　</span>ライブステージページを作る</h1>
@@ -285,22 +287,16 @@
 <div class="emlist-code">
 <pre class="emlist">/* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
-  .ll-video-tabs &gt; li &gt; a {
+  .ll-video-detail .ll-video-tabs &gt; li &gt; a {
     padding: 5px 0;
     border-right: 1px solid #fff;
   }
 
-  .ll-video-tabs &gt; li:last-child &gt; a {
+  .ll-video-detail .ll-video-tabs &gt; li:last-child &gt; a {
     border-right: 0;
   }
 
-  .ll-video-tabs &gt; li.active &gt; a {
-    border-bottom: 0;
-    background-color: #ff50ac;
-    color: #fff;
-  }
-
-  .ll-video-tabs &gt; li.active &gt; a::after {
+  .ll-video-detail .ll-video-tabs &gt; li.ll-active::after {
     content: &quot;&quot;;
     display: block;
     position: absolute;
@@ -309,14 +305,20 @@
     width: 100%;
     border-bottom: 3px solid #ffdc00;
   }
+
+  .ll-video-detail .ll-video-tabs &gt; li.ll-active &gt; a {
+    border-bottom: 0;
+    background-color: #ff50ac;
+    color: #fff;
+  }
 }
 @media (min-width: 992px) {
-  .ll-video-tabs &gt; li &gt; a {
+  .ll-video-detail .ll-video-tabs &gt; li &gt; a {
     font-size: 0.8125em;
   }
 }
 @media (min-width: 1000px) {
-  .ll-video-tabs &gt; li &gt; a {
+  .ll-video-detail .ll-video-tabs &gt; li &gt; a {
     font-size: 0.875em;
   }
 }
@@ -422,29 +424,17 @@
 }
 /* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
-  .ll-video-tabs &gt; li &gt; a {
+  .ll-video-detail .ll-video-tabs &gt; li &gt; a {
     padding: 5px 0;
     border-bottom: 0;
     border-right: 1px solid #fff;
   }
 
-  .ll-video-tabs &gt; li:last-child &gt; a {
+  .ll-video-detail .ll-video-tabs &gt; li:last-child &gt; a {
     border-right: 0;
   }
 
-  .ll-video-tabs &gt; li &gt; a:focus,
-  .ll-video-tabs &gt; li &gt; a:hover {
-    background-color: #ff92cb;
-    color: #fff;
-  }
-
-  .ll-video-tabs &gt; .ll-active &gt; a {
-    border-bottom: 0;
-    background-color: #ff50ac;
-    color: #fff;
-  }
-
-  .ll-video-tabs &gt; .ll-active &gt; a::after {
+  .ll-video-detail .ll-video-tabs &gt; li.ll-active::after {
     content: &quot;&quot;;
     display: block;
     position: absolute;
@@ -453,14 +443,27 @@
     width: 100%;
     border-bottom: 3px solid #ffdc00;
   }
+
+  .ll-video-detail .ll-video-tabs &gt; li &gt; a:focus,
+  .ll-video-detail .ll-video-tabs &gt; li &gt; a:hover {
+    background-color: #ff92cb;
+    color: #fff;
+  }
+
+  .ll-video-detail .ll-video-tabs &gt; .ll-active &gt; a {
+    border-top: 0;
+    border-bottom: 0;
+    background-color: #ff50ac;
+    color: #fff;
+  }
 }
 @media (min-width: 992px) {
-  .ll-video-tabs &gt; li &gt; a {
+  .ll-video-detail .ll-video-tabs &gt; li &gt; a {
     font-size: 0.8125em;
   }
 }
 @media (min-width: 1000px) {
-  .ll-video-tabs &gt; li &gt; a {
+  .ll-video-detail .ll-video-tabs &gt; li &gt; a {
     font-size: 0.875em;
   }
 }
@@ -497,6 +500,8 @@
                 
                 <li><a class="prev" href="ch04.html">前の章へ</a></li>
                 
+                
+                <li><a class="next" href="postdef.html">次の章へ</a></li>
                 
             </ul>
         </div>
