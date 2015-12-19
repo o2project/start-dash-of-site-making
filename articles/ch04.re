@@ -27,8 +27,8 @@
 
 //emlist[][html]{
 <div class="js-slides ll-slides">
-  <img src="images/image_01.jpg" alt="ラブライブ! 2nd グランプリ μ's">
-  <img src="images/image_02.jpg" alt="ラブライブ! 1st グランプリ A-RISE">
+  <img src="images/image_01.jpg" alt="ラブライブ！ 2nd グランプリ μ's">
+  <img src="images/image_02.jpg" alt="ラブライブ！ 1st グランプリ A-RISE">
 </div>
 //}
 

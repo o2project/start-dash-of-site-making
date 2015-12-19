@@ -534,7 +534,7 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
 
 
 
-//image[livestage-pc][PCで見た時のラブライブ!参加者募集サイト]{
+//image[livestage-pc][PCで見た時のラブライブ！参加者募集サイト]{
 //}
 
 
@@ -544,7 +544,7 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
 
 
 
-//image[livestage-tablet][タブレットで見た時のラブライブ!参加者募集サイト]{
+//image[livestage-tablet][タブレットで見た時のラブライブ！参加者募集サイト]{
 //}
 
 
