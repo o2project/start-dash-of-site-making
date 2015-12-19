@@ -255,7 +255,7 @@ HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内�
 
 
 
-続いて@<tt>{$(function() { ... \})();}の中には@<tt>{"use strict";}という文字列を書いています。
+続いて@<tt>{$(function() { ... \});}の中には@<tt>{"use strict";}という文字列を書いています。
 これはJavaScriptをコーディングする上でミスしやすい物の一部をエラーとして検出してくれるものです。
 将来に備えていくつかの単語を自由に使えなくする（たとえば@<tt>{let}や@<tt>{yield}など）効果があるため、@<tt>{"use strict";}は書いても損はありません。
 
@@ -287,9 +287,9 @@ jQueryの@<tt>{$}関数はこのように万能なものとなります。
 
 
 //emlist[][javascript]{
-var carouselE = $(".js-slides");
-var paginationE = $(".js-slides-pagination");
-var paginationItemElms = $(".js-slides-pagination li");
+var carouselElement = $(".js-slides");
+var paginationElement = $(".js-slides-pagination");
+var paginationItemElements = $(".js-slides-pagination li");
 //}
 
 == カルーセルの実装をする
@@ -297,14 +297,14 @@ var paginationItemElms = $(".js-slides-pagination li");
 
 HTMLの要素を取得したらカルーセルの実装をしていきます。
 今回カルーセルの実装をする上でslickというライブラリを使っていきます。
-このslickを使えるよう初期化する関数と、どのページがいま表示されているか示すための関数を実装していきます。
+このslickを使えるよう初期化する関数と、いま表示しているページがどこか示すための関数を実装していきます。
 
 
 
 まずカルーセルの元になる@<tt>{Carousel}関数から説明します。
 @<tt>{Carousel}関数はパラメーターとして、次のふたつがあります
 
- * カルーセルの要素を示す@<tt>{carouselE}
+ * カルーセルの要素を示す@<tt>{carouselElement}
  * カルーセルの設定を示す@<tt>{config}
 
 
@@ -318,13 +318,13 @@ HTMLの要素を取得したらカルーセルの実装をしていきます。
 
 
 //emlist[][javascript]{
-function Carousel(carouselE, config) {
-  this.carouselE = carouselE;
-  carouselE.slick(config);
+function Carousel(carouselElement, config) {
+  this.carouselElement = carouselElement;
+  carouselElement.slick(config);
 }
 
 Carousel.prototype.currentIndex = function() {
-  return this.carouselE.slick("slickCurrentSlide");
+  return this.carouselElement.slick("slickCurrentSlide");
 };
 //}
 
@@ -338,8 +338,8 @@ Carousel.prototype.currentIndex = function() {
 ページネーションの元になる@<tt>{CarouselPagination}関数を説明します。
 @<tt>{CarouselPagination}関数ではパラメーターとして、次の3つがあります。
 
- * ページネーションの要素を示す@<tt>{paginationE}
- * ページネーション内の要素を示す@<tt>{paginationItemElms}
+ * ページネーションの要素を示す@<tt>{paginationElement}
+ * ページネーション内の要素を示す@<tt>{paginationItemElements}
  * アクティブなページを示す@<tt>{activePageName}
 
 
@@ -348,20 +348,20 @@ Carousel.prototype.currentIndex = function() {
 
 
 //emlist[][javascript]{
-function CarouselPagination(paginationE, paginationItemElms, activePageName) {
+function CarouselPagination(paginationElement, paginationItemElements, activePageName) {
   this.activePageName = activePageName;
-  this.paginationE = paginationE;
-  this.paginationItemElms = paginationItemElms;
+  this.paginationElement = paginationElement;
+  this.paginationItemElements = paginationItemElements;
 }
 
 CarouselPagination.prototype.activatePage = function(index) {
-  this.paginationItemElms[index].classList.add(this.activePageName);
+  this.paginationItemElements[index].classList.add(this.activePageName);
 };
 
 CarouselPagination.prototype.deactivatePage = function() {
   var _this = this;
 
-  Array.prototype.map.call(this.paginationItemElms, function(paginationItemE) {
+  Array.prototype.map.call(this.paginationItemElements, function(paginationItemE) {
     paginationItemE.classList.remove(_this.activePageName);
   });
 };
@@ -382,7 +382,7 @@ CarouselPagination.prototype.deactivatePage = function() {
  * arrows：前・次へボタンを表示するか
 
 //emlist[][javascript]{
-var carousel = new Carousel(carouselE, {
+var carousel = new Carousel(carouselElement, {
   autoplay: true,
   autoplaySpeed: 5000,
   arrows: false
@@ -393,11 +393,11 @@ var carousel = new Carousel(carouselE, {
 
 
 カルーセルと同じように、実装したページネーションを次のとおり呼び出してページネーションを動かします。
-ページネーションの初期設定として、現在アクティブであることを示すクラス名が最初のドットへ付くようにします。
+ページネーションの初期設定として、ページネーション内はじめの@<tt>{li}要素に現在アクティブであることを示すクラス名が付くようにします。
 
 
 //emlist[][javascript]{
-var carouselPagination = new CarouselPagination(paginationE, paginationItemElms, "ll-slides-pagination__active");
+var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-slides-pagination__active");
 carouselPagination.activatePage(carousel.currentIndex());
 //}
 
@@ -409,7 +409,7 @@ carouselPagination.activatePage(carousel.currentIndex());
 
 
 //emlist[][javascript]{
-carouselE.on("afterChange", function() {
+carouselElement.on("afterChange", function() {
   carouselPagination.deactivatePage();
   carouselPagination.activatePage(carousel.currentIndex());
 });
@@ -427,51 +427,51 @@ $(function() {
 
   //////////////////////////////////////////////////
 
-  function Carousel(carouselE, config) {
-    this.carouselE = carouselE;
-    carouselE.slick(config);
+  function Carousel(carouselElement, config) {
+    this.carouselElement = carouselElement;
+    carouselElement.slick(config);
   }
 
   Carousel.prototype.currentIndex = function() {
-    return this.carouselE.slick("slickCurrentSlide");
+    return this.carouselElement.slick("slickCurrentSlide");
   };
 
   //////////////////////////////////////////////////
 
-  function CarouselPagination(paginationE, paginationItemElms, activePageName) {
+  function CarouselPagination(paginationElement, paginationItemElements, activePageName) {
     this.activePageName = activePageName;
-    this.paginationE = paginationE;
-    this.paginationItemElms = paginationItemElms;
+    this.paginationElement = paginationElement;
+    this.paginationItemElements = paginationItemElements;
   }
 
   CarouselPagination.prototype.activatePage = function(index) {
-    this.paginationItemElms[index].classList.add(this.activePageName);
+    this.paginationItemElements[index].classList.add(this.activePageName);
   };
 
   CarouselPagination.prototype.deactivatePage = function() {
     var _this = this;
 
-    Array.prototype.map.call(this.paginationItemElms, function(paginationItemE) {
+    Array.prototype.map.call(this.paginationItemElements, function(paginationItemE) {
       paginationItemE.classList.remove(_this.activePageName);
     });
   };
 
   //////////////////////////////////////////////////
 
-  var carouselE = $(".js-slides");
-  var paginationE = $(".js-slides-pagination");
-  var paginationItemElms = $(".js-slides-pagination li");
+  var carouselElement = $(".js-slides");
+  var paginationElement = $(".js-slides-pagination");
+  var paginationItemElements = $(".js-slides-pagination li");
 
-  var carousel = new Carousel(carouselE, {
+  var carousel = new Carousel(carouselElement, {
     autoplay: true,
     autoplaySpeed: 5000,
     arrows: false
   });
 
-  var carouselPagination = new CarouselPagination(paginationE, paginationItemElms, "ll-slides-pagination__active");
+  var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-slides-pagination__active");
   carouselPagination.activatePage(carousel.currentIndex());
 
-  carouselE.on("afterChange", function() {
+  carouselElement.on("afterChange", function() {
     carouselPagination.deactivatePage();
     carouselPagination.activatePage(carousel.currentIndex());
   });
