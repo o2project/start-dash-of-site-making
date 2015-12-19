@@ -9,7 +9,6 @@
         "max-ten": {
             "max": 3
         },
-        "spellcheck-tech-word": true,
         "no-doubled-joshi": {
             "min_interval" : 2
         },
