@@ -77,9 +77,11 @@ HTMLファイルを作り終わったら@<tt>{DOCTYPE}というものを書き�
   <meta name="keywords" content="ラブライブ,特設サイト">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/slick/slick.css">
   <link rel="stylesheet" href="styles/main.css">
+  <script src="external/jquery/jquery-2.1.4.min.js" defer></script>
   <script src="external/slick/slick.min.js" defer></script>
-  <script src="external/scripts/main.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
@@ -213,9 +215,11 @@ Bootstrapにはないクラス名を定義する際、図のように@<tt>{ll-}�
   <meta name="keywords" content="ラブライブ,特設サイト">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/slick/slick.css">
   <link rel="stylesheet" href="styles/main.css">
+  <script src="external/jquery/jquery-2.1.4.min.js" defer></script>
   <script src="external/slick/slick.min.js" defer></script>
-  <script src="external/scripts/main.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
