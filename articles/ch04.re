@@ -10,7 +10,7 @@
 == main要素にトップページと分かるようなIDを付ける
 
 
-はじめにトップページの@<tt>{main}要素にトップページと分かるようなIDを次のように付けます。
+はじめに@<tt>{main}要素へトップページと分かるようなIDを次のように付けます。
 
 
 //emlist[][html]{
@@ -76,21 +76,24 @@
 
 
 //emlist[][html]{
-<div class="js-slides ll-slides">
-  <img src="images/image_01.jpg" alt="ラブライブ！ 2nd グランプリ μ's">
-  <img src="images/image_02.jpg" alt="ラブライブ！ 1st グランプリ A-RISE">
-</div>
+<main id="ll-top-page-contents">
+  <div class="js-slides ll-slides">
+    <img src="images/image_01.jpg" alt="ラブライブ！ 2nd グランプリ μ's">
+    <img src="images/image_02.jpg" alt="ラブライブ！ 1st グランプリ A-RISE">
+  </div>
 
-<ol class="js-slides-pagination ll-slides-pagination">
-  <li>●</li>
-  <li>●</li>
-</ol>
+  <ol class="js-slides-pagination ll-slides-pagination">
+    <li>●</li>
+    <li>●</li>
+  </ol>
+</main>
 //}
 
 == main要素の見た目を整える
 
 
-トップページの@<tt>{main}要素に対し元の見た目へ近づかせるため、次のように背景色を適用します。
+HTMLによるマークアップが終わったらCSSで見た目を整えていきます。
+まずトップページの@<tt>{main}要素に対し元の見た目へ近づかせるため、次のように背景色を適用します。
 
 
 //emlist[][css]{
