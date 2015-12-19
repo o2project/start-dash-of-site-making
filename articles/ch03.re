@@ -38,45 +38,13 @@
 
 
 
-== ファイル構成
-
-
-今回作成するサイトのファイル構成を考えると図のようになります。
-@<tt>{index.html}はトップページ、@<tt>{livestage.html}はライブステージページ用のHTMLとなります。
-ディレクトリーとしては@<tt>{external}・@<tt>{styles}・@<tt>{scripts}・@<tt>{images}の4つがあり、その中に各ファイルを置く想定です。
-
-
-//emlist{
-/
-├- index.html
-├- livestage.html
-├- external
-├- styles
-│  └ main.css
-├- scripts
-│  └ index.js
-└- images
-   ├- image_01.jpg
-   └- ...
-//}
-
-
-各ディレクトリーには、以下の規則に則ってファイルを置きます。
-
- * external
- ** CSS・JavaScript問わず、ライブラリを置くディレクトリー
- * styles
- ** CSSファイルを置くディレクトリー
- * scripts
- ** JavaScriptファイルを置くディレクトリー
- * images
- ** 画像ファイルを置くディレクトリー
-
 == 基本構造のマークアップ
 
 
 それでは実際にHTMLでサイトの構造を作っていきます。
-はじめに@<tt>{DOCTYPE}というものを書きます。この@<tt>{DOCTYPE}ですが、過去の経緯から書くことが必須となっています。
+はじめにHTMLファイルを@<tt>{index.html}という名前で任意のディレクトリーに作ります。
+HTMLファイルを作り終わったら@<tt>{DOCTYPE}というものを書きます。
+@<tt>{DOCTYPE}は過去の経緯から書くことが必須となっています。
 
 
 
@@ -109,8 +77,11 @@
   <meta name="keywords" content="ラブライブ,特設サイト">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/slick/slick.css">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="external/lory/lory.min.js" defer></script>
+  <script src="external/jquery/jquery-2.1.4.min.js" defer></script>
+  <script src="external/slick/slick.min.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
@@ -123,7 +94,7 @@
 == ヘッダーのマークアップ
 
 
-基礎部分のマークアップが終わったので、次にヘッダーをマークアップしていきます。
+基礎部分のマークアップが終わったので、@<tt>{body}要素内にヘッダーをマークアップしていきます。
 ヘッダーにはサイトのタイトルロゴと、メールマガジンやSNS、ヘルプなどのリンクがあります。
 
 
@@ -170,6 +141,7 @@ Bootstrapにはないクラス名を定義する際、図のように@<tt>{ll-}�
 
 
 グローバルナビゲーションは、サイト内の主要なページへリンクしているものです。
+このグローバルナビゲーションを@<tt>{header}要素内にマークアップしていきます。
 
 
 
@@ -203,6 +175,7 @@ Bootstrapにはないクラス名を定義する際、図のように@<tt>{ll-}�
 
 
 フッターには著作権情報やプライバシーポリシー、サイトマップといったリンクを追加します。
+フッターも@<tt>{body}要素内にマークアップしていきます。
 
 
 
@@ -242,8 +215,11 @@ Bootstrapにはないクラス名を定義する際、図のように@<tt>{ll-}�
   <meta name="keywords" content="ラブライブ,特設サイト">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/slick/slick.css">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="external/lory/lory.min.js" defer></script>
+  <script src="external/jquery/jquery-2.1.4.min.js" defer></script>
+  <script src="external/slick/slick.min.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
@@ -310,8 +286,9 @@ Bootstrapを読み込んで、Bootstrapに定義されているクラス名を@<
 == ヘッダーの見た目をよくする
 
 
-CSSでヘッダーの下部にある隙間を無くします。
-これは@<tt>{margin-bottom: 0;}とするだけで下部の隙間がなくなります。
+はじめに@<tt>{index.html}が置いてあるディレクトリーと同じ場所に@<tt>{styles}ディレクトリーを作り、その中にCSSファイルを@<tt>{main.css}という名前で作ります。
+CSSファイルを作り終わったら見た目を整えていきます。
+CSSでヘッダーの下部にある隙間を無くします。これは@<tt>{margin-bottom: 0;}とするだけで下部の隙間がなくなります。
 
 
 
@@ -368,15 +345,43 @@ CSSでヘッダーの下部にある隙間を無くします。
   color: #fff;
   text-transform: uppercase;
 }
-/* 横幅が768px以上のときの設定 */
+//}
+
+
+ウィンドウ幅を狭めたときにグローバルナビゲーションの表示が崩れないよう、各ウィンドウ幅ごとにスタイルを定義しておきます。
+主に要素の内側の余白を細かく定義します。
+
+
+//emlist[][css]{
+/* グローバルナビゲーションの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
   #ll-nav li > a {
-    padding: 0.75em 5em;
+    padding: 0.75em 1.5em;
     border-right: 1px solid #fff;
   }
 
   #ll-nav li:first-child > a {
     border-left: 1px solid #fff;
+  }
+}
+@media (min-width: 890px) {
+  #ll-nav li > a {
+    padding: 0.75em 2em;
+  }
+}
+@media (min-width: 992px) {
+  #ll-nav li > a {
+    padding: 0.75em 2.5em;
+  }
+}
+@media (min-width: 1150px) {
+  #ll-nav li > a {
+    padding: 0.75em 3.2em;
+  }
+}
+@media (min-width: 1330px) {
+  #ll-nav li > a {
+    padding: 0.75em 4em;
   }
 }
 //}
@@ -399,8 +404,7 @@ CSSでヘッダーの下部にある隙間を無くします。
 //}
 
 
-最後に現在開いているページをグローバルナビゲーション上で分かりやすくするため、下部に黄色の線を引きます。
-これで共通構造のマークアップは終わりです。
+現在開いているページをグローバルナビゲーション上で分かりやすくするため、下部に黄色の線を引きます。
 
 
 //emlist[][css]{
@@ -415,6 +419,24 @@ CSSでヘッダーの下部にある隙間を無くします。
   border-bottom: 5px solid #ffdc00;
 }
 //}
+
+== フッターの見た目をよくする
+
+
+最後にフッターへスタイルを適用します。
+Bootstrapで定義されている要素外側の余白を打ち消します。
+
+
+//emlist[][css]{
+/* サイトのフッター */
+#ll-footer {
+  margin-bottom: 0;
+}
+//}
+
+
+これで共通構造のマークアップは終わりです。
+
 
 == CSSのまとめ
 
@@ -455,15 +477,35 @@ CSSでヘッダーの下部にある隙間を無くします。
   color: #fff;
   text-transform: uppercase;
 }
-/* 横幅が768px以上のときの設定 */
+/* グローバルナビゲーションの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
   #ll-nav li > a {
-    padding: 0.75em 5em;
+    padding: 0.75em 1.5em;
     border-right: 1px solid #fff;
   }
 
   #ll-nav li:first-child > a {
     border-left: 1px solid #fff;
+  }
+}
+@media (min-width: 890px) {
+  #ll-nav li > a {
+    padding: 0.75em 2em;
+  }
+}
+@media (min-width: 992px) {
+  #ll-nav li > a {
+    padding: 0.75em 2.5em;
+  }
+}
+@media (min-width: 1150px) {
+  #ll-nav li > a {
+    padding: 0.75em 3.2em;
+  }
+}
+@media (min-width: 1330px) {
+  #ll-nav li > a {
+    padding: 0.75em 4em;
   }
 }
 
@@ -485,6 +527,11 @@ CSSでヘッダーの下部にある隙間を無くします。
   left: 0;
   width: 100%;
   border-bottom: 5px solid #ffdc00;
+}
+
+/* サイトのフッター */
+#ll-footer {
+  margin-bottom: 0;
 }
 //}
 

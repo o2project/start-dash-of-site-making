@@ -136,11 +136,45 @@ CSSやJavaScriptは2011年以前の情報があまり役に立ちません。
 たとえばプログラムのことをエンジニア以外に聞いても、ほとんどの場合は求める回答が返ってこないと思います。
 
 
+== ファイル構成
+
+
+それではいよいよサイト作成に入っていきます。はじめにファイル構成を考えます。
+今回作成するサイトのファイル構成を考えると図のようになります。
+@<tt>{index.html}はトップページ、@<tt>{livestage.html}はライブステージページ用のHTMLとなります。
+ディレクトリーとしては@<tt>{external}・@<tt>{styles}・@<tt>{scripts}・@<tt>{images}の4つがあり、その中に各ファイルを置く想定です。
+
+
+//emlist{
+/
+├- index.html
+├- livestage.html
+├- external
+├- styles
+│  └ main.css
+├- scripts
+│  └ index.js
+└- images
+   ├- image_01.jpg
+   └- ...
+//}
+
+
+各ディレクトリーには、次の規則に則ってファイルを置きます。
+
+ * external
+ ** CSS・JavaScript問わず、ライブラリを置くディレクトリー
+ * styles
+ ** CSSファイルを置くディレクトリー
+ * scripts
+ ** JavaScriptファイルを置くディレクトリー
+ * images
+ ** 画像ファイルを置くディレクトリー
+
 == ライブラリ選定
 
 
-ここまで開発に必要なツールや開発の際に分からないことがあったときの対処法を書きました。
-ここからは今回のサイトを実装するにあたり必要な、CSSやJavaScriptのライブラリ選定をおこなっていきます。
+ファイル構成を決めたところで、今回のサイトを実装するにあたって必要なCSSやJavaScriptのライブラリ選定をおこないます。
 
 
 === ライブラリとは
@@ -245,6 +279,19 @@ flipsnap.jsはドキュメントに次の項目がよくまとまっています
 なので今回のために@<href>{http://honokak.osaka/,Honoka - 日本語も美しく表示できるBootstrapテーマ}を元にNicoというBootstrapのテーマを作りました。
 
 
+
+NicoはGitHubからダウンロードします。
+@<href>{https://github.com/kubosho/Nico/releases/latest,https://github.com/kubosho/Nico/releases/latest}にアクセスするとNicoの最新バージョンが表示されます。
+Downloadsを見ると図のようにzipファイルがあるのでクリックしてダウンロードします。
+ダウンロードが終わったらzipを展開して、中のファイルを@<tt>{external}ディレクトリー内に入れておきます。
+
+
+
+//image[nico][Nicoのダウンロード]{
+//}
+
+
+
 == ライブラリの選定JavaScript編
 
 
@@ -267,6 +314,42 @@ slickを使うために@<href>{http://jquery.com/,jQuery}も使います。
 
 なお、カルーセルでの表示に無限ループがいらなければ@<href>{http://hokaccha.github.io/js-flipsnap/,flipsnap.js}もおすすめです。
 jQueryに依存するライブラリでは他に@<href>{http://owlgraphic.com/owlcarousel/,Owl Carousel}がよく使われます。
+
+
+
+それではslickをダウンロードします。
+@<href>{http://kenwheeler.github.io/slick/,http://kenwheeler.github.io/slick/}にアクセスしたらページ上部の「get it now」をクリックします。
+すると「Download Now」というボタンが表示されるのでボタンをクリックします。するとzipファイルがダウンロードされます。
+ダウンロードが終わったらzipを展開して、中のファイルを@<tt>{external}ディレクトリー内に入れておきます。
+
+
+
+//image[slick][slickのダウンロード]{
+//}
+
+
+
+
+続いてjQueryもダウンロードします。
+@<href>{https://jquery.com/,https://jquery.com/}にアクセスしたら「Download jQuery」と書かれたボタンをクリックします。
+
+
+
+//image[jquery-01][Download jQuery]{
+//}
+
+
+
+
+ボタンを押すと各種jQueryがダウンロードできるページに遷移します。
+何種類かリンクがあるうち「Download the compressed, production jQuery」というリンクを右クリックして「リンク先を保存」をクリックします。
+保存先は@<tt>{external}ディレクトリー内に保存します。
+
+
+
+//image[jquery-02][production jQueryのリンク]{
+//}
+
 
 
 

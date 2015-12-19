@@ -3,52 +3,52 @@ $(function() {
 
   //////////////////////////////////////////////////
 
-  function Carousel(carouselE, config) {
-    this.carouselE = carouselE;
-    carouselE.slick(config);
+  function Carousel(carouselElement, config) {
+    this.carouselElement = carouselElement;
+    carouselElement.slick(config);
   }
 
-  Carousel.prototype.currentIndex = function() {
-    return this.carouselE.slick("slickCurrentSlide");
+  Carousel.prototype.getCurrentIndex = function() {
+    return this.carouselElement.slick("slickCurrentSlide");
   };
 
   //////////////////////////////////////////////////
 
-  function CarouselPagination(paginationE, paginationItemElms, activePageName) {
+  function CarouselPagination(paginationElement, paginationItemElements, activePageName) {
     this.activePageName = activePageName;
-    this.paginationE = paginationE;
-    this.paginationItemElms = paginationItemElms;
+    this.paginationElement = paginationElement;
+    this.paginationItemElements = paginationItemElements;
   }
 
   CarouselPagination.prototype.activatePage = function(index) {
-    this.paginationItemElms[index].classList.add(this.activePageName);
+    this.paginationItemElements[index].classList.add(this.activePageName);
   };
 
   CarouselPagination.prototype.deactivatePage = function() {
     var _this = this;
 
-    Array.prototype.map.call(this.paginationItemElms, function(paginationItemE) {
+    Array.prototype.map.call(this.paginationItemElements, function(paginationItemE) {
       paginationItemE.classList.remove(_this.activePageName);
     });
   };
 
   //////////////////////////////////////////////////
 
-  var carouselE = $(".js_slides");
-  var paginationE = $(".js_slides-pagination");
-  var paginationItemElms = $(".js_slides-pagination li");
+  var carouselElement = $(".js-slides");
+  var paginationElement = $(".js-slides-pagination");
+  var paginationItemElements = $(".js-slides-pagination li");
 
-  var carousel = new Carousel(carouselE, {
+  var carousel = new Carousel(carouselElement, {
     autoplay: true,
     autoplaySpeed: 5000,
     arrows: false
   });
 
-  var carouselPagination = new CarouselPagination(paginationE, paginationItemElms, "ll-slides-pagination__active");
-  carouselPagination.activatePage(carousel.currentIndex());
+  var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, "ll-active");
+  carouselPagination.activatePage(carousel.getCurrentIndex());
 
-  carouselE.on("afterChange", function() {
+  carouselElement.on("afterChange", function() {
     carouselPagination.deactivatePage();
-    carouselPagination.activatePage(carousel.currentIndex());
+    carouselPagination.activatePage(carousel.getCurrentIndex());
   });
 });

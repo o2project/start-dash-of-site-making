@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title>LoveLive! 2nd トーナメント</title>
@@ -7,11 +7,14 @@
   <meta name="keywords" content="ラブライブ,特設サイト">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
+  <link rel="stylesheet" href="external/slick/slick.css">
   <link rel="stylesheet" href="styles/main.css">
-  <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js" async></script>
+  <script src="external/jquery/jquery-2.1.4.min.js" defer></script>
+  <script src="external/slick/slick.min.js" defer></script>
+  <script src="scripts/main.js" defer></script>
 </head>
 
-<body id="ll-livestage-page">
+<body>
 <header id="ll-header" class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -29,8 +32,8 @@
   <nav id="ll-nav" class="navbar navbar-inverse">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Top</a></li>
-        <li class="active"><a href="livestage.html">Live stage</a></li>
+        <li class="active ll-active"><a href="/">Top</a></li>
+        <li><a href="livestage.html">Live stage</a></li>
         <li><a href="#">Outline</a></li>
         <li><a href="#">Schedule</a></li>
         <li><a href="#">Special</a></li>
@@ -41,14 +44,15 @@
   </nav>
 </header>
 
-<main>
+<main id="ll-livestage-page-contents">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
         <h2 class="ll-video-title-and-artist">
           <span class="ll-video-artist">μ's</span><span class="ll-video-title">Angelic Angel</span>
         </h2>
-        <div class="ll-live-video-wrapper">
+
+        <div class="ll-live-video">
           <iframe width="560" height="315" src="https://www.youtube.com/embed/oWIE7GwJu3c" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
@@ -57,11 +61,12 @@
         <ul class="nav nav-tabs nav-justified ll-video-tabs">
           <li><a href="">Status</a></li>
           <li><a href="">Like</a></li>
-          <li class="active"><a href="">Comment</a></li>
+          <li class="active ll-active"><a href="">Comment</a></li>
           <li><a href="">Settings</a></li>
         </ul>
 
         <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96" data-widget-id="620242924207386625">#ラブライブ のツイート</a>
+        <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js" async></script>
       </div>
 
       <div class="col-md-3 col-sm-6 ll-livestage-ad">

@@ -7,6 +7,22 @@
 ライブステージページもトップページと同じく@<tt>{main}要素の中をHTMLでマークアップしていきます。
 
 
+
+はじめにHTMLファイルを@<tt>{livestage.html}という名前で@<tt>{index.html}を置いたディレクトリーに作ります。
+@<tt>{index.html}をコピー&ペーストし、@<tt>{livestage.html}の@<tt>{main}要素内を全て消してから作業すると効率がいいです。
+
+
+== main要素にライブステージページと分かるようなIDを付ける
+
+
+はじめに@<tt>{main}要素へライブステージページと分かるようなIDを次のように付けます。
+
+
+//emlist[][html]{
+<main id="ll-livestage-page-contents">
+</main>
+//}
+
 == 動画部分のマークアップ
 
 
@@ -60,6 +76,7 @@ YouTubeの動画をページ内へ埋め込む方法は図のようにYouTubeの
   </ul>
 
   <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96" data-widget-id="620242924207386625">#ラブライブ のツイート</a>
+  <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js" async></script>
 </div>
 //}
 
@@ -101,7 +118,7 @@ YouTubeの動画をページ内へ埋め込む方法は図のようにYouTubeの
 //}
 
 
-最後にライブステージページで書いたHTMLを次のHTMLで全体を囲ったら完成です。
+最後に今まで書いたHTMLの全体（@<tt>{main}要素は除く）を次のHTMLで囲ったら完成です。
 
 
 //emlist[][html]{
@@ -118,62 +135,67 @@ YouTubeの動画をページ内へ埋め込む方法は図のようにYouTubeの
 
 
 //emlist[][html]{
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6">
-      <h2 class="ll-video-title-and-artist">
-        <span class="ll-video-artist">μ's</span><span class="ll-video-title">Angelic Angel</span>
-      </h2>
-      <div class="ll-live-video">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/oWIE7GwJu3c" frameborder="0" allowfullscreen></iframe>
+<main id="ll-livestage-page-contents">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="ll-video-title-and-artist">
+          <span class="ll-video-artist">μ's</span><span class="ll-video-title">Angelic Angel</span>
+        </h2>
+
+        <div class="ll-live-video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/oWIE7GwJu3c" frameborder="0" allowfullscreen></iframe>
+        </div>
       </div>
-    </div>
 
-    <div class="col-md-3 col-sm-6 ll-video-detail">
-      <ul class="nav nav-tabs nav-justified ll-video-tabs">
-        <li><a href="">Status</a></li>
-        <li><a href="">Like</a></li>
-        <li class="active ll-active"><a href="">Comment</a></li>
-        <li><a href="">Settings</a></li>
-      </ul>
+      <div class="col-md-3 col-sm-6 ll-video-detail">
+        <ul class="nav nav-tabs nav-justified ll-video-tabs">
+          <li><a href="">Status</a></li>
+          <li><a href="">Like</a></li>
+          <li class="active ll-active"><a href="">Comment</a></li>
+          <li><a href="">Settings</a></li>
+        </ul>
 
-      <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96" data-widget-id="620242924207386625">#ラブライブ のツイート</a>
-    </div>
+        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96" data-widget-id="620242924207386625">#ラブライブ のツイート</a>
+        <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js" async></script>
+      </div>
 
-    <div class="col-md-3 col-sm-6 ll-livestage-ad">
-      <h2 class="ll-ad-title">
-        Ad
-      </h2>
+      <div class="col-md-3 col-sm-6 ll-livestage-ad">
+        <h2 class="ll-ad-title">
+          Ad
+        </h2>
 
-      <div class="list-group">
-        <a href="https://github.com/kubosho/Nico" class="list-group-item">
-          <div class="list-group-item-heading">
-            Nico
-          </div>
+        <div class="list-group">
+          <a href="https://github.com/kubosho/Nico" class="list-group-item">
+            <div class="list-group-item-heading">
+              Nico
+            </div>
 
-          <p class="list-group-item-text">
-            "Nico" a fork of "Honoka" which is a Bootstrap theme.
-          </p>
-        </a>
+            <p class="list-group-item-text">
+              "Nico" a fork of "Honoka" which is a Bootstrap theme.
+            </p>
+          </a>
 
-        <a href="https://github.com/kubosho/kotori" class="list-group-item">
-          <div class="list-group-item-heading">
-            Kotori
-          </div>
+          <a href="https://github.com/kubosho/kotori" class="list-group-item">
+            <div class="list-group-item-heading">
+              Kotori
+            </div>
 
-          <p class="list-group-item-text">
-            A tool that automatically format and evaluate for CSS.
-          </p>
-        </a>
+            <p class="list-group-item-text">
+              A tool that automatically format and evaluate for CSS.
+            </p>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</main>
 //}
 
 == ライブステージページ全体の見た目を整える
 
 
+HTMLによるマークアップが終わったらCSSで見た目を整えていきます。
 はじめにライブステージページ全体へ関わるスタイルを適用します。
 
 
@@ -184,7 +206,7 @@ YouTubeの動画をページ内へ埋め込む方法は図のようにYouTubeの
 
 //emlist[][css]{
 /* ライブステージページ：コンテンツ */
-#ll-livestage-page main {
+#ll-livestage-page-contents {
   padding: 1em 0;
   background-color: #dcdcdc;
 }
@@ -306,7 +328,8 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
   color: #ff188b;
 }
 
-.ll-video-tabs > .ll-active > a {
+.ll-video-tabs > .ll-active > a:link,
+.ll-video-tabs > .ll-active > a:visited {
   color: #555;
 }
 //}
@@ -335,7 +358,13 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
     border-right: 0;
   }
 
-  .ll-video-detail .ll-video-tabs > li.ll-active::after {
+  .ll-video-detail .ll-video-tabs > .ll-active > a {
+    border-width: 0 1px 0 0;
+    background-color: #ff50ac;
+    color: #fff;
+  }
+
+  .ll-video-detail .ll-video-tabs > .ll-active::after {
     content: "";
     display: block;
     position: absolute;
@@ -343,12 +372,6 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
     left: 0;
     width: 100%;
     border-bottom: 3px solid #ffdc00;
-  }
-
-  .ll-video-detail .ll-video-tabs > li.ll-active > a {
-    border-bottom: 0;
-    background-color: #ff50ac;
-    color: #fff;
   }
 }
 @media (min-width: 992px) {
@@ -465,7 +488,8 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
   color: #ff188b;
 }
 
-.ll-video-tabs > .ll-active > a {
+.ll-video-tabs > .ll-active > a:link,
+.ll-video-tabs > .ll-active > a:visited {
   color: #555;
 }
 /* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
