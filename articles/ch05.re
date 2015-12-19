@@ -326,22 +326,16 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
 //emlist[][css]{
 /* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
-  .ll-video-tabs > li > a {
+  .ll-video-detail .ll-video-tabs > li > a {
     padding: 5px 0;
     border-right: 1px solid #fff;
   }
 
-  .ll-video-tabs > li:last-child > a {
+  .ll-video-detail .ll-video-tabs > li:last-child > a {
     border-right: 0;
   }
 
-  .ll-video-tabs > li.active > a {
-    border-bottom: 0;
-    background-color: #ff50ac;
-    color: #fff;
-  }
-
-  .ll-video-tabs > li.active > a::after {
+  .ll-video-detail .ll-video-tabs > li.ll-active::after {
     content: "";
     display: block;
     position: absolute;
@@ -350,14 +344,20 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
     width: 100%;
     border-bottom: 3px solid #ffdc00;
   }
+
+  .ll-video-detail .ll-video-tabs > li.ll-active > a {
+    border-bottom: 0;
+    background-color: #ff50ac;
+    color: #fff;
+  }
 }
 @media (min-width: 992px) {
-  .ll-video-tabs > li > a {
+  .ll-video-detail .ll-video-tabs > li > a {
     font-size: 0.8125em;
   }
 }
 @media (min-width: 1000px) {
-  .ll-video-tabs > li > a {
+  .ll-video-detail .ll-video-tabs > li > a {
     font-size: 0.875em;
   }
 }
@@ -470,29 +470,17 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
 }
 /* ライブステージページ：動画の情報タブの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
-  .ll-video-tabs > li > a {
+  .ll-video-detail .ll-video-tabs > li > a {
     padding: 5px 0;
     border-bottom: 0;
     border-right: 1px solid #fff;
   }
 
-  .ll-video-tabs > li:last-child > a {
+  .ll-video-detail .ll-video-tabs > li:last-child > a {
     border-right: 0;
   }
 
-  .ll-video-tabs > li > a:focus,
-  .ll-video-tabs > li > a:hover {
-    background-color: #ff92cb;
-    color: #fff;
-  }
-
-  .ll-video-tabs > .ll-active > a {
-    border-bottom: 0;
-    background-color: #ff50ac;
-    color: #fff;
-  }
-
-  .ll-video-tabs > .ll-active > a::after {
+  .ll-video-detail .ll-video-tabs > li.ll-active::after {
     content: "";
     display: block;
     position: absolute;
@@ -501,14 +489,27 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
     width: 100%;
     border-bottom: 3px solid #ffdc00;
   }
+
+  .ll-video-detail .ll-video-tabs > li > a:focus,
+  .ll-video-detail .ll-video-tabs > li > a:hover {
+    background-color: #ff92cb;
+    color: #fff;
+  }
+
+  .ll-video-detail .ll-video-tabs > .ll-active > a {
+    border-top: 0;
+    border-bottom: 0;
+    background-color: #ff50ac;
+    color: #fff;
+  }
 }
 @media (min-width: 992px) {
-  .ll-video-tabs > li > a {
+  .ll-video-detail .ll-video-tabs > li > a {
     font-size: 0.8125em;
   }
 }
 @media (min-width: 1000px) {
-  .ll-video-tabs > li > a {
+  .ll-video-detail .ll-video-tabs > li > a {
     font-size: 0.875em;
   }
 }
