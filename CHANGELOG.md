@@ -1,3 +1,43 @@
+## 0.7.0 (2015-12-19)
+
+
+#### Bug Fixes
+
+* **ch0*:**
+  * 時 => とき ([7e60e192](https://github.com/o2project/start-dash-of-site-making/commit/7e60e1923878abe2f958d78e09ae8a6f4448070a))
+  * 事 => こと ([13c1e749](https://github.com/o2project/start-dash-of-site-making/commit/13c1e7491f03d4663d726aa7c209e02c5af7f668))
+  * 物 => もの ([d236ba98](https://github.com/o2project/start-dash-of-site-making/commit/d236ba98fe3b2cd292161e5db1d5e7f6166b6c91))
+  * 良い => いい ([d5187d4f](https://github.com/o2project/start-dash-of-site-making/commit/d5187d4f2aef2fe99dbd93d30e06ac3b6bd8d214))
+  * 中黒より適切なものがあるときは中黒を使わないようにした ([cd73957c](https://github.com/o2project/start-dash-of-site-making/commit/cd73957c486134ec133d7791b963b1ad528ebfc9))
+  * ラブライブ! => ラブライブ！ ([dea2df78](https://github.com/o2project/start-dash-of-site-making/commit/dea2df7822a37f1e8a3fe8158f0ba435e7dc8afc))
+* **ch01:**
+  * ユーザーへ一 => ユーザーへ1番 ([47bcb611](https://github.com/o2project/start-dash-of-site-making/commit/47bcb61185900f047ae01637e37e0250eee83a9f))
+  * ラブライブ「！」にするためspellcheck-tech-wordをdisable ([0b9fd2f6](https://github.com/o2project/start-dash-of-site-making/commit/0b9fd2f6df95fd6c54adc9b5e8ea74d47eaa045c))
+* **ch02:** とき間 => 時間 ([27e29af4](https://github.com/o2project/start-dash-of-site-making/commit/27e29af41f0fc63cca3d768001f2922719d176b3))
+* **ch04:**
+  * currentIndex() => getCurrentIndex() ([9e2be265](https://github.com/o2project/start-dash-of-site-making/commit/9e2be2656b0b11560c5a9f21f3d1a2d8bd741384))
+  * 競合 => 干渉 ([f841147c](https://github.com/o2project/start-dash-of-site-making/commit/f841147cbb44b7441470b6274c9c287a49ce4586))
+  * 「ものの」 => 「部分を」 ([73ffb55e](https://github.com/o2project/start-dash-of-site-making/commit/73ffb55e28f9531f865c9a1515721855ccfeff12))
+  * ドットという記述を削除 ([8d2d5d3d](https://github.com/o2project/start-dash-of-site-making/commit/8d2d5d3d7f197a420c3ea67f241a94d937c91217))
+  * どのページがいま表示されているか示す => いま表示しているページがどこか示す ([c4a40bc4](https://github.com/o2project/start-dash-of-site-making/commit/c4a40bc4f6048c729fd6525d69d53f9e290218fb))
+  * サンプルコードが間違っていたのを修正 ([20361149](https://github.com/o2project/start-dash-of-site-making/commit/203611496f7c8eddfadc55b57eab76835e66a856))
+* **ch05:**
+  * PCとタブレットで見た時の画像を用意したつもりがどちらもPCになっていた ([8a56bbd4](https://github.com/o2project/start-dash-of-site-making/commit/8a56bbd4774d975e3315ea71a4e3a7099f7b4b80))
+  * #ffffff => #fff ([bda8113b](https://github.com/o2project/start-dash-of-site-making/commit/bda8113bf3fc1618c153ecb4b513e44b5e849af3))
+  * サンプルコードが間違っていたのを修正 ([ea636df4](https://github.com/o2project/start-dash-of-site-making/commit/ea636df49b2df88a6c105bc1f059c2cd1fd1f919))
+
+
+#### New and Edit
+
+* **ch01:** ライセンスと著作権に追記した ([47234b73](https://github.com/o2project/start-dash-of-site-making/commit/47234b737ff8a4722b918af2be42aa577f3af98f))
+* **postdef:** あとがきを追加 ([bf72cba9](https://github.com/o2project/start-dash-of-site-making/commit/bf72cba96d415ea83fa77c3e11a0c22b0b31dd2b))
+
+
+#### Features
+
+* **Guardfile:** 自動的にMarkdownからRe:VIEWフォーマットにするようにした ([56c998d4](https://github.com/o2project/start-dash-of-site-making/commit/56c998d4713a356671e054ef39d1a0994e852e2d))
+
+
 ## 0.6.0 (2015-12-19)
 
 
