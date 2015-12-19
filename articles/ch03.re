@@ -38,40 +38,6 @@
 
 
 
-== ファイル構成
-
-
-今回作成するサイトのファイル構成を考えると図のようになります。
-@<tt>{index.html}はトップページ、@<tt>{livestage.html}はライブステージページ用のHTMLとなります。
-ディレクトリーとしては@<tt>{external}・@<tt>{styles}・@<tt>{scripts}・@<tt>{images}の4つがあり、その中に各ファイルを置く想定です。
-
-
-//emlist{
-/
-├- index.html
-├- livestage.html
-├- external
-├- styles
-│  └ main.css
-├- scripts
-│  └ index.js
-└- images
-   ├- image_01.jpg
-   └- ...
-//}
-
-
-各ディレクトリーには、以下の規則に則ってファイルを置きます。
-
- * external
- ** CSS・JavaScript問わず、ライブラリを置くディレクトリー
- * styles
- ** CSSファイルを置くディレクトリー
- * scripts
- ** JavaScriptファイルを置くディレクトリー
- * images
- ** 画像ファイルを置くディレクトリー
-
 == 基本構造のマークアップ
 
 
