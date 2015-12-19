@@ -33,7 +33,7 @@ IDEはインストールした時からある程度の設定がされていま�
 
 
 
-エディターはWindows・OS X共にAtomやSublime Textがよく使われています。
+エディターはWindowsとOS X共にAtomやSublime Textがよく使われています。
 IDEはWebStormやNetBeans、Visual Studio Community Editionがよく使われています。
 
 
@@ -178,7 +178,7 @@ JavaScriptのライブラリである@<href>{http://jquery.com/,jQuery}は@<href
 このように、利用実績やライブラリについて本が書かれているかということをまず見ます。
 
 
-==== Issue・Pull Request、そして最新コミット日時
+==== IssueやPull Request、最新コミット日時
 
 
 次に、GitHub上にあるIssueやPull Requestの件数と最新コミット日時です。
