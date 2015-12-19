@@ -222,7 +222,7 @@
 <h2><a id="h4-6"></a><span class="secno">4.6　</span>他のJavaScriptと競合しないようにする</h2>
 <p>はじめに定義した変数や関数が他のJavaScriptと競合しないようにするため、JavaScriptのソースコード全体を無名関数で囲みます。JavaScriptは宣言した変数や関数の有効範囲（スコープ）が関数単位で閉じられるため無名関数を使います。無名関数は<tt>function() {}</tt>と書きます。ここから無名関数の全体を<tt>()</tt>で囲み最後に<tt>()</tt>を付ける事でJavaScriptを即時実行します。つまり<tt>(function() {})();</tt>となります。こうする事により無名関数内で宣言した変数や関数が他のJavaScriptへ干渉する事を防げます。このように無名関数で全体を囲み即時に実行する関数の事を即時関数と呼びます。</p>
 <p>jQueryを使う場合は<tt>(function() { ... })();</tt>の前に<tt>$</tt>を書いて最後の<tt>()</tt>を削除します。つまり<tt>$(function() { ... });</tt>となります。<tt>$</tt>を書く理由はブラウザーがHTMLを読み込んで解釈した後にJavaScriptを実行させるためです。HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内でHTMLの要素を取得できない可能性があります。また最後の<tt>()</tt>を削除した理由は、<tt>$</tt>というのはjQueryの関数だからです。<tt>$</tt>関数の引数として関数を指定するため、最後の<tt>()</tt>がいらなくなります。</p>
-<p>続いて<tt>$(function() { ... });</tt>の中には<tt>&quot;use strict&quot;;</tt>という文字列を書いています。これはJavaScriptをコーディングする上でミスしやすいものの一部をエラーとして検出してくれるものです。将来に備えていくつかの単語を自由に使えなくする（たとえば<tt>let</tt>や<tt>yield</tt>など）効果があるため、<tt>&quot;use strict&quot;;</tt>は書いても損はありません。</p>
+<p>続いて<tt>$(function() { ... });</tt>の中には<tt>&quot;use strict&quot;;</tt>という文字列を書いています。これはJavaScriptをコーディングする上でミスしやすい部分をエラーとして検出してくれるものです。将来に備えていくつかの単語を自由に使えなくする（たとえば<tt>let</tt>や<tt>yield</tt>など）効果があるため、<tt>&quot;use strict&quot;;</tt>は書いても損はありません。</p>
 <p>ここまでをまとめると次のソースコードになります。上に書いた事はなかなか覚えづらいので、JavaScriptを書く時にjQueryを使う場合は図のようにすると覚えておけば大丈夫です。</p>
 <div class="emlist-code">
 <pre class="emlist">$(function() {
