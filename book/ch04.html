@@ -251,14 +251,14 @@ var paginationItemElements = $(&quot;.js-slides-pagination li&quot;);
 <li>カルーセルの設定を示す<tt>config</tt></li>
 </ul>
 <p>これらのパラメーターを元に<tt>Carousel</tt>関数でslickが使えるようにします。</p>
-<p>次に<tt>currentIndex</tt>を説明します。これはページネーションで使う関数となります。<tt>currentIndex</tt>はカルーセルでいま表示しているページがどこか示す数字を返す関数です。この実装にはslickで定義されている<tt>slickCurrentSlide</tt>という関数を使います。</p>
+<p>次に<tt>getCurrentIndex</tt>を説明します。これはページネーションで使う関数となります。<tt>getCurrentIndex</tt>はカルーセルでいま表示しているページがどこか示す数字を返す関数です。この実装にはslickで定義されている<tt>slickCurrentSlide</tt>という関数を使います。</p>
 <div class="emlist-code">
 <pre class="emlist">function Carousel(carouselElement, config) {
   this.carouselElement = carouselElement;
   carouselElement.slick(config);
 }
 
-Carousel.prototype.currentIndex = function() {
+Carousel.prototype.getCurrentIndex = function() {
   return this.carouselElement.slick(&quot;slickCurrentSlide&quot;);
 };
 </pre>
@@ -315,7 +315,7 @@ CarouselPagination.prototype.deactivatePage = function() {
 <p>カルーセルと同じように、実装したページネーションを次のとおり呼び出してページネーションを動かします。ページネーションの初期設定として、ページネーション内はじめの<tt>li</tt>要素に現在アクティブであることを示すクラス名が付くようにします。</p>
 <div class="emlist-code">
 <pre class="emlist">var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, &quot;ll-slides-pagination__active&quot;);
-carouselPagination.activatePage(carousel.currentIndex());
+carouselPagination.activatePage(carousel.getCurrentIndex());
 </pre>
 </div>
 
@@ -324,7 +324,7 @@ carouselPagination.activatePage(carousel.currentIndex());
 <div class="emlist-code">
 <pre class="emlist">carouselElement.on(&quot;afterChange&quot;, function() {
   carouselPagination.deactivatePage();
-  carouselPagination.activatePage(carousel.currentIndex());
+  carouselPagination.activatePage(carousel.getCurrentIndex());
 });
 </pre>
 </div>
@@ -342,7 +342,7 @@ carouselPagination.activatePage(carousel.currentIndex());
     carouselElement.slick(config);
   }
 
-  Carousel.prototype.currentIndex = function() {
+  Carousel.prototype.getCurrentIndex = function() {
     return this.carouselElement.slick(&quot;slickCurrentSlide&quot;);
   };
 
@@ -379,11 +379,11 @@ carouselPagination.activatePage(carousel.currentIndex());
   });
 
   var carouselPagination = new CarouselPagination(paginationElement, paginationItemElements, &quot;ll-slides-pagination__active&quot;);
-  carouselPagination.activatePage(carousel.currentIndex());
+  carouselPagination.activatePage(carousel.getCurrentIndex());
 
   carouselElement.on(&quot;afterChange&quot;, function() {
     carouselPagination.deactivatePage();
-    carouselPagination.activatePage(carousel.currentIndex());
+    carouselPagination.activatePage(carousel.getCurrentIndex());
   });
 });
 </pre>
