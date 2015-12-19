@@ -80,7 +80,7 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="external/Nico/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="external/lory/lory.min.js" defer></script>
+  <script src="external/slick/slick.min.js" defer></script>
 </head>
 
 <body>
