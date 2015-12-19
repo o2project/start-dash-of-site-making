@@ -332,15 +332,18 @@ jQueryに依存するライブラリでは他に@<href>{http://owlgraphic.com/ow
 
 続いてjQueryもダウンロードします。
 @<href>{https://jquery.com/,https://jquery.com/}にアクセスしたら「Download jQuery」と書かれたボタンをクリックします。
-ボタンを押すと各種jQueryがダウンロードできるページに遷移します。
-何種類かリンクがあるうち「Download the compressed, production jQuery」というリンクを右クリックして「リンク先を保存」をクリックします。
-保存先は@<tt>{external}ディレクトリー内に保存します。
 
 
 
 //image[jquery-01][Download jQuery]{
 //}
 
+
+
+
+ボタンを押すと各種jQueryがダウンロードできるページに遷移します。
+何種類かリンクがあるうち「Download the compressed, production jQuery」というリンクを右クリックして「リンク先を保存」をクリックします。
+保存先は@<tt>{external}ディレクトリー内に保存します。
 
 
 
