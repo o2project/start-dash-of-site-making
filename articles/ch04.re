@@ -262,7 +262,7 @@ HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内�
 
 
 ここまでをまとめると次のソースコードになります。
-上に書いたことはなかなか覚えづらいので、JavaScriptを書く時にjQueryを使う場合は図のようにすると覚えておけば大丈夫です。
+上に書いたことはなかなか覚えづらいので、JavaScriptを書くときにjQueryを使う場合は図のようにすると覚えておけば大丈夫です。
 
 
 //emlist[][javascript]{
@@ -344,7 +344,7 @@ Carousel.prototype.getCurrentIndex = function() {
 
 
 これらのパラメーターを元に@<tt>{CarouselPagination}関数でページネーションが使えるようにします。
-あとはカルーセルの表示切り替え時に@<tt>{activatePage}関数と@<tt>{deactivatePage}関数を呼び出してページネーションの表示を変えられるようにします。
+あとはカルーセルの表示を切り替えるときに@<tt>{activatePage}関数と@<tt>{deactivatePage}関数を呼び出してページネーションの表示を変えられるようにします。
 
 
 //emlist[][javascript]{
