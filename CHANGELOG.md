@@ -1,3 +1,29 @@
+### 0.7.1 (2015-12-20)
+
+
+#### Bug Fixes
+
+* **ch0*:** loryを使っている痕跡があったのでslickを使うようにした ([0e7a2841](https://github.com/o2project/start-dash-of-site-making/commit/0e7a2841f6db39dc20fded238901bccc1dc05468))
+* **ch03:** 読み込ませるファイルをいろいろ間違えていたのを修正 ([53c9bd32](https://github.com/o2project/start-dash-of-site-making/commit/53c9bd32f3e084ff08bcdf65381400ea0d2ca228))
+
+
+#### New and Edit
+
+* **ch00:** 「はじめに」が古い内容だったので更新した ([9a6ba7ed](https://github.com/o2project/start-dash-of-site-making/commit/9a6ba7ed5acdb0fe66d5d3f350632d9973e5c24c))
+* **ch02:**
+  * スクリーンショットの表示箇所を変更した ([b708f409](https://github.com/o2project/start-dash-of-site-making/commit/b708f40944c5662bd61ababdc8d30e54757d6b02))
+  * Nicoとslick、jQueryのダウンロードについて書いた ([fe640d57](https://github.com/o2project/start-dash-of-site-making/commit/fe640d5772f454aa616e71db3dd2bd7454395a0d))
+* **ch03:** 第3章のサンプルコードに合わせてサンプルサイトを再実装した ([ac7931f4](https://github.com/o2project/start-dash-of-site-making/commit/ac7931f405e9208d12ec7210e2b123a91f413c0a))
+* **ch04:**
+  * main要素に対して説明が書いてなかったので追記した ([8359c78b](https://github.com/o2project/start-dash-of-site-making/commit/8359c78bc6e0c00a621d094c0c59b8999d8acb64))
+  * 「トップページの」を追記 ([a1fb17a3](https://github.com/o2project/start-dash-of-site-making/commit/a1fb17a3eefb4100117c35e206bba0934715ef48))
+  * 第4章のサンプルコードに合わせてサンプルサイトを再実装した ([54c94861](https://github.com/o2project/start-dash-of-site-making/commit/54c94861f8edbeba0a90161e1b3bf0e0dfb4e1ce))
+  * トップページのスクリーンショットを追加 ([5b64f115](https://github.com/o2project/start-dash-of-site-making/commit/5b64f11546d990fccf46b942538f2f60d56f5f73))
+* **ch05:**
+  * main要素は除く旨を追記した ([66cc9ffe](https://github.com/o2project/start-dash-of-site-making/commit/66cc9ffe91ea89f9e023a9169f89a3edc5547d6b))
+  * 第5章のサンプルコードに合わせてサンプルサイトを再実装した ([194ac62c](https://github.com/o2project/start-dash-of-site-making/commit/194ac62c33ed317e42fcf5a080de5e221a399781))
+
+
 ## 0.7.0 (2015-12-19)
 
 
