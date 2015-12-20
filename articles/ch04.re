@@ -288,8 +288,7 @@ CarouselPagination.prototype.deactivatePage = function() {
 
 == カルーセルが動くようにする
 
-いよいよカルーセルやページネーションが動作するようにします。
-先ほど実装したカルーセルを@<list>{run-carousel}のように呼び出して動くようにします。
+先ほど実装したカルーセルを@<list>{run-carousel}のとおり呼び出して動くようにします。
 カルーセルの設定として3項目設定します。
 
  * autoplay：カルーセルを自動的にページ送りするか

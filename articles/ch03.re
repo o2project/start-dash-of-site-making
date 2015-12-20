@@ -39,7 +39,7 @@ HTMLファイルを作り終わったら@<tt>{DOCTYPE}というものを書き�
 @<tt>{body}要素内にはこのページの内容を書いていきます。
 @<tt>{body}要素内にある@<tt>{main}要素はサイトの主要な内容を示すものとなります。
 
-なお@<tt>{main}要素で@<tt>{role}属性の値に@<tt>{main}を指定していますが、これはIE11がmain要素をサポートしていない@<fn>{html5semantic}ためです。
+なお@<tt>{main}要素で@<tt>{role}属性の値に@<tt>{main}を指定しています。これはIE11がmain要素をサポートしていない@<fn>{html5semantic}ためです。
 そのため@<tt>{role}属性で@<tt>{main}を指定して、サイトの主要な内容ということをIE11にも伝える意図で指定しています。
 //footnote[html5semantic][http://caniuse.com/#feat=html5semantic]
 
@@ -295,7 +295,7 @@ Bootstrapのスタイル定義をそのまま使った場合、グローバル�
 ウィンドウ幅を狭めたときにグローバルナビゲーションの表示が崩れないよう、各ウィンドウ幅ごとにスタイルを定義しておきます。
 主に要素の内側の余白を細かく定義します（@<list>{global-navigation-css-02}）。
 
-//list[global-navigation-css-02][ウィンドウ幅を狭めたときに表示が崩れないようにする]{
+//list[global-navigation-css-02][ウィンドウ幅を狭めたとき表示が崩れないようにする]{
 /* グローバルナビゲーションの各ウィンドウ幅ごとのスタイル定義 */
 @media (min-width: 768px) {
   #ll-nav li > a {
