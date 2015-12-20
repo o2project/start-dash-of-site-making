@@ -33,11 +33,14 @@ YouTubeの動画をページ内へ埋め込む方法は@<img>{video-share}のよ
 //list[video][動画部分のHTML]{
 <div class="col-md-6">
   <h2 class="ll-video-title-and-artist">
-    <span class="ll-video-artist">μ's</span><span class="ll-video-title">Angelic Angel</span>
+    <span class="ll-video-artist">μ's</span>
+    <span class="ll-video-title">Angelic Angel</span>
   </h2>
 
   <div class="ll-live-video">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/oWIE7GwJu3c" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/oWIE7GwJu3c"
+    frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 //}
@@ -57,8 +60,11 @@ YouTubeの動画をページ内へ埋め込む方法は@<img>{video-share}のよ
     <li><a href="">Settings</a></li>
   </ul>
 
-  <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96" data-widget-id="620242924207386625">#ラブライブ のツイート</a>
-  <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js" async></script>
+  <a class="twitter-timeline" data-dnt="true"
+  href="https://twitter.com/hashtag/%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96"
+  data-widget-id="620242924207386625">#ラブライブ のツイート</a>
+  <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js" async>
+  </script>
 </div>
 //}
 
@@ -116,11 +122,14 @@ YouTubeの動画をページ内へ埋め込む方法は@<img>{video-share}のよ
     <div class="row">
       <div class="col-md-6">
         <h2 class="ll-video-title-and-artist">
-          <span class="ll-video-artist">μ's</span><span class="ll-video-title">Angelic Angel</span>
+          <span class="ll-video-artist">μ's</span>
+          <span class="ll-video-title">Angelic Angel</span>
         </h2>
 
-        <div class="ll-live-video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/oWIE7GwJu3c" frameborder="0" allowfullscreen></iframe>
+        <div class="ll-live-vido">
+          <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/oWIE7GwJu3c"
+          frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
 
@@ -132,8 +141,13 @@ YouTubeの動画をページ内へ埋め込む方法は@<img>{video-share}のよ
           <li><a href="">Settings</a></li>
         </ul>
 
-        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96" data-widget-id="620242924207386625">#ラブライブ のツイート</a>
-        <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js" async></script>
+        <a class="twitter-timeline" data-dnt="true"
+        href="https://twitter.com/hashtag/%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4
+        %E3%83%96"
+        data-widget-id="620242924207386625">#ラブライブ のツイート</a>
+        <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"
+        async>
+        </script>
       </div>
 
       <div class="col-md-3 col-sm-6 ll-livestage-ad">
@@ -173,7 +187,7 @@ YouTubeの動画をページ内へ埋め込む方法は@<img>{video-share}のよ
 HTMLによるマークアップが終わったらCSSで見た目を整えていきます。
 はじめにライブステージページ全体へ関わるスタイルを適用します。
 
-ライブステージページの@<tt>{main}要素に対し、要素の内側の余白を指定する@<tt>{padding}や背景色を指定する@<tt>{background-color}を指定することでライブステージページの見た目に近づけていきます。
+ライブステージページの@<tt>{main}要素に対し、要素の内側の余白を指定する@<tt>{padding}や背景色を指定する@<tt>{background-color}を適用することでライブステージページの見た目に近づけていきます。
 さらに見出しにもスタイルを適用することでサイトの見た目をアニメ版に近づけていきます（@<list>{main-css}）。
 
 //list[main-css][ライブステージページ全体を整えるCSS]{
@@ -508,5 +522,5 @@ YouTubeの動画をページ内へ埋め込んでいますが、初期状態だ�
 
 @<img>{livestage-tablet}のようにタブレットで見たときは動画が1番目立つ位置にあります。
 
-//image[livestage-tablet][タブレットで見たときのラブライブ！参加者募集サイト]{
+//image[livestage-tablet][タブレットで見たときのラブライブ！参加者募集サイト][scale=0.33]{
 //}

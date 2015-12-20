@@ -1,18 +1,13 @@
 # 本の情報
 
-## 作者情報
-
 * 執筆・企画
   * @kubosho_
 * 執筆・レビュア
   * @fruitsnoodle
 * 表紙・裏表紙イラスト
   * GiantRobots（pixivID：1223059）
-
-## 印刷所情報
-
-* 日光企画
-  * http://www.nikko-pc.com/
+* 印刷所
+  * 日光企画（http://www.nikko-pc.com/）
 
 ## Special thanks
 
