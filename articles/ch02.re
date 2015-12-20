@@ -249,20 +249,20 @@ slickを使うためにjQueryも使います。
 すると「Download Now」というボタンが表示されるのでボタンをクリックします（@<img>{slick}）。
 するとzipファイルがダウンロードされるので、zipを展開して中のファイルを@<tt>{external}ディレクトリー内に入れておきます。
 
-//image[slick][slickのダウンロード]{
+//image[slick][slickのダウンロード][scale=0.4]{
 //}
 
 続いてjQueryもダウンロードします。
 @<tt>{https://jquery.com/}にアクセスしたら「Download jQuery」と書かれたボタンをクリックします（@<img>{jquery-01}）。
 
-//image[jquery-01][jQueryのダウンロード]{
+//image[jquery-01][jQueryのダウンロード][scale=0.22]{
 //}
 
 ボタンを押すと各種jQueryがダウンロードできるページに遷移します。
 何種類かリンクがあるうち「Download the compressed, production jQuery」というリンクを右クリックして「リンク先を保存」をクリックします（@<img>{jquery-02}）。
 保存先は@<tt>{external}ディレクトリー内に保存します。
 
-//image[jquery-02][production jQueryのリンク]{
+//image[jquery-02][production jQueryのリンク][scale=0.25]{
 //}
 
 これでライブラリの選定が終わりました。次章からはサイトの実装をしていきます。
