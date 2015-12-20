@@ -9,7 +9,7 @@
 
 == main要素にライブステージページと分かるようなIDを付ける
 
-はじめに@<tt>{main}要素へライブステージページと分かるようなIDを次のように付けます。
+はじめに@<tt>{main}要素へライブステージページと分かるようなIDを次のとおりに付けます。
 
 //list[livestagepage-main-html][main要素にライブステージページと分かるようなIDを付ける]{
 <main id="ll-livestage-page-contents">

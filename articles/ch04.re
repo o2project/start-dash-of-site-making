@@ -6,7 +6,7 @@
 
 == main要素にトップページと分かるようなIDを付ける
 
-はじめに@<tt>{main}要素へトップページと分かるようなIDを@<list>{toppage-main-html}のように付けます。
+はじめに@<tt>{main}要素へトップページと分かるようなIDを@<list>{toppage-main-html}のとおりに付けます。
 
 //list[toppage-main-html][main要素にトップページと分かるようなIDを付ける]{
 <main id="ll-top-page-contents">
@@ -198,7 +198,7 @@ HTMLを解釈した後にJavaScriptの実行をしない場合、JavaScript内�
 将来に備えていくつかの単語を自由に使えなくする（たとえば@<tt>{let}や@<tt>{yield}など）効果があるため、@<tt>{"use　strict";}は書いても損はありません。
 
 ここまでをまとめると次のソースコードになります。
-上に書いたことはなかなか覚えづらいので、JavaScriptを書くときにjQueryを使う場合は@<list>{mainjs}のようにすると覚えておけば大丈夫です。
+上に書いたことはなかなか覚えづらいので、JavaScriptを書くときにjQueryを使う場合は@<list>{mainjs}のとおりに書くと覚えておけば大丈夫です。
 
 //list[mainjs][他のJavaScriptと競合しないようにする]{
 $(function() {
