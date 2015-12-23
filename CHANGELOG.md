@@ -1,3 +1,31 @@
+## 1.0.0 (2015-12-23)
+
+
+#### Bug Fixes
+
+* **PDF:** PDF出力した最にページ数がおかしくなっていたのを修正 ([1d5fbcd9](https://github.com/o2project/start-dash-of-site-making/commit/1d5fbcd9a4768d1874763e6e354365f9cc89a17e))
+* **ch0*:**
+  * 二重助詞を解消 ([2f068b14](https://github.com/o2project/start-dash-of-site-making/commit/2f068b145aac5742d0573db6a6dd6186b50d3941))
+  * 「のように」をなるべく使わないようにした ([b95c9317](https://github.com/o2project/start-dash-of-site-making/commit/b95c9317e1d44277e13e728cb664546c3f3cb362))
+  * 「こと」をあまり使わないようにした ([76de9426](https://github.com/o2project/start-dash-of-site-making/commit/76de94266fc267599ba9621e9a427d1b08bb7118))
+* **ch02:** 二重助詞を無くした ([ddde488f](https://github.com/o2project/start-dash-of-site-making/commit/ddde488fb54d0ea45109756fc4c738b4338315ed))
+* **package.json:** textlintのテスト先を変更していなかった ([3c8d880a](https://github.com/o2project/start-dash-of-site-making/commit/3c8d880a82f62970467af5f50097af70d0ed5d61))
+
+
+#### New and Edit
+
+* **ch0*:**
+  * 画像の大きさを調整 ([a54a6614](https://github.com/o2project/start-dash-of-site-making/commit/a54a6614d1bd40247483678fbe0a0beedbc2bbd4))
+  * ページ数調整（68P） ([ddf21494](https://github.com/o2project/start-dash-of-site-making/commit/ddf21494080372c8a374448b1194522d318e95f2))
+  * Re:VIEWファイルを編集してHTML・PDFの見た目を整えた ([a19bdbe1](https://github.com/o2project/start-dash-of-site-making/commit/a19bdbe1f9c4996b984c7bca531bf42455ac68c7))
+* **ch04:** 節のタイトルと文章を少し修正 ([ca397eb5](https://github.com/o2project/start-dash-of-site-making/commit/ca397eb5530b77461b06104b43d9ccc44a492de3))
+
+
+#### Features
+
+* ***:** Markdown => Re:VIEW変換という作業の流れをRe:VIEW => Markdownに変更 ([18310734](https://github.com/o2project/start-dash-of-site-making/commit/183107345d1c6d3c529991a22383cca1af8746e5))
+
+
 ### 0.7.1 (2015-12-20)
 
 
