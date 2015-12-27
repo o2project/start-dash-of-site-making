@@ -5,6 +5,7 @@
 vendor/
 node_modules/
 *pdf/
+articles/images/cover
 
 # Files
 .DS_Store
