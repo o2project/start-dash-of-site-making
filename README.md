@@ -1,6 +1,8 @@
 サイト制作のSTART:DASH!!
 ===
 
+**このリポジトリはメンテナンスしません。**
+
 [![Build Status](http://img.shields.io/travis/o2project/start-dash-of-site-making.svg)](https://travis-ci.org/o2project/start-dash-of-site-making)
 
 それは僕たちの語られなかった制作秘話──
